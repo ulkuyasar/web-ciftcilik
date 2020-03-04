@@ -1,7 +1,7 @@
 const express = require('express');
 const path = require('path');
 const app = express();
-
+console.log('web-ciftcilik herokuda basliyor');
 // Serve static files....
 app.use(express.static(__dirname + '/dist/web-ciftcilik'));
 
