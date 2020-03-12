@@ -10,7 +10,7 @@ export class YilmenuComponent implements OnInit {
 
   @ViewChild('menuReference', { static: false }) menuReference: jqxMenuComponent;
 	
-	getWidth() : any {
+	getWidthMenu() : any {
 		if (document.body.offsetWidth < 600) {
 			return '90%';
 		}	

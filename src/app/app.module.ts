@@ -25,22 +25,30 @@ import { AuthenticationService } from './_helpers/authentication.service';
 
 
 import { YilmenuComponent } from './_menu/yilmenu/yilmenu.component';
+import { YilBaseMasterCRUDComponent } from './_yilLibrary/yilCompomenents/yil-base-master-crud/yil-base-master-crud.component';
+import { MasterCityComponent } from './businessComponents/master-city/master-city.component';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    YilmenuComponent
+    YilmenuComponent,
+    YilBaseMasterCRUDComponent,
+    MasterCityComponent
   ],
   imports: [
+    ReactiveFormsModule,
     BrowserModule,
-    AppRoutingModule ,
+    AppRoutingModule,
+    FormsModule,
     HttpClientModule,
-    jqxMenuModule, 
-    jqxCheckBoxModule,
-    jqxGridModule, jqxButtonModule, 
+    CommonModule, jqxGridModule, jqxButtonModule, 
     jqxNumberInputModule, jqxInputModule, jqxWindowModule,
-    jqxDropDownListModule, jqxPanelModule
+    jqxDropDownListModule, jqxPanelModule,jqxMenuModule
+
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [

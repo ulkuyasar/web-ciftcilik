@@ -3,11 +3,25 @@ import { CurrencyPipe } from '@angular/common';
 interface Iidname {
     id: number;
     name: string;
+
+    createdDate: Date;
+    updatedDate : Date;
+    createdUser :string;
+    updatedUser :string;
+    whichPageId :number;
+    recordStatus :boolean;
 }
 
 class justid {
     id: number;
     responceMesaj:ResponceInfo;
+
+    createdDate: Date;
+    updatedDate : Date;
+    createdUser :string;
+    updatedUser :string;
+    whichPageId :number;
+    recordStatus :boolean;
 }
 
 class MessagingAccrossComponent
@@ -60,6 +74,13 @@ abstract class idname {
     id: number;
     name: string;
     responceMesaj:ResponceInfo; // bu degisecek
+
+    createdDate: Date;
+    updatedDate : Date;
+    createdUser :string;
+    updatedUser :string;
+    whichPageId :number;
+    recordStatus :boolean;
 }
 
 abstract class idNameDescription extends idname {
@@ -75,6 +96,10 @@ class Category extends idname {
     
 }
 
+class City extends idname {
+   plakaNo :string;
+
+}
 
 class Product extends idname {
     price:number;
@@ -112,6 +137,7 @@ class Transaction extends justid {
 
 export { idname,ResponceInfo,Masterdetail,Category, Product,User ,   
      Transaction,
-     MessagingAccrossComponent,UserRoleItem};
+     MessagingAccrossComponent,UserRoleItem,
+     City};
 
 

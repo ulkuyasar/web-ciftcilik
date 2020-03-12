@@ -1,0 +1,53 @@
+<p>City Tanımları</p>
+
+<app-yil-base-master-crud #base 
+[modalWindowForm]="myWindow" 
+[gridColumns]="gridColumns"
+[abstractidnoService]="_cityService"
+[entityVal]="entityVal"
+(EventSetValueToModalWindowForm)="EventSetValueToModalWindowFormSubclass($event)"
+(EventClearValueToModalWindowForm)="EventClearValueToModalWindowFormSubclass()"
+(EventSetValueToEntityFromModalWindowForm)="EventSetValueToEntityFromModalWindowFormSubclass($event)">
+</app-yil-base-master-crud>
+
+
+<jqxWindow #myWindow [width]="250" [height]="230" [resizable]="false" [isModal]="false" [autoOpen]="false" [modalOpacity]="'0.01'">
+    <div>Edit</div>
+    <div style="overflow: hidden;">
+        <table>
+            <tr>
+                <td align="right">id:</td>
+                <td align="left">
+                    <jqxNumberInput #id
+                        [width]="150" [height]="23" [disabled]="true"
+                        [min]="0" [spinButtons]="true" [spinMode]="'simple'"></jqxNumberInput> 
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Ad:</td>
+                <td align="left">
+                    <jqxInput #name [width]="150" [height]="23"></jqxInput>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Plaka No:</td>
+                <td align="left">
+                    <jqxInput #plakaNo [width]="75" [height]="23"></jqxInput>
+                </td>
+            </tr>
+            
+            <tr>
+              <td align="right"></td>
+              <td style="padding-top: 10px;" align="right">
+                  <jqxButton style="margin-right: 5px;" (onClick)="base.saveBtn()">
+                      Kaydet
+                  </jqxButton>
+                  <jqxButton style="margin-right: 5px;" (onClick)="base.cancelBtn()">
+                      İptal
+                  </jqxButton>
+              </td>
+            </tr>
+        </table>
+    </div>
+</jqxWindow>
+
