@@ -24,7 +24,7 @@ export class  CityService extends YilIdNameInheritedService<City> {
  } 
 
  get(): Observable<City[]> {
-  return this.http.get<City[]>(this.url+'/getlistbyotherobject?otherId='+this.authenticationService.currentUserValue.id);  
+  return this.http.get<City[]>(this.url+'/getlistbyotherobject?otherId='+this.authenticationService.currentUser);  
 }
 
 }

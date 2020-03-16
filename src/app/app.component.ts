@@ -21,9 +21,7 @@ constructor(
 
   Logout($event)
   {
-   this.authenticationService.logout();
-   this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/UserLoginPageComponent';
-   this.router.navigate([this.returnUrl]);
+    this.authenticationService.doLogout();
   }
 
   closeModelInfo($event)

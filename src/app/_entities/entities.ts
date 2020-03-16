@@ -110,16 +110,29 @@ class Product extends idname {
 
 class User extends idname {
     userName:string;
-    specialNumber:number;
-    balance:number;   
     password: string;
     firstName: string;
     lastName: string;
-    salonName:string;
-    salonId:number;
     token:string;
     userRoleItems:UserRoleItem[];
+    isAdmin:boolean;
 }
+
+class UserForRegisterDto 
+{
+        firstName: string;
+        lastName: string;
+		email : string;
+		password: string;
+        birthday :Date;
+		gender :number;        
+}
+class UserForLoginDto 
+{
+		email : string;
+		password: string;
+}
+
 
 class UserRoleItem{
     roleName:string;
@@ -138,6 +151,6 @@ class Transaction extends justid {
 export { idname,ResponceInfo,Masterdetail,Category, Product,User ,   
      Transaction,
      MessagingAccrossComponent,UserRoleItem,
-     City};
+     City,UserForRegisterDto,UserForLoginDto};
 
 

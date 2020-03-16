@@ -3,12 +3,12 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "node server.js", 
+    "start": "node server.js",
     "postinstall": "ng build --prod",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"   
+    "e2e": "ng e2e"
   },
   "private": true,
   "dependencies": {
@@ -27,6 +27,7 @@
     "core-js": "^2.5.4",
     "express": "^4.17.1",
     "jqwidgets-ng": "^9.0.0",
+    "jwt-decode": "^2.2.0",
     "path": "^0.12.7",
     "rxjs": "~6.5.4",
     "tslib": "^1.9.0",

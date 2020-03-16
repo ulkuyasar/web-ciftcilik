@@ -1,99 +1,159 @@
+
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
-import { HttpClient } from '@angular/common/http';
-
-import { User } from '../_entities/entities';
+import { Observable, throwError } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
+import { Router } from '@angular/router';
+import { User, UserForRegisterDto, UserForLoginDto } from '../_entities/entities';
 import { EnvironmentUrlService } from './environment-url.service';
-//import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
+import * as jwt_decode from 'jwt-decode';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
+
 export class AuthenticationService {
-
-    private currentUserSubject: BehaviorSubject<User>;
-    public currentUser: Observable<User>;
-    UserUrl = "http://localhost:5000/api/Users"
-    userToken: any;
-    decodedToken:any;
-  // angular8 donusuunde kapatıldı  jwtHelper:JwtHelper = new JwtHelper();
-    TOKEN_KEY='token';
-    DECODEDTOKEN_KEY='decodedtoken';
-    CURRENTUSER='currentUser';
-
-    constructor(private http: HttpClient,
-                private environmentURLService:EnvironmentUrlService
-               ) {
-        this.UserUrl = environmentURLService.getURL()+"Users";
-        this.currentUserSubject = new BehaviorSubject<User>(JSON.parse(localStorage.getItem('currentUser')));
-        this.currentUser = this.currentUserSubject.asObservable();
+  endpoint: string =   'https://localhost:4000/api/Auths';
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  currentUser: User;
 
 
+  constructor(
+    private http: HttpClient,
+    public router: Router,
+    private environmentUrlService:EnvironmentUrlService
+  ) {
+    this.endpoint = this.environmentUrlService.getURL()+"Auths";
+  }
+
+
+
+  // Sign-up
+  signUp(user: UserForRegisterDto): Observable<any> {
+    let api = `${this.endpoint}/register`;
+    return this.http.post(api, user)
+      .pipe(
+        map((res: Response) => {
+          return res || {}
+        }),
+        catchError(this.handleError)
+      )
+  }
+
+  // Sign-in
+  // signIn(user: UserForLoginDto) {
+  //   debugger;
+  //   return this.http.post<any>(`${this.endpoint}/login`, user)
+  //     .subscribe((res: any) => {
+  //       debugger;
+  //       localStorage.setItem('access_token', res.token)
+  //       this.getUserProfile(res._id).subscribe((res) => {
+  //         this.currentUser = res;
+  //         this.router.navigate(['user-profile/' + res.msg._id]);
+  //       })
+  //     })
+  // }
+
+    // Sign-in
+    signIn(user: UserForLoginDto) {
+ 
+      return this.http.post<any>(`${this.endpoint}/login`, user)
+      .pipe(map(res => {
+          if (res && res.success) {
+              localStorage.setItem('access_token', res.data.token);
+              debugger;
+              var decodedToken = jwt_decode(res.data.token);
+
+              var _id =decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
+              var currentUser = JSON.stringify({ 
+              isAdmin: 'Admin' === decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'],
+              id:_id,
+              userName: decodedToken['email'],
+              email: decodedToken['email'],
+              fullName: decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"]});
+
+              localStorage.setItem('currentUser',currentUser);
+
+              this.getUserProfile(_id).subscribe((res) => {
+                  this.currentUser = res.data;
+                  this.router.navigate(['user-profile/' + res.data.id]);
+              })
+        }
+        else
+        {
+            this.doLogout();
+            throw new Error("Giriş bilgileriniz yanlış. Lütfen tekrar kontrol ediniz");
+        }
+        
+      }));
     }
 
-   
+  
+//   signIn(user: UserForLoginDto) {
+//     return this.http.get<any>(this.endpoint+'/login/GetByUserNameAndPassword?email='+user.email+'&password='+user.password)// return this.http.post<any>(this.url+'/GetByUserNameAndPassword', { username, password })
+//         .pipe(map(user => {
+//             // login successful if there's a jwt token in the response
+//             if (user && user.responceMesaj.result) {  // if (user && user.token) {
+//                 // store user details and jwt token in local storage to keep user logged in between page refreshes
+//                 localStorage.setItem(this.CURRENTUSER, JSON.stringify(user));
+//                 this.currentUserSubject.next(user);                
+//             } else {
+//                 this.doLogout();
+//                 throw new Error("Giriş bilgileriniz yanlış. Lütfen tekrar kontrol ediniz");
+//             }
+//            // return user;
+//         }));
+// }
 
 
-    GetByUserNameAndPassword(username: string, password: string) {
-        return this.http.get<any>(this.UserUrl+'/GetByUserNameAndPassword?userName='+username+'&password='+password)// return this.http.post<any>(this.url+'/GetByUserNameAndPassword', { username, password })
-            .pipe(map(user => {
-                // login successful if there's a jwt token in the response
-                if (user && user.responceMesaj.result) {  // if (user && user.token) {
-                    // store user details and jwt token in local storage to keep user logged in between page refreshes
-                    localStorage.setItem(this.CURRENTUSER, JSON.stringify(user));
-                    this.currentUserSubject.next(user);                
-                } else {
-                    this.logout();
-                    throw new Error("Giriş bilgileriniz yanlış. Lütfen tekrar kontrol ediniz");
-                }
-               // return user;
-            }));
+
+
+
+
+  getToken() {
+    return localStorage.getItem('access_token');
+  }
+
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('access_token');
+    return (authToken !== null) ? true : false;
+  }
+
+  doLogout() {
+    let removeToken = localStorage.removeItem('access_token');
+    if (removeToken == null) {
+      this.router.navigate(['log-in']);
     }
+  }
 
-    loginWithToken(username: string, password: string) {
-        return this.http.get<any>(this.UserUrl+'/LoginWithToken?userName='+username+'&password='+password)// return this.http.post<any>(this.url+'/GetByUserNameAndPassword', { username, password })
-            .pipe(map(data => {
-                
-                this.saveToken(data);
-                this.userToken = data;
-                // angular8 donusuunde kapatıldı this.decodedToken = this.jwtHelper.decodeToken(data);
-                this.saveDecodedToken(this.decodedToken);
-                // if (user && user.responceMesaj.result) {  // if (user && user.token) {
-                    
-                //     localStorage.setItem('currentUser', JSON.stringify(user));
-                //     this.currentUserSubject.next(user);                
-                // } else {
-                //     this.logout();
-                //     throw new Error("Giriş bilgileriniz yanlış. Lütfen tekrar kontrol ediniz");
-                // }
-               
-            }));
-    }
 
-    saveToken(token){
-        localStorage.setItem(this.TOKEN_KEY,token);
-    }
 
-    saveDecodedToken(token){
-        localStorage.setItem(this.DECODEDTOKEN_KEY,token);
-    }
+  // User profile
+  getUserProfile(id): Observable<any> {
+    let api = `${this.endpoint}/getbyid?id=${id}`;
+    return this.http.get(api, { headers: this.headers }).pipe(
+      map((res: Response) => {
+        return res || {}
+      }),
+      catchError(this.handleError)
+    )
+    // this.user = new User();
+    // this.user.name = "name Tokendan almalısın";
+    // this.user.firstName = "firstName Tokendan almalısın";
+    // this.user.lastName = "firstName Tokendan almalısın";
+    // return user;
+  }
 
-    //tokennın expried olup olmadıgı kontrol edılıyor
-    loggedIn(){
-       // angular8 donusuunde kapatıldı return tokenNotExpired(this.TOKEN_KEY);
+  // Error 
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
-
-    public get currentUserValue(): User {
-        return this.currentUserSubject.value;
-    }
-
-    logout() {
-        // remove user from local storage to log user out
-        localStorage.removeItem(this.CURRENTUSER);
-        localStorage.removeItem(this.TOKEN_KEY);
-        localStorage.removeItem(this.DECODEDTOKEN_KEY);
-        this.currentUserSubject.next(null);
-    }
+    return throwError(msg);
+  }
 }

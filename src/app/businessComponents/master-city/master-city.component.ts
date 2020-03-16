@@ -44,8 +44,6 @@ export class MasterCityComponent extends YilBaseMasterCRUDComponent implements A
 
   ngOnInit() { 
 
-    
-
   }
 
   EventSetValueToModalWindowFormSubclass(dataRecord : any) 

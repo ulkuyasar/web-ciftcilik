@@ -1,0 +1,71 @@
+<smart-card style="width: 400px;">
+    
+   
+    <!-- <form id="submitForm" method="get"> -->
+        <!-- <smart-text-box id="email" label="Email Address*" name="email"></smart-text-box>
+        <smart-text-box id="password" label="Password*" name="password"></smart-text-box>
+        <smart-check-box enable-container-click>Remember me</smart-check-box>
+        <smart-button id="signIn" class="primary" type="submit">Sign In</smart-button> -->
+
+        <div style="overflow: hidden;">
+            <table>
+                
+
+
+                    <tr>
+                        <td> <i class="material-icons">lock</i></td>
+                        <td colspan="2"> <h1>Log On</h1> </td>
+                        <td></td>
+                    </tr>
+
+                <tr>
+                    <td>Email Address*</td> 
+                    <td>
+                    </td>          
+                    <td>       
+                            <jqxInput #email [width]="150" [height]="23"></jqxInput>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                <tr>
+                    <td align="right">Password*</td>
+                    <td>
+                    </td>
+                    <td align="left">
+                        <jqxPasswordInput  #password class="password" [width]="150" [height]="23"></jqxPasswordInput>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+                 
+                <tr>
+                  <td align="right"></td>
+                  <td>
+                     
+                  <td>
+                  <td style="padding-top: 10px;">
+                       <jqxButton style="margin-right: 5px;" class="primary" (onClick)="onSubmit()">
+                          LogOn
+                      </jqxButton>
+
+                  </td>
+                  <td style="padding-top: 10px;">
+                    <jqxButton style="margin-right: 5px;" class="primary" (onClick)="onRegister()">
+                        Register
+                    </jqxButton>
+                  </td>
+                </tr>
+
+                <tr>
+                    <td> </td>
+                    <td colspan="2"> <h1></h1> </td>
+                    <td></td>
+                </tr>
+            </table>
+        </div>
+
+    <!-- </form> -->
+</smart-card>
+
+<!-- <smart-tooltip id="tooltip" position="bottom" arrow disabled><span class="note"> ! </span>Please fill out this field.</smart-tooltip> -->
