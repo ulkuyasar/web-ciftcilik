@@ -41,6 +41,8 @@ import { UserCustomerDetailComponent } from './businessComponents/CRM/user-custo
 import { ButtonComponentComponent } from './_yilLibrary/yilCompomenents/yilButtons/button-component/button-component.component';
 import { ButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/button/button.component';
 import { SaveButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/save-button/save-button.component';
+import { UserCustomerAddressComponent } from './businessComponents/CRM/user-customer-address/user-customer-address.component';
+import { UserCustomerTelComponent } from './businessComponents/CRM/user-customer-tel/user-customer-tel.component';
 
 
 
@@ -56,7 +58,9 @@ import { SaveButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/sa
     UserCustomerDetailComponent,
     ButtonComponentComponent,
     ButtonComponent,
-    SaveButtonComponent
+    SaveButtonComponent,
+    UserCustomerAddressComponent,
+    UserCustomerTelComponent
   ],
   imports: [
     ReactiveFormsModule,

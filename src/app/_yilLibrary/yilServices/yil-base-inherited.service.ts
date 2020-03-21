@@ -4,7 +4,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { IBaseCRUD } from './iBaseCRUD';
 import { AuthenticationService } from 'src/app/_helpers/authentication.service';
 import { EnvironmentUrlService } from 'src/app/_helpers/environment-url.service';
-import { idname } from 'src/app/_entities/entities';
 import { DataResult, Result, DataListResult } from 'src/app/_entities/entitiesForResults';
 
 @Injectable({

@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { City, UserDetail } from '../_entities/entities';
 import { YilIdNameInheritedService } from '../_yilLibrary/yilServices/yil-id-name-inherited.service';
 import { EnvironmentUrlService } from '../_helpers/environment-url.service';
 import { AuthenticationService } from '../_helpers/authentication.service';
-import { DataResult } from '../_entities/entitiesForResults';
+import { UserDetail } from '../_entities/entitiesforCRM';
+
 @Injectable(
    {
    providedIn: 'root'

@@ -7,7 +7,7 @@ import { jqxWindowComponent } from 'jqwidgets-ng/jqxwindow';
 
 
 import { Subject } from 'rxjs';
-import { idname, City } from 'src/app/_entities/entities';
+import { idname } from 'src/app/_entities/entities';
 import { NotificationService } from 'src/app/_helpers/notification.service';
 import { DataField } from 'src/app/_entities/entitiesForComponents';
 import { YilIdNameInheritedService } from '../../yilServices/yil-id-name-inherited.service';

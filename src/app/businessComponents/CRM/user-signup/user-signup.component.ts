@@ -6,9 +6,9 @@ import { jqxValidatorComponent } from 'jqwidgets-ng/jqxvalidator';
 import { jqxDropDownListComponent } from 'jqwidgets-ng/jqxdropdownlist';
 import { jqxDateTimeInputComponent } from 'jqwidgets-ng/jqxdatetimeinput';
 import { Router } from '@angular/router';
-import { UserForRegisterDto } from 'src/app/_entities/entities';
 import { AuthenticationService } from 'src/app/_helpers/authentication.service';
 import { NotificationService } from 'src/app/_helpers/notification.service';
+import { UserForRegisterDto } from 'src/app/_entities/entitiesforCRM';
 
 
 @Component({

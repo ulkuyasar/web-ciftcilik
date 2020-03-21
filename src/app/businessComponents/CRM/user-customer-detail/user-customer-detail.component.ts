@@ -6,10 +6,11 @@ import { jqxValidatorComponent } from 'jqwidgets-ng/jqxvalidator';
 import { jqxDropDownListComponent } from 'jqwidgets-ng/jqxdropdownlist';
 import { jqxDateTimeInputComponent } from 'jqwidgets-ng/jqxdatetimeinput';
 import { Router } from '@angular/router';
-import { UserForRegisterDto, UserDetail, idname, CurrentUser } from 'src/app/_entities/entities';
+import { idname } from 'src/app/_entities/entities';
 import { AuthenticationService } from 'src/app/_helpers/authentication.service';
 import { NotificationService } from 'src/app/_helpers/notification.service';
 import { UserdetailService } from 'src/app/services/userdetail.service';
+import { CurrentUser, UserDetail } from 'src/app/_entities/entitiesforCRM';
 
 @Component({
   selector: 'app-user-customer-detail',
@@ -31,7 +32,7 @@ export class UserCustomerDetailComponent implements OnInit {
   @ViewChild('gender', { static: false }) gender: jqxDropDownListComponent; 
   genders: string[] = ["male", "female"];
   currentUser : CurrentUser;
-  // userdetail :  UserDetail;
+
 
 
   constructor(private userdetailService: UserdetailService,
@@ -60,8 +61,6 @@ export class UserCustomerDetailComponent implements OnInit {
   }
   
   getObjectToComponent(idName :any) :void{
-    //  this.idName = new UserDetail();
-    //  this.idName.id = idName.id;
 
      this.PrefixName.val(idName.prefixName);
      this.Name.val(idName.name);

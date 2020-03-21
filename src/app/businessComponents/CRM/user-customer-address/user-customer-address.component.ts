@@ -12,12 +12,11 @@ import { City } from 'src/app/_entities/entitiesforDefinitions';
 
 
 @Component({
-  selector: 'app-master-city',
-  templateUrl: './master-city.component.html',
-  styleUrls: ['./master-city.component.css'],  
-  providers: [CityService]
+  selector: 'app-user-customer-address',
+  templateUrl: './user-customer-address.component.html',
+  styleUrls: ['./user-customer-address.component.css']
 })
-export class MasterCityComponent extends YilBaseMasterCRUDComponent implements AfterViewInit //,OnInit,
+export class UserCustomerAddressComponent extends YilBaseMasterCRUDComponent implements AfterViewInit //,OnInit,
 {
   @ViewChild('myWindow', { static: false }) myWindow: jqxWindowComponent;
   @ViewChild('id', { static: false }) id: jqxNumberInputComponent;
@@ -69,5 +68,3 @@ export class MasterCityComponent extends YilBaseMasterCRUDComponent implements A
   }
  
 }
-
-

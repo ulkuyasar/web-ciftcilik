@@ -5,7 +5,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/_helpers/authentication.service';
 import { NotificationService } from 'src/app/_helpers/notification.service';
 import { first } from 'rxjs/operators';
-import { UserForLoginDto } from 'src/app/_entities/entities';
+import { UserForLoginDto } from 'src/app/_entities/entitiesforCRM';
+
 
 @Component({
   selector: 'app-user-login-page',

@@ -1,4 +1,3 @@
-
 import { Component, OnInit, AfterViewInit, ViewChild, inject } from '@angular/core';
 import { jqxInputComponent } from 'jqwidgets-ng/jqxinput';
 import { jqxNumberInputComponent } from 'jqwidgets-ng/jqxnumberinput';
@@ -12,12 +11,11 @@ import { City } from 'src/app/_entities/entitiesforDefinitions';
 
 
 @Component({
-  selector: 'app-master-city',
-  templateUrl: './master-city.component.html',
-  styleUrls: ['./master-city.component.css'],  
-  providers: [CityService]
+  selector: 'app-user-customer-tel',
+  templateUrl: './user-customer-tel.component.html',
+  styleUrls: ['./user-customer-tel.component.css']
 })
-export class MasterCityComponent extends YilBaseMasterCRUDComponent implements AfterViewInit //,OnInit,
+export class UserCustomerTelComponent extends YilBaseMasterCRUDComponent implements AfterViewInit //,OnInit,
 {
   @ViewChild('myWindow', { static: false }) myWindow: jqxWindowComponent;
   @ViewChild('id', { static: false }) id: jqxNumberInputComponent;
@@ -69,5 +67,3 @@ export class MasterCityComponent extends YilBaseMasterCRUDComponent implements A
   }
  
 }
-
-

@@ -4,9 +4,9 @@ import { Observable, throwError } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
 import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { User, UserForRegisterDto, UserForLoginDto } from '../_entities/entities';
 import { EnvironmentUrlService } from './environment-url.service';
 import * as jwt_decode from 'jwt-decode';
+import { User, UserForRegisterDto, UserForLoginDto } from '../_entities/entitiesforCRM';
 
 @Injectable({
   providedIn: 'root'
