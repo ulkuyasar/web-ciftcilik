@@ -25,10 +25,9 @@ export class UserSignupComponent implements OnInit {
   @ViewChild('password', { static: false }) password: jqxPasswordInputComponent;
   @ViewChild('passwordConfirm', { static: false }) passwordConfirm: jqxPasswordInputComponent;
   @ViewChild('validatorReference', { static: false }) myValidator: jqxValidatorComponent;
-  @ViewChild('gender', { static: false }) gender: jqxDropDownListComponent;
-  @ViewChild('birthday', { static: false }) birthday; jqxDateTimeInputComponent;
-
-  genders: string[] = ["male", "female"];
+  // @ViewChild('gender', { static: false }) gender: jqxDropDownListComponent;
+  // @ViewChild('birthday', { static: false }) birthday; jqxDateTimeInputComponent;
+  //genders: string[] = ["male", "female"];
 
   constructor(
     public authService: AuthenticationService,
@@ -47,8 +46,8 @@ export class UserSignupComponent implements OnInit {
     this.userForRegisterDto.firstName = this.firstName.val();
     this.userForRegisterDto.lastName = this.lastName.val();
     this.userForRegisterDto.password = this.password.val();
-    this.userForRegisterDto.gender = this.gender.getSelectedIndex();
-    this.userForRegisterDto.birthday =  this.birthday.getDate();
+    // this.userForRegisterDto.gender = this.gender.getSelectedIndex();
+    // this.userForRegisterDto.birthday =  this.birthday.getDate();
     return this.userForRegisterDto;
   }
   resetValues() :void{
@@ -62,15 +61,15 @@ export class UserSignupComponent implements OnInit {
   }
 
 
-  registerUser() {
+  // registerUser() {
    
-    this.authService.signUp(this.setValues()).subscribe((res) => {
-      if (res.result) {
-        // this.signupForm.reset()
-        this.router.navigate(['log-in']);
-      }
-    })
-  }
+  //   this.authService.signUp(this.setValues()).subscribe((res) => {
+  //     if (res.result) {
+  //       // this.signupForm.reset()
+  //       this.router.navigate(['log-in']);
+  //     }
+  //   })
+  // }
 
 
   rules: any[] = [
@@ -93,13 +92,14 @@ export class UserSignupComponent implements OnInit {
               let secondPassword = this.passwordConfirm.val();
               return firstPassword == secondPassword;
           }
-      },
-      {
-          input: ".gender", message: "Gender is required!", action: 'blur', rule: (input: any, commit: any): boolean => {
-              let index = this.gender.getSelectedIndex();
-              return index != -1;
-          }
       }
+      //,
+      // {
+      //     input: ".gender", message: "Gender is required!", action: 'blur', rule: (input: any, commit: any): boolean => {
+      //         let index = this.gender.getSelectedIndex();
+      //         return index != -1;
+      //     }
+      // }
   ];
   buttonClicked(): void {
       this.myValidator.validate(document.getElementById('form'));

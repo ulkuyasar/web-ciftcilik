@@ -270,12 +270,12 @@ public saveBtn(): void {
       //update islemi
         let rowID = this.myGrid.getrowid(this.editrow);
         this.abstractidnoService.getById(this.entityVal.id).subscribe( 
-          entityVal =>{
-            this.EventSetValueToEntityFromModalWindowForm.emit(entityVal);
-            this.abstractidnoService.update(entityVal).subscribe(() => { 
+          res =>{
+            this.EventSetValueToEntityFromModalWindowForm.emit(res.data);
+            this.abstractidnoService.update(res.data).subscribe(() => { 
               this.notificationService.MesajVerSuccess("Güncelleme başarıyla gerçekleşti...");
               this.modalWindowForm.hide();
-              this.myGrid.updaterow(rowID, entityVal);  							
+              this.myGrid.updaterow(rowID, res.data);  							
             });  
           });
     }

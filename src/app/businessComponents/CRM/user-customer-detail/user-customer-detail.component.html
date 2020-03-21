@@ -1,0 +1,106 @@
+
+<jqxExpander #CustomerDetail
+[showArrow]="false"
+[toggleMode]="'none'"
+[width]="350">
+<div>
+Customer Detay Bilgisi
+</div>
+<div style="font-family: Verdana; font-size: 13px;">
+<jqxValidator #validatorReference (onValidationSuccess)="validationSuccess($event)" [rules]="rules" [hintType]="'label'">
+<form id="form" style="overflow: hidden; margin: 10px;" action="./">
+   <table>
+       <tr>
+           <td colspan="2">
+               Prefix Name
+           </td>
+       </tr>
+       <tr>
+           <td>
+               <jqxInput  #PrefixName class="PrefixName" [width]="300" [height]="21"></jqxInput>
+           </td>
+       </tr>
+       <tr>
+           <td colspan="2">
+               Middle Name
+           </td>
+       </tr>
+       <tr>
+           <td>
+               <jqxInput  #Name class="Name" [width]="300" [height]="21"></jqxInput>
+           </td>
+       </tr>
+       <tr>
+        <td colspan="2">
+            SurName
+        </td>
+        </tr>
+        <tr>
+            <td>
+                <jqxInput  #SurName class="SurName" [width]="300" [height]="21"></jqxInput>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                TCKN
+            </td>
+            </tr>
+        <tr>
+             <td>
+               <jqxInput  #TCKN class="TCKN" [width]="300" [height]="21"></jqxInput>
+             </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                VKN
+            </td>
+            </tr>
+        <tr>
+             <td>
+               <jqxInput  #VKN class="VKN" [width]="300" [height]="21"></jqxInput>
+             </td>
+        </tr>
+
+       <tr>
+           <td colspan="2">
+               Birthday
+           </td>
+       </tr>
+       <tr>
+           <td colspan="2">
+               <jqxDateTimeInput  #birthday class="birthday"
+                                 [width]="300"
+                                 [height]="21">
+               </jqxDateTimeInput>
+           </td>
+       </tr>
+
+
+       <tr>
+           <td colspan="2">
+               Gender
+           </td>
+       </tr>
+       <tr>
+           <td colspan="2">
+               <jqxDropDownList  #gender class="gender"
+                                [source]="genders"
+                                [selectedIndex]="-1"
+                                [placeHolder]="'I am...'"
+                                [autoDropDownHeight]="true"
+                                [width]="300"
+                                [height]="21">
+               </jqxDropDownList>
+           </td>
+       </tr>
+       <tr>
+           <td colspan="2">
+               <!-- <jqxButton  [width]="150" (onClick)="buttonClicked()">Düzenle</jqxButton> -->
+               <app-save-button (onClick)="kaydetClicked()"></app-save-button>
+           </td>
+       </tr>
+   </table>
+</form>
+</jqxValidator>
+</div>
+</jqxExpander>

@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { MasterCityComponent } from './businessComponents/master-city/master-city.component';
-import { UserLoginPageComponent } from './businessComponents/user-login-page/user-login-page.component';
+import { MasterCityComponent } from './businessComponents/definitions/master-city/master-city.component';
+import { UserLoginPageComponent } from './businessComponents/CRM/user-login-page/user-login-page.component';
 import { AuthGuard } from './_helpers/auth.guard';
-import { UserSignupComponent } from './businessComponents/user-signup/user-signup.component';
-import { UserProfileComponent } from './businessComponents/user-profile/user-profile.component';
+import { UserSignupComponent } from './businessComponents/CRM/user-signup/user-signup.component';
+import { UserProfileComponent } from './businessComponents/CRM/user-profile/user-profile.component';
 
 const routes: Routes = [
 

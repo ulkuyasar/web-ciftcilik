@@ -28,6 +28,25 @@ export class AuthenticationService {
 
 
 
+  getToken() {
+    return localStorage.getItem('access_token');
+  }
+
+  get isLoggedIn(): boolean {
+    let authToken = localStorage.getItem('access_token');
+    return (authToken !== null) ? true : false;
+  }
+
+  get getUserInfo(): any {
+    if (this.isLoggedIn) 
+      return JSON.parse(localStorage.getItem('currentUser'));
+    
+      return null;
+  }
+
+
+
+
   // Sign-up
   signUp(user: UserForRegisterDto): Observable<any> {
     let api = `${this.endpoint}/register`;
@@ -40,20 +59,6 @@ export class AuthenticationService {
       )
   }
 
-  // Sign-in
-  // signIn(user: UserForLoginDto) {
-  //   debugger;
-  //   return this.http.post<any>(`${this.endpoint}/login`, user)
-  //     .subscribe((res: any) => {
-  //       debugger;
-  //       localStorage.setItem('access_token', res.token)
-  //       this.getUserProfile(res._id).subscribe((res) => {
-  //         this.currentUser = res;
-  //         this.router.navigate(['user-profile/' + res.msg._id]);
-  //       })
-  //     })
-  // }
-
     // Sign-in
     signIn(user: UserForLoginDto) {
  
@@ -61,7 +66,6 @@ export class AuthenticationService {
       .pipe(map(res => {
           if (res && res.success) {
               localStorage.setItem('access_token', res.data.token);
-              debugger;
               var decodedToken = jwt_decode(res.data.token);
 
               var _id =decodedToken["http://schemas.xmlsoap.org/ws/2005/05/identity/claims/nameidentifier"];
@@ -75,8 +79,8 @@ export class AuthenticationService {
               localStorage.setItem('currentUser',currentUser);
 
               this.getUserProfile(_id).subscribe((res) => {
-                  this.currentUser = res.data;
-                  this.router.navigate(['user-profile/' + res.data.id]);
+                  this.currentUser = res;
+                  this.router.navigate(['user-profile/' + res.userId]);
               })
         }
         else
@@ -110,14 +114,6 @@ export class AuthenticationService {
 
 
 
-  getToken() {
-    return localStorage.getItem('access_token');
-  }
-
-  get isLoggedIn(): boolean {
-    let authToken = localStorage.getItem('access_token');
-    return (authToken !== null) ? true : false;
-  }
 
   doLogout() {
     let removeToken = localStorage.removeItem('access_token');

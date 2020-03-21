@@ -73,7 +73,7 @@ class ResponceInfo{  // bu degisecek
 abstract class idname {
     id: number;
     name: string;
-    responceMesaj:ResponceInfo; // bu degisecek
+   // responceMesaj:ResponceInfo; // bu degisecek
 
     createdDate: Date;
     updatedDate : Date;
@@ -108,6 +108,16 @@ class Product extends idname {
     imageUrl:string;   
 }
 
+
+class CurrentUser { 
+    isAdmin: boolean;
+    id: number;
+    userName: string;
+    email: string;
+    fullName: string;
+}
+
+
 class User extends idname {
     userName:string;
     password: string;
@@ -124,14 +134,29 @@ class UserForRegisterDto
         lastName: string;
 		email : string;
 		password: string;
-        birthday :Date;
-		gender :number;        
+        // birthday :Date;
+		// gender :number;        
 }
 class UserForLoginDto 
 {
 		email : string;
 		password: string;
 }
+
+
+    class UserDetail extends idname
+	{
+		userId :number;
+		customerType:number;
+		prefixName  : string;
+		surName  : string;
+		tckn  : string;
+		vkn  : string;
+		birthday :Date;
+		gender :number;
+	}
+
+
 
 
 class UserRoleItem{
@@ -151,6 +176,6 @@ class Transaction extends justid {
 export { idname,ResponceInfo,Masterdetail,Category, Product,User ,   
      Transaction,
      MessagingAccrossComponent,UserRoleItem,
-     City,UserForRegisterDto,UserForLoginDto};
+     City,UserForRegisterDto,UserForLoginDto,UserDetail,CurrentUser};
 
 

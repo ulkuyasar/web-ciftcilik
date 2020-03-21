@@ -19,6 +19,7 @@ import { jqxPasswordInputModule } from 'jqwidgets-ng/jqxpasswordinput';
 import { jqxExpanderModule } from 'jqwidgets-ng/jqxexpander';
 import { jqxValidatorModule } from 'jqwidgets-ng/jqxvalidator';
 import { jqxDateTimeInputModule } from 'jqwidgets-ng/jqxdatetimeinput';
+import { jqxTabsModule } from 'jqwidgets-ng/jqxtabs';
 
 
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -29,13 +30,17 @@ import { AuthenticationService } from './_helpers/authentication.service';
 
 import { YilmenuComponent } from './_menu/yilmenu/yilmenu.component';
 import { YilBaseMasterCRUDComponent } from './_yilLibrary/yilCompomenents/yil-base-master-crud/yil-base-master-crud.component';
-import { MasterCityComponent } from './businessComponents/master-city/master-city.component';
+import { MasterCityComponent } from './businessComponents/definitions/master-city/master-city.component';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { UserLoginPageComponent } from './businessComponents/user-login-page/user-login-page.component';
+import { UserLoginPageComponent } from './businessComponents/CRM/user-login-page/user-login-page.component';
 import { AuthInterceptor } from './_helpers/auth-interceptor.service';
-import { UserSignupComponent } from './businessComponents/user-signup/user-signup.component';
-import { UserProfileComponent } from './businessComponents/user-profile/user-profile.component';
+import { UserSignupComponent } from './businessComponents/CRM/user-signup/user-signup.component';
+import { UserProfileComponent } from './businessComponents/CRM/user-profile/user-profile.component';
+import { UserCustomerDetailComponent } from './businessComponents/CRM/user-customer-detail/user-customer-detail.component';
+import { ButtonComponentComponent } from './_yilLibrary/yilCompomenents/yilButtons/button-component/button-component.component';
+import { ButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/button/button.component';
+import { SaveButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/save-button/save-button.component';
 
 
 
@@ -47,7 +52,11 @@ import { UserProfileComponent } from './businessComponents/user-profile/user-pro
     MasterCityComponent,
     UserLoginPageComponent,
     UserSignupComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    UserCustomerDetailComponent,
+    ButtonComponentComponent,
+    ButtonComponent,
+    SaveButtonComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -58,7 +67,8 @@ import { UserProfileComponent } from './businessComponents/user-profile/user-pro
     CommonModule, jqxGridModule, jqxButtonModule, 
     jqxNumberInputModule, jqxInputModule, jqxWindowModule,
     jqxDropDownListModule, jqxPanelModule,jqxMenuModule,jqxPasswordInputModule,
-    jqxExpanderModule, jqxValidatorModule,  jqxDateTimeInputModule   
+    jqxExpanderModule, jqxValidatorModule,  jqxDateTimeInputModule ,
+    jqxTabsModule
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [
