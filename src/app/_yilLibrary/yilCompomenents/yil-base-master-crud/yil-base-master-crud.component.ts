@@ -87,9 +87,9 @@ source =
   ngAfterViewInit(): void {
     
     setTimeout(()=>{ 
-      this.createButtons();     
+       this.createButtons();     
         this.refresh();
-    },100);
+    },1000);
   }
 
   refresh= (): any =>

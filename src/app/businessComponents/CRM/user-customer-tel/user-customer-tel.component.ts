@@ -2,42 +2,39 @@ import { Component, OnInit, AfterViewInit, ViewChild, inject } from '@angular/co
 import { jqxInputComponent } from 'jqwidgets-ng/jqxinput';
 import { jqxNumberInputComponent } from 'jqwidgets-ng/jqxnumberinput';
 import { jqxWindowComponent } from 'jqwidgets-ng/jqxwindow';
-import { Subject } from 'rxjs';
-import { CityService } from 'src/app/services/city.service';
 import { NotificationService } from 'src/app/_helpers/notification.service';
 import { YilBaseMasterCRUDComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-base-master-crud/yil-base-master-crud.component';
-import { City } from 'src/app/_entities/entitiesforDefinitions';
-
-
+import { UserTelService } from 'src/app/services/user-tel.service';
+import { UserTel } from 'src/app/_entities/entitiesforCRM';
 
 @Component({
   selector: 'app-user-customer-tel',
   templateUrl: './user-customer-tel.component.html',
-  styleUrls: ['./user-customer-tel.component.css']
+  styleUrls: ['./user-customer-tel.component.css'],
+  providers: [UserTelService]
 })
 export class UserCustomerTelComponent extends YilBaseMasterCRUDComponent implements AfterViewInit //,OnInit,
 {
-  @ViewChild('myWindow', { static: false }) myWindow: jqxWindowComponent;
+  @ViewChild('myWindowUserCustomerTel', { static: false }) myWindowUserCustomerTel: jqxWindowComponent;
   @ViewChild('id', { static: false }) id: jqxNumberInputComponent;
-  @ViewChild('name', { static: false }) name: jqxInputComponent;
-  @ViewChild('plakaNo', { static: false }) plakaNo: jqxInputComponent;
+  @ViewChild('prefixTel', { static: false }) prefixTel: jqxInputComponent;
+  @ViewChild('tel', { static: false }) tel: jqxInputComponent;
 
   gridColumns: any[] = [];
-  _cityService : CityService;
-  entityVal : City;
+  _userTelService : UserTelService;
+  entityVal : UserTel;
 
-    constructor(protected cityService:CityService, 
+    constructor(protected userTelService:UserTelService, 
                 protected notificationService:NotificationService) {
      
     super(notificationService);
-    this.entityVal = new City();
-    this._cityService = cityService;
+    this.entityVal = new UserTel();
+    this._userTelService = userTelService;
     this.gridColumns =
     [
       { freeze: true, text: 'ID', datafield: 'id',width: 80,cellsalign:'right' }, 
-      //{ freeze: true, text: 'Balance', label: 'balance', dataField: 'balance'},
-      { freeze: false, text: 'Adı', datafield: 'name', width: 200,cellsalign:'right' }, 
-      { freeze: false, text: 'Plaka No', datafield: 'plakaNo', width: 250,cellsalign:'right' }
+      { freeze: false, text: 'PrefixTel', datafield: 'prefixTel', width: 200,cellsalign:'right' }, 
+      { freeze: false, text: 'Tel', datafield: 'tel', width: 250,cellsalign:'right' }
     ];
    }
 
@@ -48,22 +45,22 @@ export class UserCustomerTelComponent extends YilBaseMasterCRUDComponent impleme
   EventSetValueToModalWindowFormSubclass(dataRecord : any) 
   {
       this.id.decimal(dataRecord.id);
-      this.name.val(dataRecord.name);
-      this.plakaNo.val(dataRecord.plakaNo);
+      this.prefixTel.val(dataRecord.prefixTel);
+      this.tel.val(dataRecord.tel);
   }
 
   EventClearValueToModalWindowFormSubclass() 
   {
       this.id.decimal(-1);
-      this.name.val("");
-      this.plakaNo.val("");
+      this.prefixTel.val("");
+      this.tel.val("");
   }
 
   EventSetValueToEntityFromModalWindowFormSubclass(entity : any) 
   {
       entity.id = this.id.val();
-      entity.name= this.name.val();
-      entity.plakaNo= this.plakaNo.val();
+      entity.prefixTel= this.prefixTel.val();
+      entity.tel= this.tel.val();
   }
  
 }

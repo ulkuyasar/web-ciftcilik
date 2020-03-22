@@ -53,8 +53,16 @@ class UserRoleItem{
     roleName:string;
 }
 
+class UserTel extends idname
+{
+	userId :number;
+	telType:number;
+	prefixTel  : string;
+	tel  : string;
+}
+
 
 export { idname,User ,UserRoleItem,
-     UserForRegisterDto,UserForLoginDto,UserDetail,CurrentUser};
+     UserForRegisterDto,UserForLoginDto,UserDetail,CurrentUser,UserTel};
 
 

@@ -30,8 +30,8 @@ export class MasterCityComponent extends YilBaseMasterCRUDComponent implements A
 
     constructor(protected cityService:CityService, 
                 protected notificationService:NotificationService) {
-     
-    super(notificationService);
+  
+    super(notificationService); 
     this.entityVal = new City();
     this._cityService = cityService;
     this.gridColumns =

@@ -1,1 +1,53 @@
-<p>user-customer-tel works!</p>
+<p>Telefon Tanımları</p>
+
+<app-yil-base-master-crud #base 
+[modalWindowForm]="myWindowUserCustomerTel" 
+[gridColumns]="gridColumns"
+[abstractidnoService]="_userTelService"
+[entityVal]="entityVal"
+(EventSetValueToModalWindowForm)="EventSetValueToModalWindowFormSubclass($event)"
+(EventClearValueToModalWindowForm)="EventClearValueToModalWindowFormSubclass()"
+(EventSetValueToEntityFromModalWindowForm)="EventSetValueToEntityFromModalWindowFormSubclass($event)">
+</app-yil-base-master-crud>
+
+
+<jqxWindow #myWindowUserCustomerTel [width]="250" [height]="230" [resizable]="false" [isModal]="false" [autoOpen]="false" [modalOpacity]="'0.01'">
+    <div>Edit</div>
+    <div style="overflow: hidden;">
+        <table>
+            <tr>
+                <td align="right">id:</td>
+                <td align="left">
+                    <jqxNumberInput #id
+                        [width]="150" [height]="23" [disabled]="true"
+                        [min]="0" [spinButtons]="true" [spinMode]="'simple'"></jqxNumberInput> 
+                </td>
+            </tr>
+            <tr>
+                <td align="right">PrefixTel:</td>
+                <td align="left">
+                    <jqxInput #prefixTel [width]="50" [height]="23"></jqxInput>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Tel:</td>
+                <td align="left">
+                    <jqxInput #tel [width]="150" [height]="23"></jqxInput>
+                </td>
+            </tr>
+            
+            <tr>
+              <td align="right"></td>
+              <td style="padding-top: 10px;" align="right">
+                  <jqxButton style="margin-right: 5px;" (onClick)="base.saveBtn()">
+                      Kaydet
+                  </jqxButton>
+                  <jqxButton style="margin-right: 5px;" (onClick)="base.cancelBtn()">
+                      İptal
+                  </jqxButton>
+              </td>
+            </tr>
+        </table>
+    </div>
+</jqxWindow>
+
