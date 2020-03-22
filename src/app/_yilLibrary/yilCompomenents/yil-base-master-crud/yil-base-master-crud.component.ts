@@ -98,7 +98,7 @@ source =
         this.abstractidnoService.getall().subscribe(
           data_ =>
           {        
-              this.data = data_,
+              this.data = data_.data,
               this.source.localdata =  this.data,
               this.dataAdapter = new jqx.dataAdapter(this.source);  
               if (this.myGrid != undefined){
