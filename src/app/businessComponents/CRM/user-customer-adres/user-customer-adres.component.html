@@ -1,10 +1,10 @@
-<p>Telefon Tanımları</p>
+<p>Adresefon Tanımları</p>
 
-<app-yil-base-master-crud #baseTel 
+<app-yil-base-master-crud #baseAdres 
 [yilAutomaticfillValue]="_yilAutomaticfillValue"
-[modalWindowForm]="myWindowUserCustomerTel" 
+[modalWindowForm]="myWindowUserCustomerAdres" 
 [gridColumns]="gridColumns"
-[abstractidnoService]="_userTelService"
+[abstractidnoService]="_userAdresService"
 [entityVal]="entityVal"
 (EventSetValueToModalWindowForm)="EventSetValueToModalWindowFormSubclass($event)"
 (EventClearValueToModalWindowForm)="EventClearValueToModalWindowFormSubclass()"
@@ -12,7 +12,7 @@
 </app-yil-base-master-crud>
 
 
-<jqxWindow #myWindowUserCustomerTel [width]="250" [height]="230" [resizable]="false" [isModal]="false" [autoOpen]="false" [modalOpacity]="'0.01'">
+<jqxWindow #myWindowUserCustomerAdres [width]="250" [height]="230" [resizable]="false" [isModal]="false" [autoOpen]="false" [modalOpacity]="'0.01'">
     <div>Edit</div>
     <div style="overflow: hidden;">
         <table>
@@ -25,15 +25,9 @@
                 </td>
             </tr>
             <tr>
-                <td align="right">PrefixTel:</td>
+                <td align="right">Adres:</td>
                 <td align="left">
-                    <jqxInput #prefixTel [width]="50" [height]="23"></jqxInput>
-                </td>
-            </tr>
-            <tr>
-                <td align="right">Tel:</td>
-                <td align="left">
-                    <jqxInput #tel [width]="150" [height]="23"></jqxInput>
+                    <jqxInput #adres [width]="150" [height]="23"></jqxInput>
                 </td>
             </tr>
             
@@ -51,4 +45,5 @@
         </table>
     </div>
 </jqxWindow>
+
 

@@ -61,8 +61,17 @@ class UserTel extends idname
 	tel  : string;
 }
 
+class UserAdres extends idname
+{
+	userId :number;
+	adresType:number;
+    adres  : string;
+    sehirId:number;
+	ilceId:number;  
+}
+
 
 export { idname,User ,UserRoleItem,
-     UserForRegisterDto,UserForLoginDto,UserDetail,CurrentUser,UserTel};
+     UserForRegisterDto,UserForLoginDto,UserDetail,CurrentUser,UserTel,UserAdres};
 
 

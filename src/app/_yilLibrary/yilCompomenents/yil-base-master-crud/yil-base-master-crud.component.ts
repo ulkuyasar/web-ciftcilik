@@ -21,6 +21,7 @@ import { YilIdNameInheritedService } from '../../yilServices/yil-id-name-inherit
 })
 export class YilBaseMasterCRUDComponent implements AfterViewInit //, OnInit
 {
+  @Input() yilAutomaticfillValue: boolean; // initlitize esnasında mı  data ları getir (true), yoksa manuel cagirilacak mi (false)
   @Input() entityVal : idname;// = new City();
   @Input() modalWindowForm: jqxWindowComponent;
   @Input() gridColumns: any[] = [];
@@ -57,39 +58,43 @@ source =
 };
 //end asagidan doldurulanlar
 
+public onYilInitilize() : void{
+
+  if (!this.IsAddingEditingButtons){
+    if (this.gridColumns!=undefined){
+      this.IsAddingEditingButtons = true;
+    let editColumn : any =  
+           { text: 'Düzelt', datafield: 'Edit', columntype: 'button', width: 100,
+            cellsrenderer: (): string => {
+                return 'Edit';
+            },
+            buttonclick: (row: number): void => {
+                this.editrow = row;
+                let dataRecord = this.myGrid.getrowdata( this.editrow); 
+                this.EventSetValueToModalWindowForm.emit(dataRecord);
+                this.showModalView();
+            }
+           };
+            this.gridColumns.push(editColumn);          
+     }
+  }
+  this.createButtons();     
+  this.refresh();
+}
 
   constructor(  protected notificationService:NotificationService) { 
 
   }
   
   ngOnInit() {
-    if (!this.IsAddingEditingButtons){
-      if (this.gridColumns!=undefined){
-        this.IsAddingEditingButtons = true;
-      let editColumn : any =  
-             { text: 'Düzelt', datafield: 'Edit', columntype: 'button', width: 100,
-              cellsrenderer: (): string => {
-                  return 'Edit';
-              },
-              buttonclick: (row: number): void => {
-                  this.editrow = row;
-                  let dataRecord = this.myGrid.getrowdata( this.editrow); 
-                  this.EventSetValueToModalWindowForm.emit(dataRecord);
-                  this.showModalView();
-              }
-             };
-              this.gridColumns.push(editColumn);          
-       }
-    }
+    
   }
   
   
   ngAfterViewInit(): void {
-    
-    setTimeout(()=>{ 
-       this.createButtons();     
-        this.refresh();
-    },1000);
+    if (this.yilAutomaticfillValue)
+      this.onYilInitilize();
+
   }
 
   refresh= (): any =>

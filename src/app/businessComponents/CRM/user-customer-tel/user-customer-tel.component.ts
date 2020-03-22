@@ -13,8 +13,9 @@ import { UserTel } from 'src/app/_entities/entitiesforCRM';
   styleUrls: ['./user-customer-tel.component.css'],
   providers: [UserTelService]
 })
-export class UserCustomerTelComponent extends YilBaseMasterCRUDComponent implements AfterViewInit //,OnInit,
+export class UserCustomerTelComponent implements AfterViewInit //,OnInit,
 {
+  @ViewChild('baseTel', { static: false }) baseMasterCRUD: YilBaseMasterCRUDComponent;
   @ViewChild('myWindowUserCustomerTel', { static: false }) myWindowUserCustomerTel: jqxWindowComponent;
   @ViewChild('id', { static: false }) id: jqxNumberInputComponent;
   @ViewChild('prefixTel', { static: false }) prefixTel: jqxInputComponent;
@@ -23,11 +24,10 @@ export class UserCustomerTelComponent extends YilBaseMasterCRUDComponent impleme
   gridColumns: any[] = [];
   _userTelService : UserTelService;
   entityVal : UserTel;
+  _yilAutomaticfillValue:boolean=false;
 
     constructor(protected userTelService:UserTelService, 
-                protected notificationService:NotificationService) {
-     
-    super(notificationService);
+                protected notificationService:NotificationService) {    
     this.entityVal = new UserTel();
     this._userTelService = userTelService;
     this.gridColumns =
@@ -37,10 +37,17 @@ export class UserCustomerTelComponent extends YilBaseMasterCRUDComponent impleme
       { freeze: false, text: 'Tel', datafield: 'tel', width: 250,cellsalign:'right' }
     ];
    }
+  ngAfterViewInit(): void {
+    
+  }
 
   ngOnInit() { 
-
   }
+
+  public onYilInitilize(){
+     this.baseMasterCRUD.onYilInitilize();
+  }
+
 
   EventSetValueToModalWindowFormSubclass(dataRecord : any) 
   {

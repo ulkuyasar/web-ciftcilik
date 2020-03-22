@@ -17,8 +17,12 @@ import { City } from 'src/app/_entities/entitiesforDefinitions';
   styleUrls: ['./master-city.component.css'],  
   providers: [CityService]
 })
-export class MasterCityComponent extends YilBaseMasterCRUDComponent implements AfterViewInit //,OnInit,
+
+//extends YilBaseMasterCRUDComponent
+
+export class MasterCityComponent  implements AfterViewInit ,OnInit
 {
+  @ViewChild('base', { static: false }) baseMasterCRUD: YilBaseMasterCRUDComponent;
   @ViewChild('myWindow', { static: false }) myWindow: jqxWindowComponent;
   @ViewChild('id', { static: false }) id: jqxNumberInputComponent;
   @ViewChild('name', { static: false }) name: jqxInputComponent;
@@ -27,11 +31,12 @@ export class MasterCityComponent extends YilBaseMasterCRUDComponent implements A
   gridColumns: any[] = [];
   _cityService : CityService;
   entityVal : City;
+  _yilAutomaticfillValue:boolean=true;
 
     constructor(protected cityService:CityService, 
                 protected notificationService:NotificationService) {
   
-    super(notificationService); 
+    //super(notificationService); 
     this.entityVal = new City();
     this._cityService = cityService;
     this.gridColumns =
@@ -42,10 +47,14 @@ export class MasterCityComponent extends YilBaseMasterCRUDComponent implements A
       { freeze: false, text: 'Plaka No', datafield: 'plakaNo', width: 250,cellsalign:'right' }
     ];
    }
+  ngAfterViewInit(): void {
+    this.baseMasterCRUD.onYilInitilize();
+  }
 
   ngOnInit() { 
 
   }
+
 
   EventSetValueToModalWindowFormSubclass(dataRecord : any) 
   {
