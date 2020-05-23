@@ -6,6 +6,8 @@ import { NotificationService } from 'src/app/_helpers/notification.service';
 import { YilBaseMasterCRUDComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-base-master-crud/yil-base-master-crud.component';
 import { UserTelService } from 'src/app/services/user-tel.service';
 import { UserTel } from 'src/app/_entities/entitiesforCRM';
+import { Guid } from "guid-typescript";
+
 
 @Component({
   selector: 'app-user-customer-tel',
@@ -25,6 +27,7 @@ export class UserCustomerTelComponent implements AfterViewInit //,OnInit,
   _userTelService : UserTelService;
   entityVal : UserTel;
   _yilAutomaticfillValue:boolean=false;
+  _id :string = "";
 
     constructor(protected userTelService:UserTelService, 
                 protected notificationService:NotificationService) {    
@@ -68,6 +71,14 @@ export class UserCustomerTelComponent implements AfterViewInit //,OnInit,
       entity.id = this.id.val();
       entity.prefixTel= this.prefixTel.val();
       entity.tel= this.tel.val();
+  }
+
+  EventGetIdValueFormSubclass(id : any) 
+  {
+    if (this._id =="")
+      this._id =  Guid.create().toString();
+    
+    id =  this._id;
   }
  
 }

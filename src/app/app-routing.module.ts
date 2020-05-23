@@ -5,6 +5,8 @@ import { UserLoginPageComponent } from './businessComponents/CRM/user-login-page
 import { AuthGuard } from './_helpers/auth.guard';
 import { UserSignupComponent } from './businessComponents/CRM/user-signup/user-signup.component';
 import { UserProfileComponent } from './businessComponents/CRM/user-profile/user-profile.component';
+import { CurrencyRateComponent } from './businessComponents/Finance/currency-rate/currency-rate.component';
+
 
 const routes: Routes = [
 
@@ -14,6 +16,9 @@ const routes: Routes = [
   { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
 
   {path:'MasterCityComponent',component:MasterCityComponent},
+  {path:'CurrencyRateComponent',component:CurrencyRateComponent}
+
+  
  // {path:'UserLoginPageComponent',component:UserLoginPageComponent},
 
   

@@ -43,7 +43,9 @@ import { ButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/button
 import { SaveButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/save-button/save-button.component';
 import { UserCustomerTelComponent } from './businessComponents/CRM/user-customer-tel/user-customer-tel.component';
 import { UserCustomerAdresComponent } from './businessComponents/CRM/user-customer-adres/user-customer-adres.component';
-
+import { YilBaseMasterListComponent } from './_yilLibrary/yilCompomenents/yil-base-master-list/yil-base-master-list.component';
+import { YilBaseJustListFromDsComponent } from './_yilLibrary/yilCompomenents/yil-base-just-list-from-ds/yil-base-just-list-from-ds.component';
+import { CurrencyRateComponent } from './businessComponents/Finance/currency-rate/currency-rate.component';
 
 
 @NgModule({
@@ -60,7 +62,10 @@ import { UserCustomerAdresComponent } from './businessComponents/CRM/user-custom
     ButtonComponent,
     SaveButtonComponent,
     UserCustomerTelComponent,
-    UserCustomerAdresComponent
+    UserCustomerAdresComponent,
+    YilBaseMasterListComponent,
+    YilBaseJustListFromDsComponent,
+    CurrencyRateComponent
   ],
   imports: [
     ReactiveFormsModule,

@@ -8,7 +8,7 @@ import { CityService } from 'src/app/services/city.service';
 import { NotificationService } from 'src/app/_helpers/notification.service';
 import { YilBaseMasterCRUDComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-base-master-crud/yil-base-master-crud.component';
 import { City } from 'src/app/_entities/entitiesforDefinitions';
-
+import { Guid } from "guid-typescript";
 
 
 @Component({
@@ -32,6 +32,7 @@ export class MasterCityComponent  implements AfterViewInit ,OnInit
   _cityService : CityService;
   entityVal : City;
   _yilAutomaticfillValue:boolean=true;
+  _id :string = "";
 
     constructor(protected cityService:CityService, 
                 protected notificationService:NotificationService) {
@@ -75,6 +76,15 @@ export class MasterCityComponent  implements AfterViewInit ,OnInit
       entity.id = this.id.val();
       entity.name= this.name.val();
       entity.plakaNo= this.plakaNo.val();
+  }
+
+  
+  EventGetIdValue(id : string) 
+  {
+    if (this._id =="")
+      this._id =  Guid.create().toString();
+    
+    id =  this._id;
   }
  
 }

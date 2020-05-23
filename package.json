@@ -26,6 +26,7 @@
     "@types/jquery": "^3.3.31",
     "core-js": "^2.5.4",
     "express": "^4.17.1",
+    "guid-typescript": "^1.0.9",
     "jqwidgets-ng": "^9.0.0",
     "jwt-decode": "^2.2.0",
     "path": "^0.12.7",
