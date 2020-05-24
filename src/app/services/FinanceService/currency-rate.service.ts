@@ -24,8 +24,13 @@ export class CurrencyRateService extends YilIdNameInheritedService<Rate> {
     return "Rates";
  } 
 
- getCurrencyRateByCode(code: string): Observable<DataListResult<Rate>> {  
-  return this.http.get<DataListResult<Rate>>(this.url + '/getlistbyotherobject?Code=' + code);  
+ getListDailyRates(code: string): Observable<DataListResult<Rate>> {  
+  return this.http.get<DataListResult<Rate>>(this.url + '/getListDailyRates?code=' + code);  
 } 
+
+getlistbyCode(foreignId: string): Observable<DataListResult<Rate>> {  
+  var result = this.http.get<DataListResult<Rate>>(this.url+'/getlistbyotherobject?code='+foreignId);
+  return result;
+}
 
 }

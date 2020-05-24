@@ -80,7 +80,6 @@ public onYilInitilize() : void{
   this.refresh();
 }
 
-id :string="";
 
   constructor(  protected notificationService:NotificationService) { 
       
@@ -137,22 +136,18 @@ id :string="";
 
 createButtonsContainers(statusbar: any): void {
 
-  this.id = this.constructor.name;
-  this.EventGetIdValue.emit(this.id);
-  
-   
+  debugger;
 
    let buttonsContainer = document.createElement('div');
    buttonsContainer.style.cssText = 'overflow: hidden; position: relative; margin: 5px;';
-   buttonsContainer.id = this.id;
    let addButtonContainer = document.createElement('div');
    let deleteButtonContainer = document.createElement('div');
    let refreshButtonContainer = document.createElement('div');
    let searchButtonContainer = document.createElement('div');
-   addButtonContainer.id = 'addButton'+this.id;
-   deleteButtonContainer.id = 'deleteButton'+this.id;
-   refreshButtonContainer.id = 'refreshButton'+this.id;
-   searchButtonContainer.id = 'searchButton'+this.id;
+   addButtonContainer.id = 'addButton';
+   deleteButtonContainer.id = 'deleteButton';
+   refreshButtonContainer.id = 'refreshButton';
+   searchButtonContainer.id = 'searchButton';
    addButtonContainer.style.cssText = 'float: left; margin-left: 5px;';
    deleteButtonContainer.style.cssText = 'float: left; margin-left: 5px;';
    refreshButtonContainer.style.cssText = 'float: left; margin-left: 5px;';
@@ -167,7 +162,6 @@ createButtonsContainers(statusbar: any): void {
 }
 
 createButtons(): void {
-  this.EventGetIdValue.emit(this.id);
   let addButtonOptions = {
       width: 80, height: 25, value: 'Add',
       imgSrc: "../../../assets/images/add.png",
@@ -175,28 +169,28 @@ createButtons(): void {
       textImageRelation: 'imageBeforeText'
   }
   
-  let addButton = jqwidgets.createInstance('#addButton'+this.id, 'jqxButton', addButtonOptions);
+  let addButton = jqwidgets.createInstance('#addButton', 'jqxButton', addButtonOptions);
   let deleteButtonOptions = {
       width: 80, height: 25, value: 'Delete',
       imgSrc: "../../../assets/images/close.png",
       imgPosition: 'center', textPosition: 'center',
       textImageRelation: 'imageBeforeText'
   }
-  let deleteButton = jqwidgets.createInstance('#deleteButton'+this.id, 'jqxButton', deleteButtonOptions);
+  let deleteButton = jqwidgets.createInstance('#deleteButton', 'jqxButton', deleteButtonOptions);
   let refreshButtonOptions = {
       width: 80, height: 25, value: 'refresh',
       imgSrc: "../../../assets/images/refresh.png",
       imgPosition: 'center', textPosition: 'center',
       textImageRelation: 'imageBeforeText'
   }
-  let refreshButton = jqwidgets.createInstance('#refreshButton'+this.id, 'jqxButton', refreshButtonOptions);
+  let refreshButton = jqwidgets.createInstance('#refreshButton', 'jqxButton', refreshButtonOptions);
   let searchButtonOptions = {
       width: 80, height: 25, value: 'Find',
       imgSrc: "../../../assets/images/search.png",
       imgPosition: 'center', textPosition: 'center',
       textImageRelation: 'imageBeforeText'
   }
-  let searchButton = jqwidgets.createInstance('#searchButton'+this.id, 'jqxButton', searchButtonOptions);
+  let searchButton = jqwidgets.createInstance('#searchButton', 'jqxButton', searchButtonOptions);
   // add new row.
   addButton.addEventHandler('click', (event: any): void => {
       this.clearModalView(); 

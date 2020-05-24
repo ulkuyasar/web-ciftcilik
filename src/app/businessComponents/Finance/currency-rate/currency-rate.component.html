@@ -1,8 +1,15 @@
-<p>currency-rate works!</p>
 
-
-<!-- <app-justlist #ant></app-justlist> [yilcolumns]="yilcolumns" [yildatafields]="yildatafields"-->
-
+<br/>
+<br/>
+<smart-combo-box #combobox drop-down-position="bottom" selected-indexes=[0] 
+label="Döviz  Kodları" selection-mode="one" class="combos1 ">
+    <smart-list-item>GBP</smart-list-item>
+    <smart-list-item>JPY</smart-list-item>
+    <smart-list-item>EUR</smart-list-item>
+    <smart-list-item>USD</smart-list-item>
+</smart-combo-box>
+<br/>
+<br/>
 <app-yil-base-just-list-from-ds #base [yilcolumns]="yilcolumns" [yildatafields]="yildatafields" [yildata]="yildata"></app-yil-base-just-list-from-ds>
 
 

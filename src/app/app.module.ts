@@ -3,7 +3,6 @@ import { NgModule,CUSTOM_ELEMENTS_SCHEMA, Injector, ApplicationRef } from '@angu
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
-import '@smarthtmlelements/smart-elements/source/smart.core.js';
 
 
 import { jqxCheckBoxModule } from 'jqwidgets-ng/jqxcheckbox';
@@ -20,6 +19,22 @@ import { jqxExpanderModule } from 'jqwidgets-ng/jqxexpander';
 import { jqxValidatorModule } from 'jqwidgets-ng/jqxvalidator';
 import { jqxDateTimeInputModule } from 'jqwidgets-ng/jqxdatetimeinput';
 import { jqxTabsModule } from 'jqwidgets-ng/jqxtabs';
+import { jqxComboBoxModule }   from 'jqwidgets-ng/jqxcombobox';
+
+import { ComboBoxModule } from 'smart-webcomponents-angular/combobox';
+import { ButtonModule } from 'smart-webcomponents-angular/button';
+import { ListBoxModule } from 'smart-webcomponents-angular/listbox';
+import { GridModule } from 'smart-webcomponents-angular/grid';
+import { NumericTextBoxModule } from 'smart-webcomponents-angular/numerictextbox';
+import { InputModule } from 'smart-webcomponents-angular/input';
+import { CalendarModule } from 'smart-webcomponents-angular/calendar';
+import { DropDownListModule } from 'smart-webcomponents-angular/dropdownlist';
+import { TabsModule } from 'smart-webcomponents-angular/tabs';
+import { TextBoxModule } from 'smart-webcomponents-angular/textbox';
+import { RadioButtonModule } from 'smart-webcomponents-angular/radiobutton';
+import { MaskedTextBoxModule } from 'smart-webcomponents-angular/maskedtextbox';
+import { PasswordTextBoxModule } from 'smart-webcomponents-angular/passwordtextbox';
+
 
 
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -46,6 +61,11 @@ import { UserCustomerAdresComponent } from './businessComponents/CRM/user-custom
 import { YilBaseMasterListComponent } from './_yilLibrary/yilCompomenents/yil-base-master-list/yil-base-master-list.component';
 import { YilBaseJustListFromDsComponent } from './_yilLibrary/yilCompomenents/yil-base-just-list-from-ds/yil-base-just-list-from-ds.component';
 import { CurrencyRateComponent } from './businessComponents/Finance/currency-rate/currency-rate.component';
+import { YilComboboxComponent } from './_yilLibrary/yilCompomenents/yil-combobox/yil-combobox.component';
+
+
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -65,11 +85,14 @@ import { CurrencyRateComponent } from './businessComponents/Finance/currency-rat
     UserCustomerAdresComponent,
     YilBaseMasterListComponent,
     YilBaseJustListFromDsComponent,
-    CurrencyRateComponent
+    CurrencyRateComponent,
+    YilComboboxComponent
   ],
   imports: [
     ReactiveFormsModule,
     BrowserModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot(),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
@@ -77,7 +100,20 @@ import { CurrencyRateComponent } from './businessComponents/Finance/currency-rat
     jqxNumberInputModule, jqxInputModule, jqxWindowModule,
     jqxDropDownListModule, jqxPanelModule,jqxMenuModule,jqxPasswordInputModule,
     jqxExpanderModule, jqxValidatorModule,  jqxDateTimeInputModule ,
-    jqxTabsModule
+    jqxTabsModule,jqxComboBoxModule,
+
+    ComboBoxModule,ButtonModule, ListBoxModule,GridModule,
+    NumericTextBoxModule,
+    InputModule,
+    CalendarModule,
+    DropDownListModule,
+    TabsModule,
+    TextBoxModule,
+    RadioButtonModule,
+    MaskedTextBoxModule,
+    PasswordTextBoxModule,
+
+
   ],
   schemas: [ CUSTOM_ELEMENTS_SCHEMA ],
   providers: [

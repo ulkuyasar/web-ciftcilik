@@ -15,7 +15,7 @@ import { UserCustomerAdresComponent } from '../user-customer-adres/user-customer
 export class UserProfileComponent implements AfterViewInit {
 
   @ViewChild('customerTelComponent', { static: false }) customerTelComponent : UserCustomerTelComponent;
-  @ViewChild('customerAdresComponent', { static: false }) customerAdresComponent : UserCustomerAdresComponent;
+  // @ViewChild('customerAdresComponent', { static: false }) customerAdresComponent : UserCustomerAdresComponent;
   
   
   
@@ -27,8 +27,7 @@ export class UserProfileComponent implements AfterViewInit {
     public authService: AuthenticationService,
     private actRoute: ActivatedRoute
   ) 
-  {
-    
+  { 
     this.localStorageUser = authService.getUserInfo;
     
     let id = this.actRoute.snapshot.paramMap.get('id');
@@ -52,7 +51,7 @@ export class UserProfileComponent implements AfterViewInit {
       } 
       case 2: { 
         setTimeout(()=>{    //<<<---    using ()=> syntax
-          this.customerAdresComponent.onYilInitilize(); 
+         // this.customerAdresComponent.onYilInitilize(); 
         }, 2000);   
       } 
       case 3: { 

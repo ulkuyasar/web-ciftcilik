@@ -92,8 +92,22 @@ abstract class Masterdetail extends justid {
     masterId:number;
 }
 
+class Message {
+    content: string;
+    style: string;
+    dismissed: boolean = false;
+  
+    constructor(content, style?) {
+      this.content = content
+      this.style = style || 'info'
+    }
+  
+  }
 
-export { idname,ResponceInfo,Masterdetail,
+
+
+
+export { Message,idname,ResponceInfo,Masterdetail,
      MessagingAccrossComponent};
 
 

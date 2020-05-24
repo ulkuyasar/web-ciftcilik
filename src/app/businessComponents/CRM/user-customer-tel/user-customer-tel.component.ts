@@ -17,7 +17,7 @@ import { Guid } from "guid-typescript";
 })
 export class UserCustomerTelComponent implements AfterViewInit //,OnInit,
 {
-  @ViewChild('baseTel', { static: false }) baseMasterCRUD: YilBaseMasterCRUDComponent;
+  @ViewChild('baseTel', { static: false }) baseTel: YilBaseMasterCRUDComponent;
   @ViewChild('myWindowUserCustomerTel', { static: false }) myWindowUserCustomerTel: jqxWindowComponent;
   @ViewChild('id', { static: false }) id: jqxNumberInputComponent;
   @ViewChild('prefixTel', { static: false }) prefixTel: jqxInputComponent;
@@ -41,14 +41,15 @@ export class UserCustomerTelComponent implements AfterViewInit //,OnInit,
     ];
    }
   ngAfterViewInit(): void {
-    
+
   }
 
   ngOnInit() { 
   }
 
   public onYilInitilize(){
-     this.baseMasterCRUD.onYilInitilize();
+    debugger;
+    this.baseTel.onYilInitilize();
   }
 
 
