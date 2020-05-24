@@ -20,7 +20,7 @@ export class UserLoginPageComponent implements OnInit {
     submitted = false;
     returnUrl: string;
     error = '';
-    private notificationService:NotificationService;
+  //  private notificationService:NotificationService;
 
     @ViewChild('email', { static: false }) email: jqxInputComponent;
     @ViewChild('password', { static: false }) password: jqxPasswordInputComponent;
@@ -28,9 +28,10 @@ export class UserLoginPageComponent implements OnInit {
   constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private authenticationService: AuthenticationService
+        private authenticationService: AuthenticationService,
+        private notificationService : NotificationService
   ) { 
-    this.notificationService = new NotificationService;   
+   // this.notificationService = new NotificationService;   
   }
 
   ngOnInit() {

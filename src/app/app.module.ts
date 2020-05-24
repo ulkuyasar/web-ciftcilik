@@ -66,6 +66,7 @@ import { YilComboboxComponent } from './_yilLibrary/yilCompomenents/yil-combobox
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { timeout } from 'rxjs/operators';
 
 
 @NgModule({
@@ -92,7 +93,11 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     ReactiveFormsModule,
     BrowserModule,
     BrowserAnimationsModule,
-    ToastrModule.forRoot(),
+    ToastrModule.forRoot({
+      timeOut:2500,
+      positionClass:'toast-top-right'   
+    }
+    ),
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
