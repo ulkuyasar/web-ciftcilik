@@ -8,11 +8,15 @@ class Category extends idname {
 
 class City extends idname {
    plakaNo :string;
+}
 
+class District extends idname {
+   CityId :number;
 }
 
 
 
-export { Category, City};
+
+export { Category, City,District};
 
 

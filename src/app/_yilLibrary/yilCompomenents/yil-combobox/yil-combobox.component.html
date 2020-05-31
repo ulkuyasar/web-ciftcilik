@@ -1,4 +1,8 @@
 
-<jqxComboBox #myComboBox style="float: left"
-[width]="200" height="25" [source]="countries" [selectedIndex]="0">
-</jqxComboBox>
+
+<smart-combo-box #myComboBox drop-down-position="bottom"
+    selection-mode="one" class="combos1 ">
+    <smart-list-item *ngFor="let eachIdName of ListidName">
+        {{ eachIdName.name }}
+    </smart-list-item>
+</smart-combo-box>

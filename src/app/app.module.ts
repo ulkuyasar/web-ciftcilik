@@ -61,12 +61,18 @@ import { UserCustomerAdresComponent } from './businessComponents/CRM/user-custom
 import { YilBaseMasterListComponent } from './_yilLibrary/yilCompomenents/yil-base-master-list/yil-base-master-list.component';
 import { YilBaseJustListFromDsComponent } from './_yilLibrary/yilCompomenents/yil-base-just-list-from-ds/yil-base-just-list-from-ds.component';
 import { CurrencyRateComponent } from './businessComponents/Finance/currency-rate/currency-rate.component';
-import { YilComboboxComponent } from './_yilLibrary/yilCompomenents/yil-combobox/yil-combobox.component';
+
 
 
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { timeout } from 'rxjs/operators';
+import { YilBaseMasterCRUDTheOtherOneComponent } from './_yilLibrary/yilCompomenents/yil-base-master-crud-the-other-one/yil-base-master-crud-the-other-one.component';
+import { YilBaseMasterCrudTheOtherTwoComponent } from './_yilLibrary/yilCompomenents/yil-base-master-crud-the-other-two/yil-base-master-crud-the-other-two.component';
+import { UserCustomerTarlaComponent } from './businessComponents/CRM/user-customer-tarla/user-customer-tarla.component';
+import { YilComboboxViaServiceComponent } from './_yilLibrary/yilCompomenents/yil-combobox-via-service/yil-combobox-via-service.component';
+import { YilComboboxViaDatasourceComponent } from './_yilLibrary/yilCompomenents/yil-combobox-via-datasource/yil-combobox-via-datasource.component';
+import { WheatherShowComponent } from './businessComponents/definitions/wheather-show/wheather-show.component';
 
 
 @NgModule({
@@ -87,7 +93,12 @@ import { timeout } from 'rxjs/operators';
     YilBaseMasterListComponent,
     YilBaseJustListFromDsComponent,
     CurrencyRateComponent,
-    YilComboboxComponent
+    YilBaseMasterCRUDTheOtherOneComponent,
+    YilBaseMasterCrudTheOtherTwoComponent,
+    UserCustomerTarlaComponent,
+    YilComboboxViaServiceComponent,
+    YilComboboxViaDatasourceComponent,
+    WheatherShowComponent
   ],
   imports: [
     ReactiveFormsModule,

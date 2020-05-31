@@ -15,8 +15,8 @@ import { User, UserForRegisterDto, UserForLoginDto } from '../_entities/entities
 export class AuthenticationService {
   endpoint: string =   'https://localhost:4000/api/Auths';
   headers = new HttpHeaders().set('Content-Type', 'application/json');
-  currentUser: User;
-
+  private  currentUser: User;
+  
 
   constructor(
     private http: HttpClient,
@@ -80,7 +80,7 @@ export class AuthenticationService {
 
               this.getUserProfile(_id).subscribe((res) => {
                   this.currentUser = res;
-                  this.router.navigate(['user-profile/' + res.userId]);
+                  this.router.navigate(['user-profile/' + _id]);
               })
         }
         else
@@ -92,25 +92,13 @@ export class AuthenticationService {
       }));
     }
 
+    currentlyUserId():number{
+
+      if (this.getUserInfo==null || this.getUserInfo == undefined)
+        throw new Error("İzinsiz işlem yapılamaz"); 
   
-//   signIn(user: UserForLoginDto) {
-//     return this.http.get<any>(this.endpoint+'/login/GetByUserNameAndPassword?email='+user.email+'&password='+user.password)// return this.http.post<any>(this.url+'/GetByUserNameAndPassword', { username, password })
-//         .pipe(map(user => {
-//             // login successful if there's a jwt token in the response
-//             if (user && user.responceMesaj.result) {  // if (user && user.token) {
-//                 // store user details and jwt token in local storage to keep user logged in between page refreshes
-//                 localStorage.setItem(this.CURRENTUSER, JSON.stringify(user));
-//                 this.currentUserSubject.next(user);                
-//             } else {
-//                 this.doLogout();
-//                 throw new Error("Giriş bilgileriniz yanlış. Lütfen tekrar kontrol ediniz");
-//             }
-//            // return user;
-//         }));
-// }
-
-
-
+      return +this.getUserInfo.id;
+    }
 
 
 

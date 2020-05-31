@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 import { idname } from 'src/app/_entities/entities';
 import { AuthenticationService } from 'src/app/_helpers/authentication.service';
 import { NotificationService } from 'src/app/_helpers/notification.service';
-import { UserdetailService } from 'src/app/services/userdetail.service';
+import { UserdetailService } from 'src/app/services/CRM/userdetail.service';
 import { CurrentUser, UserDetail } from 'src/app/_entities/entitiesforCRM';
 
 @Component({

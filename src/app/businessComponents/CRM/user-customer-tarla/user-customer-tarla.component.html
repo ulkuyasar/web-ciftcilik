@@ -1,16 +1,16 @@
-<app-yil-base-master-crud-the-other-one #baseAdres 
+<app-yil-base-master-crud-the-other-two #baseTarla 
 [yilAutomaticfillValue]="_yilAutomaticfillValue"
-[modalWindowForm]="myWindowUserCustomerAdres" 
+[modalWindowForm]="myWindowUserCustomerTarla" 
 [gridColumns]="gridColumns"
-[abstractidnoService]="_userAdresService"
+[abstractidnoService]="_userTarlaService"
 [entityVal]="entityVal"
 (EventSetValueToModalWindowForm)="EventSetValueToModalWindowFormSubclass($event)"
 (EventClearValueToModalWindowForm)="EventClearValueToModalWindowFormSubclass()"
 (EventSetValueToEntityFromModalWindowForm)="EventSetValueToEntityFromModalWindowFormSubclass($event)">
-</app-yil-base-master-crud-the-other-one>
+</app-yil-base-master-crud-the-other-two>
 
 
-<jqxWindow #myWindowUserCustomerAdres [width]="450" [height]="430" [resizable]="false" [isModal]="false" [autoOpen]="false" [modalOpacity]="'0.01'">
+<jqxWindow #myWindowUserCustomerTarla [width]="450" [height]="430" [resizable]="false" [isModal]="false" [autoOpen]="false" [modalOpacity]="'0.01'">
     <div>Edit</div>
     <div style="overflow: hidden;">
         <table>
@@ -20,6 +20,18 @@
                     <jqxNumberInput #id
                         [width]="150" [height]="23" [disabled]="true"
                         [min]="0" [spinButtons]="true" [spinMode]="'simple'"></jqxNumberInput> 
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Tarla Adı:</td>
+                <td align="left">
+                    <jqxInput #name [width]="150" [height]="23"></jqxInput>
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Dönüm:</td>
+                <td align="left">
+                    <jqxNumberInput #donum [width]="150" [height]="23" [spinButtons]="false" [min]="0"></jqxNumberInput>
                 </td>
             </tr>
             <tr>
@@ -46,16 +58,30 @@
                 </td>
             </tr>
 
-            
+            <tr>
+                <td align="right">Enlem:</td>
+                <td align="left">
+                    <jqxNumberInput #latitude
+                        [width]="150" [height]="23" [min]="0" [decimalDigits]="6"></jqxNumberInput> 
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right">Boylam:</td>
+                <td align="left">
+                    <jqxNumberInput #longitude
+                        [width]="150" [height]="23" [min]="0" [decimalDigits]="6"></jqxNumberInput> 
+                </td>
+            </tr>
             
             
             <tr>
               <td align="right"></td>
               <td style="padding-top: 10px;" align="right">
-                  <jqxButton style="margin-right: 5px;" (onClick)="baseAdres.saveBtn()">
+                  <jqxButton style="margin-right: 5px;" (onClick)="baseTarla.saveBtn()">
                       Kaydet
                   </jqxButton>
-                  <jqxButton style="margin-right: 5px;" (onClick)="baseAdres.cancelBtn()">
+                  <jqxButton style="margin-right: 5px;" (onClick)="baseTarla.cancelBtn()">
                       İptal
                   </jqxButton>
               </td>

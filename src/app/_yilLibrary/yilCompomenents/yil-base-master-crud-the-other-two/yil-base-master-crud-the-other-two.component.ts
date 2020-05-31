@@ -12,11 +12,11 @@ import { YilIdNameInheritedService } from '../../yilServices/yil-id-name-inherit
 import { Guid } from "guid-typescript";
 
 @Component({
-  selector: 'app-yil-base-master-crud',
-  templateUrl: './yil-base-master-crud.component.html',
-  styleUrls: ['./yil-base-master-crud.component.css']
+  selector: 'app-yil-base-master-crud-the-other-two',
+  templateUrl: './yil-base-master-crud-the-other-two.component.html',
+  styleUrls: ['./yil-base-master-crud-the-other-two.component.css']
 })
-export class YilBaseMasterCRUDComponent implements AfterViewInit //, OnInit
+export class YilBaseMasterCrudTheOtherTwoComponent implements AfterViewInit //, OnInit
 {
   @Input() yilAutomaticfillValue: boolean; // initlitize esnasında mı  data ları getir (true), yoksa manuel cagirilacak mi (false)
   @Input() entityVal : idname;// = new City();
@@ -33,10 +33,10 @@ export class YilBaseMasterCRUDComponent implements AfterViewInit //, OnInit
   //region alt sınıflar yatafından kesinlikle tanımlanması gereken yapilar
    private dataFields: DataField[] = [];
 
-  @ViewChild('myGrid', { static: false }) myGrid: jqxGridComponent;
-  @ViewChild('myDropDownList', { static: false }) myDropDownList: jqxDropDownListComponent;
+  @ViewChild('myGridTheOtherTwo', { static: false }) myGridTheOtherTwo: jqxGridComponent;
+  @ViewChild('myDropDownListTheOtherTwo', { static: false }) myDropDownListTheOtherTwo: jqxDropDownListComponent;
   @ViewChild('myInput', { static: false }) myInput: jqxInputComponent;
-  @ViewChild('myWindowToolbarSearch', { static: false }) myWindowToolbarSearch: jqxWindowComponent;
+  @ViewChild('myWindowToolbarSearchTheOtherTwo', { static: false }) myWindowToolbarSearchTheOtherTwo: jqxWindowComponent;
 
   dataAdapter : any;
   public editrow: number = -1; 
@@ -68,7 +68,7 @@ public onYilInitilize() : void{
             },
             buttonclick: (row: number): void => {
                 this.editrow = row;
-                let dataRecord = this.myGrid.getrowdata( this.editrow); 
+                let dataRecord = this.myGridTheOtherTwo.getrowdata( this.editrow); 
                 this.EventSetValueToModalWindowForm.emit(dataRecord);
                 this.showModalView();
             }
@@ -105,8 +105,8 @@ public onYilInitilize() : void{
               this.data = data_.data,
               this.source.localdata =  this.data,
               this.dataAdapter = new jqx.dataAdapter(this.source);  
-              if (this.myGrid != undefined){
-                  this.myGrid.render();         
+              if (this.myGridTheOtherTwo != undefined){
+                  this.myGridTheOtherTwo.render();         
               }         
           });
       }
@@ -142,10 +142,10 @@ createButtonsContainers(statusbar: any): void {
    let deleteButtonContainer = document.createElement('div');
    let refreshButtonContainer = document.createElement('div');
    let searchButtonContainer = document.createElement('div');
-   addButtonContainer.id = 'addButton';
-   deleteButtonContainer.id = 'deleteButton';
-   refreshButtonContainer.id = 'refreshButton';
-   searchButtonContainer.id = 'searchButton';
+   addButtonContainer.id = 'addButtonTheOtherTwo';
+   deleteButtonContainer.id = 'deleteButtonTheOtherTwo';
+   refreshButtonContainer.id = 'refreshButtonTheOtherTwo';
+   searchButtonContainer.id = 'searchButtonTheOtherTwo';
    addButtonContainer.style.cssText = 'float: left; margin-left: 5px;';
    deleteButtonContainer.style.cssText = 'float: left; margin-left: 5px;';
    refreshButtonContainer.style.cssText = 'float: left; margin-left: 5px;';
@@ -168,28 +168,28 @@ createButtons(): void {
       textImageRelation: 'imageBeforeText'
   }
   
-  let addButton = jqwidgets.createInstance('#addButton', 'jqxButton', addButtonOptions);
+  let addButton = jqwidgets.createInstance('#addButtonTheOtherTwo', 'jqxButton', addButtonOptions);
   let deleteButtonOptions = {
       width: 80, height: 25, value: 'Delete',
       imgSrc: "../../../assets/images/close.png",
       imgPosition: 'center', textPosition: 'center',
       textImageRelation: 'imageBeforeText'
   }
-  let deleteButton = jqwidgets.createInstance('#deleteButton', 'jqxButton', deleteButtonOptions);
+  let deleteButton = jqwidgets.createInstance('#deleteButtonTheOtherTwo', 'jqxButton', deleteButtonOptions);
   let refreshButtonOptions = {
       width: 80, height: 25, value: 'refresh',
       imgSrc: "../../../assets/images/refresh.png",
       imgPosition: 'center', textPosition: 'center',
       textImageRelation: 'imageBeforeText'
   }
-  let refreshButton = jqwidgets.createInstance('#refreshButton', 'jqxButton', refreshButtonOptions);
+  let refreshButton = jqwidgets.createInstance('#refreshButtonTheOtherTwo', 'jqxButton', refreshButtonOptions);
   let searchButtonOptions = {
       width: 80, height: 25, value: 'Find',
       imgSrc: "../../../assets/images/search.png",
       imgPosition: 'center', textPosition: 'center',
       textImageRelation: 'imageBeforeText'
   }
-  let searchButton = jqwidgets.createInstance('#searchButton', 'jqxButton', searchButtonOptions);
+  let searchButton = jqwidgets.createInstance('#searchButtonTheOtherTwo', 'jqxButton', searchButtonOptions);
   // add new row.
   addButton.addEventHandler('click', (event: any): void => {
       this.clearModalView(); 
@@ -198,17 +198,17 @@ createButtons(): void {
   });
   // delete selected row.
   deleteButton.addEventHandler('click', (event: any): void => {
-      if (this.myGrid!=undefined)
+      if (this.myGridTheOtherTwo!=undefined)
       {
-          let selectedrowindex = this.myGrid.getselectedrowindex();
-          let rowscount = this.myGrid.getdatainformation().rowscount;
-          var gridId = this.myGrid.getrowid(selectedrowindex);
-          var entity = this.myGrid.getrowdata(+gridId);
+          let selectedrowindex = this.myGridTheOtherTwo.getselectedrowindex();
+          let rowscount = this.myGridTheOtherTwo.getdatainformation().rowscount;
+          var gridId = this.myGridTheOtherTwo.getrowid(selectedrowindex);
+          var entity = this.myGridTheOtherTwo.getrowdata(+gridId);
           if (entity != undefined && entity != null && entity.id > 0){
             if(confirm("Are you sure to delete this entry " + entity.id )) {
                 this.abstractidnoService.delete(entity).subscribe(() => {  							       
                 this.notificationService.MesajVerSuccess(entity.id + " nolu kayıt başarıyla silinmiştir...");
-                this.myGrid.deleterow(gridId);
+                this.myGridTheOtherTwo.deleterow(gridId);
               });  
             }
           }
@@ -221,13 +221,13 @@ createButtons(): void {
   });
   // search for a record.
   searchButton.addEventHandler('click', (event: any): void => {
-      this.myWindowToolbarSearch.open();
-      this.myWindowToolbarSearch.move(60, 60);
+      this.myWindowToolbarSearchTheOtherTwo.open();
+      this.myWindowToolbarSearchTheOtherTwo.move(60, 60);
   });
 }
-findBtnOnClick(): void {
-  this.myGrid.clearfilters();
-  let searchColumnIndex = this.myDropDownList.selectedIndex();
+findBtnOnTheOtherTwoClick(): void {
+  this.myGridTheOtherTwo.clearfilters();
+  let searchColumnIndex = this.myDropDownListTheOtherTwo.selectedIndex();
   let datafield = '';
   switch (searchColumnIndex) {
       case 0:
@@ -248,17 +248,17 @@ findBtnOnClick(): void {
   let filtercondition = 'contains';
   let filter = filtergroup.createfilter('stringfilter', filtervalue, filtercondition);
   filtergroup.addfilter(filter_or_operator, filter);
-  this.myGrid.addfilter(datafield, filtergroup);
+  this.myGridTheOtherTwo.addfilter(datafield, filtergroup);
   // apply the filters.
-  this.myGrid.applyfilters();
+  this.myGridTheOtherTwo.applyfilters();
 }
-clearBtnOnClick(): void {
-  this.myGrid.clearfilters();
+clearBtnOnTheOtherTwoClick(): void {
+  this.myGridTheOtherTwo.clearfilters();
 }
 
 public saveBtn(): void {
  
-  if (this.myGrid == undefined){
+  if (this.myGridTheOtherTwo == undefined){
     return;
   }
 
@@ -270,20 +270,20 @@ public saveBtn(): void {
       this.entityVal.id = newRow.data.id;
       this.notificationService.MesajVerSuccess("Ekleme işlemi başarıyla gerçekleşti... id = " + newRow.data.id);
       this.modalWindowForm.hide();
-      this.myGrid.addrow(null, this.entityVal);  
+      this.myGridTheOtherTwo.addrow(null, this.entityVal);  
     });  
   }
 
   if (this.editrow >= 0) {
       //update islemi
-        let rowID = this.myGrid.getrowid(this.editrow);
+        let rowID = this.myGridTheOtherTwo.getrowid(this.editrow);
         this.abstractidnoService.getById(this.entityVal.id).subscribe( 
           res =>{
             this.EventSetValueToEntityFromModalWindowForm.emit(res.data);
             this.abstractidnoService.update(res.data).subscribe(() => { 
               this.notificationService.MesajVerSuccess("Güncelleme başarıyla gerçekleşti...");
               this.modalWindowForm.hide();
-              this.myGrid.updaterow(rowID, res.data);  							
+              this.myGridTheOtherTwo.updaterow(rowID, res.data);  							
             });  
           });
     }
@@ -291,5 +291,7 @@ public saveBtn(): void {
 
 
 }
+
+
 
 

@@ -1,5 +1,4 @@
 import { Component, OnInit, Input, AfterViewInit, ViewChild } from '@angular/core';
-import { DataField } from 'src/app/_entities/entitiesForComponents';
 import { jqxGridComponent } from 'jqwidgets-ng/jqxgrid'
 
 

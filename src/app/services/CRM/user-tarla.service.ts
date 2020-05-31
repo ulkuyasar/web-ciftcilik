@@ -1,16 +1,18 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { YilIdNameInheritedService } from '../_yilLibrary/yilServices/yil-id-name-inherited.service';
-import { EnvironmentUrlService } from '../_helpers/environment-url.service';
-import { AuthenticationService } from '../_helpers/authentication.service';
-import { UserDetail } from '../_entities/entitiesforCRM';
+import { YilIdNameInheritedService } from '../../_yilLibrary/yilServices/yil-id-name-inherited.service';
+import { EnvironmentUrlService } from '../../_helpers/environment-url.service';
+import { AuthenticationService } from '../../_helpers/authentication.service';
+import { UserTarla } from '../../_entities/entitiesforCRM';
+
 
 @Injectable(
    {
    providedIn: 'root'
 }
 )
-export class  UserdetailService extends YilIdNameInheritedService<UserDetail> {
+export class  UserTarlaService extends YilIdNameInheritedService<UserTarla> {
 
   constructor(http_: HttpClient,  environmentURLService_: EnvironmentUrlService,  authenticationService_: AuthenticationService) {   
     super(http_,  environmentURLService_,  authenticationService_);
@@ -20,11 +22,8 @@ export class  UserdetailService extends YilIdNameInheritedService<UserDetail> {
 
 
   public apiControllerName(): string {
-    return "UserDetails";
+    return "UserTarlas";
  } 
 
 
 }
-
-
-

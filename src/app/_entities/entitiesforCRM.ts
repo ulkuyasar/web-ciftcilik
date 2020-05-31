@@ -66,12 +66,25 @@ class UserAdres extends idname
 	userId :number;
 	adresType:number;
     adres  : string;
-    sehirId:number;
-	ilceId:number;  
+    cityId:number;
+	districtId:number;  
 }
 
 
+class UserTarla extends idname
+{
+	userId :number;
+	tarlaType:number;
+    adres  : string;
+    cityId:number;
+	districtId:number;  
+	donum:number;
+	latitude:number;
+	longitude:number;
+//https://www.latlong.net/   den ogrenılebılır
+}
+
 export { idname,User ,UserRoleItem,
-     UserForRegisterDto,UserForLoginDto,UserDetail,CurrentUser,UserTel,UserAdres};
+     UserForRegisterDto,UserForLoginDto,UserDetail,CurrentUser,UserTel,UserAdres,UserTarla};
 
 

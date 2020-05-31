@@ -1,8 +1,8 @@
 
-class ComboDatasourceType{
-    label: string;
-    value: any;
-    group:string;
+class LabelValueType{
+  label: string;
+  value: any;
+  group:string;
 }
 
 // jqxGridComponent lerde datasource daki dataların bılgısı ve tipi
@@ -12,4 +12,4 @@ class DataField{
 }
 
 
-export { ComboDatasourceType,DataField};
+export { DataField,LabelValueType};

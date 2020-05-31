@@ -4,11 +4,11 @@ import { jqxInputComponent } from 'jqwidgets-ng/jqxinput';
 import { jqxNumberInputComponent } from 'jqwidgets-ng/jqxnumberinput';
 import { jqxWindowComponent } from 'jqwidgets-ng/jqxwindow';
 import { Subject } from 'rxjs';
-import { CityService } from 'src/app/services/city.service';
 import { NotificationService } from 'src/app/_helpers/notification.service';
 import { YilBaseMasterCRUDComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-base-master-crud/yil-base-master-crud.component';
 import { City } from 'src/app/_entities/entitiesforDefinitions';
 import { Guid } from "guid-typescript";
+import { CityService } from 'src/app/services/definition/city.service';
 
 
 @Component({

@@ -1,12 +1,8 @@
-<p>jqx-base-master works!</p>
-
-
-<input id="editrow1" name="editrow1" type="hidden" value="0">
 
 <jqxGrid #myGrid id="myGrid" class="grid"
     [width]="getWidth()" [source]="dataAdapter" [pageable]="true"
     [autoheight]="true" [columns]="gridColumns" 
-    [showtoolbar]="true" [rendertoolbar]="createButtonsContainers">
+    [showtoolbar]="true" [rendertoolbar]="createButtonsContainers" [width]="510">
 </jqxGrid>
 
 <jqxWindow #myWindowToolbarSearch [width]="210" [height]="180" [autoOpen]="false" [resizable]="false">

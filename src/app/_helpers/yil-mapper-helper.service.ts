@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
-import { ComboDatasourceType } from 'src/app/_entities/entitiesForComponents';
+import { LabelValueType } from '../_entities/entitiesForComponents';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ComboboxCustomizeService {
+export class YilMapperHelperService {
 
   constructor() { }
 
-  mappingidNameToLabelValue(any) :ComboDatasourceType[]
+  mappingidNameToLabelValue(any) :LabelValueType[]
   {
 	  const cbDataSource = [];
 	  any.forEach(element => {
-		var instance = new ComboDatasourceType();
+		var instance = new LabelValueType();
 		instance.value = element.id;
 		instance.label = element.name;
 		instance.group = "";
