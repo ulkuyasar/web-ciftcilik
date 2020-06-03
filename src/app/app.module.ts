@@ -34,6 +34,7 @@ import { TextBoxModule } from 'smart-webcomponents-angular/textbox';
 import { RadioButtonModule } from 'smart-webcomponents-angular/radiobutton';
 import { MaskedTextBoxModule } from 'smart-webcomponents-angular/maskedtextbox';
 import { PasswordTextBoxModule } from 'smart-webcomponents-angular/passwordtextbox';
+import { CardViewModule } from 'smart-webcomponents-angular/cardview';
 
 
 
@@ -73,6 +74,7 @@ import { UserCustomerTarlaComponent } from './businessComponents/CRM/user-custom
 import { YilComboboxViaServiceComponent } from './_yilLibrary/yilCompomenents/yil-combobox-via-service/yil-combobox-via-service.component';
 import { YilComboboxViaDatasourceComponent } from './_yilLibrary/yilCompomenents/yil-combobox-via-datasource/yil-combobox-via-datasource.component';
 import { WheatherShowComponent } from './businessComponents/definitions/wheather-show/wheather-show.component';
+import { ListButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/list-button/list-button.component';
 
 
 @NgModule({
@@ -98,7 +100,8 @@ import { WheatherShowComponent } from './businessComponents/definitions/wheather
     UserCustomerTarlaComponent,
     YilComboboxViaServiceComponent,
     YilComboboxViaDatasourceComponent,
-    WheatherShowComponent
+    WheatherShowComponent,
+    ListButtonComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -106,7 +109,7 @@ import { WheatherShowComponent } from './businessComponents/definitions/wheather
     BrowserAnimationsModule,
     ToastrModule.forRoot({
       timeOut:2500,
-      positionClass:'toast-top-right'   
+      positionClass:'toast-top-right'
     }
     ),
     AppRoutingModule,
@@ -128,6 +131,7 @@ import { WheatherShowComponent } from './businessComponents/definitions/wheather
     RadioButtonModule,
     MaskedTextBoxModule,
     PasswordTextBoxModule,
+    CardViewModule
 
 
   ],

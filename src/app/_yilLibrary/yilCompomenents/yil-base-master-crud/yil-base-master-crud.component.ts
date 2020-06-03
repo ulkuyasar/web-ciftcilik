@@ -43,7 +43,7 @@ export class YilBaseMasterCRUDComponent implements AfterViewInit //, OnInit
   data :any;
   private IsAddingEditingButtons: boolean = false;
   
-  @Input() parentSubjectInput:Subject<any>;  
+  @Input() parentSubjectInput:Subject<any>;
   protected parentSubjectOutput:Subject<any> = new Subject();
 
   
@@ -88,8 +88,8 @@ public onYilInitilize() : void{
   ngOnInit() {
     
   }
-  
-  
+
+
   ngAfterViewInit(): void {
     if (this.yilAutomaticfillValue)
       this.onYilInitilize();

@@ -13,19 +13,18 @@ import { AuthenticationService } from 'src/app/_helpers/authentication.service';
 )
 export class  CityService extends YilIdNameInheritedService<City> {
 
- constructor(http_: HttpClient,  environmentURLService_: EnvironmentUrlService,  authenticationService_: AuthenticationService) {   
-   super(http_,  environmentURLService_,  authenticationService_);
-   let tryingValue = this.apiControllerName();
-   this.url = this.environmentUrlService.getURL()+ this.apiControllerName();        
+ constructor(http_: HttpClient,  environmentURLService: EnvironmentUrlService,  authenticationService: AuthenticationService) {
+   super(http_,  environmentURLService,  authenticationService);
+   this.url = this.environmentUrlService.getURL() + this.apiControllerName();
  }
 
 
- public apiControllerName(): string {
-   return "Citys";
-} 
+  public apiControllerName(): string {
+      return 'Citys';
+  }
 
-get(): Observable<City[]> {
- return this.http.get<City[]>(this.url+'/getlistbyotherobject?otherId='+this.authenticationService.currentlyUserId());  
-}
+  get(): Observable<City[]> {
+    return this.http.get<City[]>(this.url + '/getlistbyotherobject?otherId=' + this.authenticationService.currentlyUserId());
+  }
 
 }

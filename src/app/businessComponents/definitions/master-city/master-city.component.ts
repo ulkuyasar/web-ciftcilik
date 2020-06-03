@@ -42,7 +42,7 @@ export class MasterCityComponent  implements AfterViewInit ,OnInit
     this._cityService = cityService;
     this.gridColumns =
     [
-      { freeze: true, text: 'ID', datafield: 'id',width: 80,cellsalign:'right' }, 
+      { freeze: true, text: 'ID', datafield: 'id',width: 80,cellsalign:'right' },
       //{ freeze: true, text: 'Balance', label: 'balance', dataField: 'balance'},
       { freeze: false, text: 'Adı', datafield: 'name', width: 200,cellsalign:'right' }, 
       { freeze: false, text: 'Plaka No', datafield: 'plakaNo', width: 250,cellsalign:'right' }
@@ -57,21 +57,21 @@ export class MasterCityComponent  implements AfterViewInit ,OnInit
   }
 
 
-  EventSetValueToModalWindowFormSubclass(dataRecord : any) 
+  EventSetValueToModalWindowFormSubclass(dataRecord : any)
   {
       this.id.decimal(dataRecord.id);
       this.name.val(dataRecord.name);
       this.plakaNo.val(dataRecord.plakaNo);
   }
 
-  EventClearValueToModalWindowFormSubclass() 
+  EventClearValueToModalWindowFormSubclass()
   {
       this.id.decimal(-1);
       this.name.val("");
       this.plakaNo.val("");
   }
 
-  EventSetValueToEntityFromModalWindowFormSubclass(entity : any) 
+  EventSetValueToEntityFromModalWindowFormSubclass(entity : any)
   {
       entity.id = this.id.val();
       entity.name= this.name.val();
@@ -79,9 +79,9 @@ export class MasterCityComponent  implements AfterViewInit ,OnInit
   }
 
   
-  EventGetIdValue(id : string) 
+  EventGetIdValue(id : string)
   {
-    if (this._id =="")
+    if (this._id =='')
       this._id =  Guid.create().toString();
     
     id =  this._id;

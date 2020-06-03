@@ -64,7 +64,7 @@ class MessagingAccrossComponent
     valueExtension:any;
 }
 
-class ResponceInfo{  // bu degisecek
+class ResponceInfo {  // bu degisecek
     code :number;
     mesaj : string;
 	result:boolean;
@@ -77,10 +77,10 @@ abstract class idname {
 
     createdDate: Date;
     updatedDate : Date;
-    createdUser :string;
-    updatedUser :string;
-    whichPageId :number;
-    recordStatus :boolean;
+    createdUser : string;
+    updatedUser : string;
+    whichPageId : number;
+    recordStatus : boolean;
 }
 
 abstract class idNameDescription extends idname {
@@ -88,20 +88,19 @@ abstract class idNameDescription extends idname {
 }
 
 abstract class Masterdetail extends justid {
-    seq: number;
-    masterId:number;
+    seq : number;
+    masterId : number;
 }
 
 class Message {
     content: string;
     style: string;
-    dismissed: boolean = false;
-  
+    dismissed = false;
+
     constructor(content, style?) {
-      this.content = content
+      this.content = content;
       this.style = style || 'info'
     }
-  
   }
 
 
