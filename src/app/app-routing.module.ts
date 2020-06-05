@@ -7,6 +7,7 @@ import { UserSignupComponent } from './businessComponents/CRM/user-signup/user-s
 import { UserProfileComponent } from './businessComponents/CRM/user-profile/user-profile.component';
 import { CurrencyRateComponent } from './businessComponents/Finance/currency-rate/currency-rate.component';
 import { WheatherShowComponent } from './businessComponents/definitions/wheather-show/wheather-show.component';
+import { CardViewimComponent } from './businessComponents/definitions/card-viewim/card-viewim.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,10 @@ const routes: Routes = [
   {path:'MasterCityComponent',component:MasterCityComponent},
 
   {path:'WheatherShowComponent',component:WheatherShowComponent},
+  {path:'CardViewimComponent',component:CardViewimComponent},
+
+
+  
   {path:'CurrencyRateComponent',component:CurrencyRateComponent}
 
   

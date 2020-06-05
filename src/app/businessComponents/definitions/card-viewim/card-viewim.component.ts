@@ -1,33 +1,13 @@
 import { Component, ViewChild, OnInit, AfterViewInit } from '@angular/core';
-import { WheatherService } from 'src/app/services/definition/wheather.service';
-import { WheatherHeaderAndDetailDTO } from 'src/app/_entityDTOs/entityDefinitionDTOs';
 import { CardViewComponent, Smart } from 'smart-webcomponents-angular/cardview';
 
 @Component({
-  selector: 'app-wheather-show',
-  templateUrl: './wheather-show.component.html',
-  styleUrls: ['./wheather-show.component.css']
+  selector: 'app-card-viewim',
+  templateUrl: './card-viewim.component.html',
+  styleUrls: ['./card-viewim.component.css']
 })
-export class WheatherShowComponent implements AfterViewInit,OnInit {
-
-  wheatherService:WheatherService;
-  data : WheatherHeaderAndDetailDTO[];
-  @ViewChild('cardview', { read: CardViewComponent, static: false }) cardview: CardViewComponent;
-
-
-  constructor(private _wheatherService:WheatherService) {
-    this.wheatherService = _wheatherService;
-  }
-
-  listeleClicked():void{
-    this.wheatherService.get().subscribe(
-    data_ =>
-    {
-      debugger;
-      this.data = data_.data
-    });
-  }
-
+export class CardViewimComponent  implements AfterViewInit, OnInit {	
+	@ViewChild('cardview', { read: CardViewComponent, static: false }) cardview: CardViewComponent;
     
     generateData(length: number): any[] {
         const sampleData = [], firstNames = ['Andrew', 'Nancy', 'Shelley', 'Regina', 'Yoshi', 'Antoni', 'Mayumi', 'Ian', 'Peter', 'Lars', 'Petra', 'Martin', 'Sven', 'Elio', 'Beate', 'Cheryl', 'Michael', 'Guylene'], lastNames = ['Fuller', 'Davolio', 'Burke', 'Murphy', 'Nagase', 'Saavedra', 'Ohno', 'Devling', 'Wilson', 'Peterson', 'Winkler', 'Bein', 'Petersen', 'Rossi', 'Vileid', 'Saylor', 'Bjorn', 'Nodier'], petNames = ['Sam', 'Bob', 'Lucky', 'Tommy', 'Charlie', 'Olliver', 'Mixie', 'Fluffy', 'Acorn', 'Beak'], countries = ['Bulgaria', 'USA', 'UK', 'Singapore', 'Thailand', 'Russia', 'China', 'Belize'], productNames = ['Black Tea', 'Green Tea', 'Caffe Espresso', 'Doubleshot Espresso', 'Caffe Latte', 'White Chocolate Mocha', 'Cramel Latte', 'Caffe Americano', 'Cappuccino', 'Espresso Truffle', 'Espresso con Panna', 'Peppermint Mocha Twist'];
@@ -57,7 +37,7 @@ export class WheatherShowComponent implements AfterViewInit,OnInit {
     }
 
 
-    dataSource = new Smart.DataAdapter({
+    dataSource = Smart.DataAdapter({
         dataSource: this.generateData(50),
         dataFields: [
             'firstName: string',
