@@ -4,14 +4,19 @@ class WheatherDetaillDTO
 {
     main:string;
     description:string;
+    icon:string;
 }
 
 class WheatherBaseDTO{
     zaman:Date;
-    pressure:number;
-    humidity:number;
+    zamanStr:string;
+    tempCelcius:number;
+    feels_likeCelcius:number;
+    pressure:number; // basınc
+    humidity:number; //nem
     dew_point:number;
-    clouds:number;
+    clouds:number; // Cloudiness, %   oranı
+    uvi:number;   // untroviolel index 0'dan 15'e kadar uzanan bir ölçek üzerinde sınıflandırılmasına 'UV İndeksi
     wind_speed:number;
     wind_deg:number;
     weather:WheatherDetaillDTO[];
@@ -28,6 +33,7 @@ class DailyTemp
 class WheatherGeneralDTO extends WheatherBaseDTO{
     temp:number;
     feels_like:number;
+
 }
 
 class WheatherGeneralDailyDTO extends WheatherBaseDTO{
@@ -43,12 +49,15 @@ class WheatherHeaderAndDetailDTO{
     lon:number;
 
     current:WheatherGeneralDTO;
+    todayMorning:WheatherGeneralDTO;
+    todayOglen:WheatherGeneralDTO;
+    todayAksam:WheatherGeneralDTO;
+    todayGece:WheatherGeneralDTO;
+
     hourly:WheatherGeneralDTO[];
     daily:WheatherGeneralDailyDTO[];
     // geri kalanini sen yap
 }
-
-
 
 
 export { DailyTemp, WheatherBaseDTO, WheatherHeaderAndDetailDTO ,

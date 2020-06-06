@@ -31,4 +31,11 @@ export class  WheatherService {
      return this.http.get<DataListResult<WheatherHeaderAndDetailDTO>>
      (this.url + '/getlistbyotherobject?userID=' + this.authenticationService.currentlyUserId());
   }
+
+  getWithTarlaId(tarlaId:number): Observable<DataListResult<WheatherHeaderAndDetailDTO>>   {  // bu userın tum tarlalarının hava durum raporları gelecek
+    return this.http.get<DataListResult<WheatherHeaderAndDetailDTO>>
+    (this.url + '/getWithTarlaId?userID=' + this.authenticationService.currentlyUserId()+'&&tarlaId='+tarlaId);
+  }
+
+
  }

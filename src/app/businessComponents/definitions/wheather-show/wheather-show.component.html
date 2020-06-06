@@ -1,3 +1,10 @@
-<app-list-button (onClick)="listeleClicked()"></app-list-button>
 
-<smart-card-view [columns]="columns" [titleField]="titleField" [dataSource]="dataSource" [coverField]="coverField" #cardview id="cardView"></smart-card-view>
+
+<div class="container-description">
+    <app-yil-combobox-via-datasource #cmbTarlaList (EventChangeValue)="cmbTarlaListChangeValue($event)"></app-yil-combobox-via-datasource>
+</div>
+
+<!-- <app-list-button (onClick)="listeleTarlalari()"></app-list-button> -->
+
+<smart-card-view [columns]="columns" [titleField]="titleField" [dataSource]="dataSourceTodayWheather" [coverField]="coverField" #cardview id="cardViewTodayWheather"></smart-card-view>
+<smart-card-view [columns]="columns" [titleField]="titleField" [dataSource]="dataSourceToDailyWheather" [coverField]="coverField" #cardview id="cardViewDailyWheather"></smart-card-view>

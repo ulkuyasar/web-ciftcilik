@@ -75,7 +75,6 @@ import { YilComboboxViaServiceComponent } from './_yilLibrary/yilCompomenents/yi
 import { YilComboboxViaDatasourceComponent } from './_yilLibrary/yilCompomenents/yil-combobox-via-datasource/yil-combobox-via-datasource.component';
 import { WheatherShowComponent } from './businessComponents/definitions/wheather-show/wheather-show.component';
 import { ListButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/list-button/list-button.component';
-import { CardViewimComponent } from './businessComponents/definitions/card-viewim/card-viewim.component';
 
 
 @NgModule({
@@ -102,8 +101,7 @@ import { CardViewimComponent } from './businessComponents/definitions/card-viewi
     YilComboboxViaServiceComponent,
     YilComboboxViaDatasourceComponent,
     WheatherShowComponent,
-    ListButtonComponent,
-    CardViewimComponent
+    ListButtonComponent
   ],
   imports: [
     ReactiveFormsModule,
