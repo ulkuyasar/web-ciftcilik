@@ -7,6 +7,7 @@ import { UserSignupComponent } from './businessComponents/CRM/user-signup/user-s
 import { UserProfileComponent } from './businessComponents/CRM/user-profile/user-profile.component';
 import { CurrencyRateComponent } from './businessComponents/Finance/currency-rate/currency-rate.component';
 import { WheatherShowComponent } from './businessComponents/definitions/wheather-show/wheather-show.component';
+import { IotsensortransactionshowComponent } from './businessComponents/IOT/iotsensortransactionshow/iotsensortransactionshow.component';
 
 
 const routes: Routes = [
@@ -17,6 +18,7 @@ const routes: Routes = [
   { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
   {path:'MasterCityComponent',component:MasterCityComponent},
   {path:'WheatherShowComponent',component:WheatherShowComponent},
+  {path:'IotsensortransactionshowComponent',component:IotsensortransactionshowComponent},
   {path:'CurrencyRateComponent',component:CurrencyRateComponent}
 
   

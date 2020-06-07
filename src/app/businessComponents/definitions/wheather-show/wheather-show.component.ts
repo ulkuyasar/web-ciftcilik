@@ -22,7 +22,6 @@ export class WheatherShowComponent implements AfterViewInit,OnInit {
   userTarlas : UserTarla[];
   @ViewChild('cardViewTodayWheather', { read: CardViewComponent, static: false }) cardViewTodayWheather: CardViewComponent;
   @ViewChild('cardViewDailyWheather', { read: CardViewComponent, static: false }) cardViewDailyWheather: CardViewComponent;
-
   @ViewChild('cmbTarlaList', { static: false }) cmbTarlaList: YilComboboxViaDatasourceComponent;
 
   setValues : string[];

@@ -1,0 +1,68 @@
+
+<div class="smart-grid-layout">
+    <div class="row">
+        <div class="col">
+            <app-yil-combobox-via-datasource #cmbTarlaList (EventChangeValue)="cmbTarlaListChangeValue($event)"></app-yil-combobox-via-datasource>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div class="col-3">Sıcaklık</div>
+        <div class="col-3">Havadaki Nem</div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-3">                       
+            <jqxBarGauge #myBarGaugeTemp (onDrawEnd)="onDrawEnd()"
+                
+                [height]='350' [relativeInnerRadius]='0.6'
+                [values]='[25]'  [formatFunction]='formatFunction'>
+            </jqxBarGauge>
+        </div>
+
+
+        <div class="col-3">
+            <jqxBarGauge #myBarGaugeNem (onDrawEnd)="onDrawEnd()"
+           
+            [height]='350' [relativeInnerRadius]='0.6'
+            [values]='[25]' [formatFunction]='formatFunction'>
+        </jqxBarGauge>
+
+        </div>
+        <div class="col-6"></div>
+    </div>
+    <div class="row">
+        <div class="col-3">Topraktaki Nem</div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+        <div class="col-3"></div>
+    </div>
+    <div class="row">
+        <div class="col-3">
+            <jqxBarGauge #myBarGaugeToprakIslakligi (onDrawEnd)="onDrawEnd()"         
+                [height]='350' [relativeInnerRadius]='0.6'
+                [values]='[25]'  [formatFunction]='formatFunction'>
+            </jqxBarGauge>
+        </div>
+        <div class="col-9"></div>
+        
+    </div>
+  
+    <div class="row">
+        <div class="col-6">
+            <jqxChart #myChart
+                [width]="getWidth()" [height]="500"
+                [title]="'Live updates performance'" [enableAxisTextAnimation]="true"
+                [description]="'Data changes every 100 milliseconds'"
+                [showLegend]="true" [enableAnimations]="false" [padding]="padding"
+                [titlePadding]="titlePadding" [source]="data" [xAxis]="xAxis"
+                [valueAxis]="valueAxis" [seriesGroups]="seriesGroups" [colorScheme]="'scheme01'">
+            </jqxChart>
+        </div>
+        <div class="col-6"></div>
+    </div>
+</div>
+
+
+

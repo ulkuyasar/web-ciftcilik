@@ -20,6 +20,8 @@ import { jqxValidatorModule } from 'jqwidgets-ng/jqxvalidator';
 import { jqxDateTimeInputModule } from 'jqwidgets-ng/jqxdatetimeinput';
 import { jqxTabsModule } from 'jqwidgets-ng/jqxtabs';
 import { jqxComboBoxModule }   from 'jqwidgets-ng/jqxcombobox';
+import { jqxBarGaugeModule }   from 'jqwidgets-ng/jqxbargauge';
+import { jqxChartModule }   from 'jqwidgets-ng/jqxchart';
 
 import { ComboBoxModule } from 'smart-webcomponents-angular/combobox';
 import { ButtonModule } from 'smart-webcomponents-angular/button';
@@ -75,6 +77,7 @@ import { YilComboboxViaServiceComponent } from './_yilLibrary/yilCompomenents/yi
 import { YilComboboxViaDatasourceComponent } from './_yilLibrary/yilCompomenents/yil-combobox-via-datasource/yil-combobox-via-datasource.component';
 import { WheatherShowComponent } from './businessComponents/definitions/wheather-show/wheather-show.component';
 import { ListButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/list-button/list-button.component';
+import { IotsensortransactionshowComponent } from './businessComponents/IOT/iotsensortransactionshow/iotsensortransactionshow.component';
 
 
 @NgModule({
@@ -101,7 +104,8 @@ import { ListButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/li
     YilComboboxViaServiceComponent,
     YilComboboxViaDatasourceComponent,
     WheatherShowComponent,
-    ListButtonComponent
+    ListButtonComponent,
+    IotsensortransactionshowComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -119,7 +123,7 @@ import { ListButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/li
     jqxNumberInputModule, jqxInputModule, jqxWindowModule,
     jqxDropDownListModule, jqxPanelModule,jqxMenuModule,jqxPasswordInputModule,
     jqxExpanderModule, jqxValidatorModule,  jqxDateTimeInputModule ,
-    jqxTabsModule,jqxComboBoxModule,
+    jqxTabsModule,jqxComboBoxModule,jqxBarGaugeModule,jqxChartModule,
 
     ComboBoxModule,ButtonModule, ListBoxModule,GridModule,
     NumericTextBoxModule,
