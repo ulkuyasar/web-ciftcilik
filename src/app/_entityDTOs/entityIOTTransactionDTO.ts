@@ -1,6 +1,15 @@
 
 class SensorTransactionDTO
 {
+    nemSensorInHairTransactions : Transaction[];
+    tempSensorInHairTransactions :Transaction[];
+    toprakIslakligiSensorTransactions :Transaction[];
+}
+
+
+
+class Transaction
+{
     id: number;
     name: string;
     createdDate: Date;
@@ -13,4 +22,4 @@ class SensorTransactionDTO
     value3 :number;
 }
 
-export { SensorTransactionDTO }
+export { Transaction, SensorTransactionDTO }

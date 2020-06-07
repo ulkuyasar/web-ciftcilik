@@ -14,8 +14,7 @@
     </div>
     <div class="row">
         <div class="col-3">                       
-            <jqxBarGauge #myBarGaugeTemp (onDrawEnd)="onDrawEnd()"
-                
+            <jqxBarGauge #myBarGaugeTemp (onDrawEnd)="onDrawEnd()"             
                 [height]='350' [relativeInnerRadius]='0.6'
                 [values]='[25]'  [formatFunction]='formatFunction'>
             </jqxBarGauge>
@@ -23,11 +22,10 @@
 
 
         <div class="col-3">
-            <jqxBarGauge #myBarGaugeNem (onDrawEnd)="onDrawEnd()"
-           
-            [height]='350' [relativeInnerRadius]='0.6'
-            [values]='[25]' [formatFunction]='formatFunction'>
-        </jqxBarGauge>
+            <jqxBarGauge #myBarGaugeNem (onDrawEnd)="onDrawEnd()"          
+                [height]='350' [relativeInnerRadius]='0.6'
+                [values]='[25]' [formatFunction]='formatFunction'>
+            </jqxBarGauge>
 
         </div>
         <div class="col-6"></div>

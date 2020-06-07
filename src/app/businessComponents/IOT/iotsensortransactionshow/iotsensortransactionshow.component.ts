@@ -7,6 +7,7 @@ import { UserTarla } from 'src/app/_entities/entitiesforCRM';
 import { SensorTransactionDTO } from 'src/app/_entityDTOs/entityIOTTransactionDTO';
 import { jqxBarGaugeComponent } from 'jqwidgets-ng/jqxbargauge';
 import { jqxChartComponent } from 'jqwidgets-ng/jqxchart';
+import { IotsensortransactionService } from 'src/app/services/IOT/iotsensortransaction.service';
 
 @Component({
   selector: 'app-iotsensortransactionshow',
@@ -15,7 +16,7 @@ import { jqxChartComponent } from 'jqwidgets-ng/jqxchart';
 })
 export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
 
-  wheatherService:WheatherService;
+  iotSensorService:IotsensortransactionService;
   tarlaService:UserTarlaService;
   authenticationService:AuthenticationService;
   sensorData : SensorTransactionDTO[];
@@ -34,14 +35,14 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
   @ViewChild('myChart', { static: false }) myChart: jqxChartComponent;
 
 
-
+  sensorDTO : SensorTransactionDTO = null;
   setValues : string[];
-  constructor(private _wheatherService:WheatherService,
+  constructor(private _iotSensorService:IotsensortransactionService,
               private _tarlaService:UserTarlaService,
               private _authenticationService:AuthenticationService) 
   {
       this.setValues = [];
-      this.wheatherService = _wheatherService;
+      this.iotSensorService = _iotSensorService;
       this.tarlaService = _tarlaService;
       this.authenticationService = _authenticationService;
   }
@@ -65,22 +66,17 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
 
   cmbTarlaListChangeValue($event):void{
       var selectedValue =  this.cmbTarlaList.getSelectedValues();
-      //this.refreshWithTarlaId(+selectedValue);
+      this.refreshWithTarlaId(+selectedValue);
   }
-  
-//   refreshWithTarlaId(tarlaId:number){
-//     this.wheatherService.getWithTarlaId(tarlaId).subscribe(
-//       data_ =>
-//       {
-//           this.data = data_.data;
-//           let resultToday = this.generateTodayDataForCardView(this.data);
-//           let resultDaily = this.generateDailyDataForCardView(this.data);
 
-//           this.refreshForToday(resultToday);
-//           this.refreshForDaily(resultDaily);
-//       }
-//      );
-//  }
+
+
+  
+  refreshWithTarlaId(tarlaId:number){
+    var tarlaId = +this.cmbTarlaList.getSelectedValues()[0];
+    this.setBarGauge(tarlaId);
+    
+ }
 
 
     formatFunction(value: number, index: number, color: string): string {
@@ -104,14 +100,50 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
     getRandomInt(min: number, max: number): number {
         return Math.floor(Math.random() * (max - min)) + min;
     }
+
+
+    setBarGauge(tarlaId:number){
+      this.iotSensorService.getByTarlaId(tarlaId).subscribe(
+        data_ =>
+        {
+          if (data_.success)
+          {
+              this.sensorDTO = data_.data;
+              if (this.sensorDTO.nemSensorInHairTransactions !=null && this.sensorDTO.nemSensorInHairTransactions.length >0)
+              {
+                  this.myBarGaugeNem.val([+this.sensorDTO.nemSensorInHairTransactions[0].value1]);
+              }
+
+              if (this.sensorDTO.tempSensorInHairTransactions !=null && this.sensorDTO.tempSensorInHairTransactions.length >0)
+              {
+                  this.myBarGaugeTemp.val([+this.sensorDTO.tempSensorInHairTransactions[0].value1]);
+              }
+
+              if (this.sensorDTO.toprakIslakligiSensorTransactions !=null && this.sensorDTO.toprakIslakligiSensorTransactions.length >0)
+              {
+                  this.myBarGaugeToprakIslakligi.val([+this.sensorDTO.toprakIslakligiSensorTransactions[0].value1]);
+              }
+          } 
+        });
+
+
+    }
+
     onDrawEnd(): void {
         let values = [this.getRandomInt(1, 99)];
         setTimeout(() => {
-            this.myBarGaugeTemp.val(values);
-            this.myBarGaugeNem.val(values);
-            this.myBarGaugeToprakIslakligi.val(values);
-        }, 1000);
+          var tarlaId = +this.cmbTarlaList.getSelectedValues()[0];
+          this.setBarGauge(tarlaId);
+            // console.log(tarlaId);
+            // this.myBarGaugeTemp.val(values);
+            // this.myBarGaugeNem.val(values);
+            // this.myBarGaugeToprakIslakligi.val(values);
+        }, 10000);
     }
+
+
+
+
 
 
 
@@ -137,7 +169,7 @@ getWidth() : any {
   valueAxis: any =
   {
       minValue: 0,
-      maxValue: 750,
+      maxValue: 100,
       title: { text: 'Index Value<br>' },
   };
   seriesGroups: any[] =
@@ -146,7 +178,7 @@ getWidth() : any {
           type: 'line',
           useGradientColors: false,
           series: [
-              { dataField: 'value1', displayText: 'value1', lineWidth: 2, symbolType: 'circle' }
+              { dataField: 'value1', displayText: 'Sıcaklık', lineWidth: 2, symbolType: 'circle' }
           ]
       },
       {
@@ -155,7 +187,7 @@ getWidth() : any {
           columnsGapPercent: 50,
           alignEndPointsWithIntervals: true,
           series: [
-              { dataField: 'value2', displayText: 'value2' }
+              { dataField: 'value2', displayText: 'Havadaki Nem' }
           ]
       },
       {
@@ -164,7 +196,7 @@ getWidth() : any {
           columnsGapPercent: 50,
           alignEndPointsWithIntervals: true,
           series: [
-              { dataField: 'value3', displayText: 'value3' }
+              { dataField: 'value3', displayText: 'Toprağın Islaklığı' }
           ]
       }
   ];
@@ -177,39 +209,70 @@ getWidth() : any {
   timerFunction = () => {
       let data = this.myChart.source();
       data.splice(0, 1);
-      data.push({
-          key: data[data.length - 1].key + 1,
-          value1: (Math.random() * 200) % 200 + 200,
-          value2: (Math.random() * 200) % 200 + 500,
-          value3: (Math.random() * 200) % 200,
-      });
-      this.myChart.update();
+      var tarlaId = +this.cmbTarlaList.getSelectedValues()[0];
+      this.iotSensorService.getByTarlaId(tarlaId).subscribe(
+        data_ =>
+        {
+          if (data_.success)
+          {
+              let NemValue :number =0;
+              let TempValue :number =0;
+              let ToprakIslakligiValue :number =0;
+
+            if (this.sensorDTO.nemSensorInHairTransactions !=null && this.sensorDTO.nemSensorInHairTransactions.length >0)
+            {
+              NemValue = +this.sensorDTO.nemSensorInHairTransactions[0].value1;
+            }
+
+            if (this.sensorDTO.tempSensorInHairTransactions !=null && this.sensorDTO.tempSensorInHairTransactions.length >0)
+            {
+              TempValue = +this.sensorDTO.tempSensorInHairTransactions[0].value1;
+            }
+
+            if (this.sensorDTO.toprakIslakligiSensorTransactions !=null && this.sensorDTO.toprakIslakligiSensorTransactions.length >0)
+            {
+              ToprakIslakligiValue=+this.sensorDTO.toprakIslakligiSensorTransactions[0].value1;
+            }
+
+
+
+              data.push({
+                        key: data[data.length - 1].key + 1,
+                        value1: TempValue,  //(Math.random() * 200) % 200 + 200,
+                        value2: NemValue ,//(Math.random() * 200) % 200 + 500,
+                        value3: ToprakIslakligiValue, //(Math.random() * 200) % 200,
+                    });
+                    this.myChart.update();
+          }
+        }
+      );    
   };
   timer = setInterval(this.timerFunction, this.refreshTimeout());
   btnOnClick(event): void {
-      if (this.timer) {
-          clearInterval(this.timer);
-          this.myBtn.val('Resume');
-          this.timer = undefined;
-      }
-      else {
-          this.timer = setInterval(this.timerFunction, this.refreshTimeout());
-          this.myBtn.val('Pause');
-      }
+      // if (this.timer) {
+      //     clearInterval(this.timer);
+      //     this.myBtn.val('Resume');
+      //     this.timer = undefined;
+      // }
+      // else {
+      //     this.timer = setInterval(this.timerFunction, this.refreshTimeout());
+      //     this.myBtn.val('Pause');
+      // }
   }
   generateChartData = (): void => {
+       
       let max = 200;
       let timestamp = new Date();
       for (let i = 0; i < 20; i++) {
           this.data.push({
               key: i,
-              value1: (Math.random() * 200) % 200 + 200,
-              value2: (Math.random() * 200) % 200 + 500,
-              value3: (Math.random() * 200) % 200,
+              value1: (Math.random() * 20) % 2000 ,
+              value2: (Math.random() * 20) % 2000 ,
+              value3: (Math.random() * 20) % 2000,
           });
       }
   }
   refreshTimeout(): number {
-      return 100;
+      return 10000;
   }
 }
