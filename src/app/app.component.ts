@@ -26,8 +26,9 @@ constructor(
 
   closeModelInfo($event)
   {
-    const smartWindow = <smartWindow>document.getElementById("modelInfo");
-    smartWindow.close();
+    // const smartWindow = <smartWindow>document.getElementById("modelInfo");
+
+    // smartWindow.close();
   }
 
 }
