@@ -56,6 +56,8 @@ source =
 };
 //end asagidan doldurulanlar
 
+dropDownSource: string[] = ['First Name', 'Last Name', 'Product', 'Quantity', 'Price'];
+
 public onYilInitilize() : void{
 
   if (!this.IsAddingEditingButtons){

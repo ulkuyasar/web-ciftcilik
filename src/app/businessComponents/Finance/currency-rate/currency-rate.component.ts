@@ -12,9 +12,9 @@ import { ComboBoxComponent } from 'smart-webcomponents-angular/combobox';
 // sadece Listeleme yapacagi icin YilBaseJustListFromDsComponent den turetildi
 export class CurrencyRateComponent  implements AfterViewInit, OnInit {
 
-  private yildatafields : any[] =[];
-  private yilcolumns : any[] =[];
-  private yildata:any[]=[];
+  yildatafields : any[] =[];
+  yilcolumns : any[] =[];
+  yildata:any[]=[];
   currencyRateService : CurrencyRateService;
 
   @ViewChild('base', { static: false }) baseListComponent: YilBaseJustListFromDsComponent;

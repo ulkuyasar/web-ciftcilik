@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component } from '@angular/core';
 import {smartWindow} from '@smarthtmlelements/smart-elements/source/modules/smart.window.js';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from './_helpers/authentication.service';

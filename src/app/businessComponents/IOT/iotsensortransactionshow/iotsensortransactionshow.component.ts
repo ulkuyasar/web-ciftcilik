@@ -196,7 +196,7 @@ getWidth() : any {
           columnsGapPercent: 50,
           alignEndPointsWithIntervals: true,
           series: [
-              { dataField: 'value3', displayText: 'Toprağın Islaklığı' }
+              { dataField: 'value3', displayText: 'Toprağın Nemi' }
           ]
       }
   ];

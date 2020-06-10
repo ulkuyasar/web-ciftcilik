@@ -47,12 +47,12 @@ export class UserLoginPageComponent implements OnInit {
     return this.userForLoginDto;
   }
 
-  onRegister($event){
+  onRegister(){
     this.returnUrl = '/sign-up';
     this.router.navigate([this.returnUrl]);
   }
 
-  onSubmit($event) {     
+  onSubmit() {     
         this.submitted = true;
         // stop here if form is invalid
         if (this.email.val() == "" || this.password.val() == "")  {
