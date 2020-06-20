@@ -8,6 +8,8 @@ import { SensorTransactionDTO } from 'src/app/_entityDTOs/entityIOTTransactionDT
 import { jqxBarGaugeComponent } from 'jqwidgets-ng/jqxbargauge';
 import { jqxChartComponent } from 'jqwidgets-ng/jqxchart';
 import { IotsensortransactionService } from 'src/app/services/IOT/iotsensortransaction.service';
+import { YilBaseJustListFromDsComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-base-just-list-from-ds/yil-base-just-list-from-ds.component';
+import { ToastComponent } from 'smart-webcomponents-angular/toast';
 
 @Component({
   selector: 'app-iotsensortransactionshow',
@@ -27,12 +29,27 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
   padding: any = { left: 10, top: 10, right: 10, bottom: 10 };
   titlePadding: any = { left: 0, top: 0, right: 0, bottom: 10 };
 
+  //start of yilGrid
+  yildatafields : any[] =[];
+  yilcolumns : any[] =[];
+  yildata:any[]=[];
+  //end of yilGrid
+
+    LastTimeForTemp :Date = null;
+    LastTimeForHavadakiNem:Date = null;
+    LastTimeForTopraktakiNem:Date = null;
+    LastTimeForIsiginGucu:Date = null;
+
 
   @ViewChild('cmbTarlaList', { static: false }) cmbTarlaList: YilComboboxViaDatasourceComponent;
   @ViewChild('myBarGaugeTemp', { static: false }) myBarGaugeTemp: jqxBarGaugeComponent;
   @ViewChild('myBarGaugeNem', { static: false }) myBarGaugeNem: jqxBarGaugeComponent;
   @ViewChild('myBarGaugeToprakIslakligi', { static: false }) myBarGaugeToprakIslakligi: jqxBarGaugeComponent;
-  @ViewChild('myChart', { static: false }) myChart: jqxChartComponent;
+  @ViewChild('myBarGaugeIsiginGucu', { static: false }) myBarGaugeIsiginGucu: jqxBarGaugeComponent;
+
+  // @ViewChild('myChart', { static: false }) myChart: jqxChartComponent;
+  @ViewChild('base', { static: false }) baseListComponent: YilBaseJustListFromDsComponent;
+  @ViewChild('toast', { read: ToastComponent, static: false }) toast: ToastComponent;
 
 
   sensorDTO : SensorTransactionDTO = null;
@@ -45,6 +62,26 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
       this.iotSensorService = _iotSensorService;
       this.tarlaService = _tarlaService;
       this.authenticationService = _authenticationService;
+
+      this.yilcolumns=
+      [
+          { text: 'Id', datafield: 'id', width: 120 },
+          { text: 'Adı', datafield: 'name', width: 120 },
+          { text: 'Değeri', datafield: 'value1', width: 180 },
+          { text: 'Zaman', datafield: 'createdDate', width: 250 }    
+      ];
+  
+      this.yildatafields=
+      [
+          { name: 'id', type: 'number' },
+          { name: 'name', type: 'string' },
+          { name: 'value1', type: 'number' },
+          { name: 'createdDate', type: 'date' }
+  
+      ];
+
+
+
   }
   ngAfterViewInit(): void {
     this.init();
@@ -62,6 +99,9 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
                   this.cmbTarlaList.setSelectedValues(this.setValues);
               }              
           });
+
+          //this.generateChartData();
+          //this.timerFunction();
   }	
 
   cmbTarlaListChangeValue($event):void{
@@ -102,31 +142,106 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
     }
 
 
+    countReflesing = 0;
     setBarGauge(tarlaId:number){
+
+      
+      if (this.countReflesing < 4){
+          this.countReflesing++;
+          return;
+      }
+      this.countReflesing=0;
+
       this.iotSensorService.getByTarlaId(tarlaId).subscribe(
         data_ =>
         {
           if (data_.success)
           {
               this.sensorDTO = data_.data;
+              
               if (this.sensorDTO.nemSensorInHairTransactions !=null && this.sensorDTO.nemSensorInHairTransactions.length >0)
               {
                   this.myBarGaugeNem.val([+this.sensorDTO.nemSensorInHairTransactions[0].value1]);
+                  this.LastTimeForHavadakiNem = this.sensorDTO.nemSensorInHairTransactions[0].createdDate;
+
               }
 
               if (this.sensorDTO.tempSensorInHairTransactions !=null && this.sensorDTO.tempSensorInHairTransactions.length >0)
               {
                   this.myBarGaugeTemp.val([+this.sensorDTO.tempSensorInHairTransactions[0].value1]);
+                  this.LastTimeForTemp = this.sensorDTO.tempSensorInHairTransactions[0].createdDate;
               }
 
               if (this.sensorDTO.toprakIslakligiSensorTransactions !=null && this.sensorDTO.toprakIslakligiSensorTransactions.length >0)
               {
-                  this.myBarGaugeToprakIslakligi.val([+this.sensorDTO.toprakIslakligiSensorTransactions[0].value1]);
+                  this.myBarGaugeToprakIslakligi.val([+this.sensorDTO.toprakIslakligiSensorTransactions[0].value1/10]);
+                  this.LastTimeForTopraktakiNem = this.sensorDTO.toprakIslakligiSensorTransactions[0].createdDate;
               }
-          } 
+
+              if (this.sensorDTO.isiginVurusGucuTransactions !=null && this.sensorDTO.isiginVurusGucuTransactions.length >0)
+              {
+                  this.myBarGaugeIsiginGucu.val([+this.sensorDTO.isiginVurusGucuTransactions[0].value1/10]);
+                  this.LastTimeForIsiginGucu = this.sensorDTO.isiginVurusGucuTransactions[0].createdDate;
+              }
+
+              if (this.sensorDTO.hirsizKontrolTransactions !=null && this.sensorDTO.hirsizKontrolTransactions.length >0)
+              {
+                   this.toast.open();
+              }
+
+              
+          }
+
+
+          // // char grid icin start
+          // let data = this.myChart.source();
+          // data.splice(0, 1);
+
+          // if (data_.success)
+          // {
+          //     let NemValue :number =0;
+          //     let TempValue :number =0;
+          //     let ToprakIslakligiValue :number =0;
+          //     let IsiginGucuValue: number = 0;
+
+          //   if (this.sensorDTO.nemSensorInHairTransactions !=null && this.sensorDTO.nemSensorInHairTransactions.length >0)
+          //   {
+          //     NemValue = +this.sensorDTO.nemSensorInHairTransactions[0].value1;
+          //   }
+
+          //   if (this.sensorDTO.tempSensorInHairTransactions !=null && this.sensorDTO.tempSensorInHairTransactions.length >0)
+          //   {
+          //     TempValue = +this.sensorDTO.tempSensorInHairTransactions[0].value1;
+          //   }
+
+          //   if (this.sensorDTO.toprakIslakligiSensorTransactions !=null && this.sensorDTO.toprakIslakligiSensorTransactions.length >0)
+          //   {
+          //     ToprakIslakligiValue=+this.sensorDTO.toprakIslakligiSensorTransactions[0].value1;
+          //   }
+          //   if (this.sensorDTO.isiginVurusGucuTransactions !=null && this.sensorDTO.isiginVurusGucuTransactions.length >0)
+          //   {
+          //        IsiginGucuValue=20; // parseInt( +this.sensorDTO.isiginVurusGucuTransactions[0].value1/10);
+          //   }
+          //     data.push({
+          //               key: data[data.length - 1].key + 1,
+          //               value1: TempValue,  //(Math.random() * 200) % 200 + 200,
+          //               value2: NemValue ,//(Math.random() * 200) % 200 + 500,
+          //               value3: ToprakIslakligiValue, //(Math.random() * 200) % 200,
+          //               value4: IsiginGucuValue //(Math.random() * 200) % 200,
+
+          //     });
+          //   this.myChart.update();
+          // }
+          // char grid icin end
         });
 
-
+        this.iotSensorService.getlistbyotherobject(tarlaId).subscribe(
+            data_ => 
+            {
+                this.yildata = data_.data;
+                this.baseListComponent.refresh(this.yildata);
+            }
+        );
     }
 
     onDrawEnd(): void {
@@ -134,21 +249,12 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
         setTimeout(() => {
           var tarlaId = +this.cmbTarlaList.getSelectedValues()[0];
           this.setBarGauge(tarlaId);
-            // console.log(tarlaId);
-            // this.myBarGaugeTemp.val(values);
-            // this.myBarGaugeNem.val(values);
-            // this.myBarGaugeToprakIslakligi.val(values);
-        }, 10000);
+        
+        }, this.refreshTimeout());
     }
 
-
-
-
-
-
-
   ngOnInit() {
-      this.generateChartData();
+
   }
 
 getWidth() : any {
@@ -169,7 +275,7 @@ getWidth() : any {
   valueAxis: any =
   {
       minValue: 0,
-      maxValue: 100,
+      maxValue: 150,
       title: { text: 'Index Value<br>' },
   };
   seriesGroups: any[] =
@@ -198,81 +304,47 @@ getWidth() : any {
           series: [
               { dataField: 'value3', displayText: 'Toprağın Nemi' }
           ]
+      },
+      {
+        type: 'spline',
+        useGradientColors: true,
+        columnsGapPercent: 50,
+        alignEndPointsWithIntervals: true,
+        series: [
+            { dataField: 'value4', displayText: 'Isigin Gücü' }
+        ]
       }
   ];
   colorsSchemesList: string[] = ['scheme01', 'scheme02', 'scheme03', 'scheme04', 'scheme05', 'scheme06', 'scheme07', 'scheme08'];
   colorsOnChange(event: any): void {
       let value = event.args.item.value;
-      this.myChart.colorScheme(value);
-      this.myChart.update();
+      // this.myChart.colorScheme(value);
+      // this.myChart.update();
   }
-  timerFunction = () => {
-      let data = this.myChart.source();
-      data.splice(0, 1);
-      var tarlaId = +this.cmbTarlaList.getSelectedValues()[0];
-      this.iotSensorService.getByTarlaId(tarlaId).subscribe(
-        data_ =>
-        {
-          if (data_.success)
-          {
-              let NemValue :number =0;
-              let TempValue :number =0;
-              let ToprakIslakligiValue :number =0;
-
-            if (this.sensorDTO.nemSensorInHairTransactions !=null && this.sensorDTO.nemSensorInHairTransactions.length >0)
-            {
-              NemValue = +this.sensorDTO.nemSensorInHairTransactions[0].value1;
-            }
-
-            if (this.sensorDTO.tempSensorInHairTransactions !=null && this.sensorDTO.tempSensorInHairTransactions.length >0)
-            {
-              TempValue = +this.sensorDTO.tempSensorInHairTransactions[0].value1;
-            }
-
-            if (this.sensorDTO.toprakIslakligiSensorTransactions !=null && this.sensorDTO.toprakIslakligiSensorTransactions.length >0)
-            {
-              ToprakIslakligiValue=+this.sensorDTO.toprakIslakligiSensorTransactions[0].value1;
-            }
-
-
-
-              data.push({
-                        key: data[data.length - 1].key + 1,
-                        value1: TempValue,  //(Math.random() * 200) % 200 + 200,
-                        value2: NemValue ,//(Math.random() * 200) % 200 + 500,
-                        value3: ToprakIslakligiValue, //(Math.random() * 200) % 200,
-                    });
-                    this.myChart.update();
-          }
-        }
-      );    
-  };
-  timer = setInterval(this.timerFunction, this.refreshTimeout());
+  // timerFunction = () => {
+  // };
+ // timer = setInterval(this.timerFunction, this.refreshTimeout());
   btnOnClick(event): void {
-      // if (this.timer) {
-      //     clearInterval(this.timer);
-      //     this.myBtn.val('Resume');
-      //     this.timer = undefined;
-      // }
-      // else {
-      //     this.timer = setInterval(this.timerFunction, this.refreshTimeout());
-      //     this.myBtn.val('Pause');
-      // }
   }
   generateChartData = (): void => {
        
       let max = 200;
       let timestamp = new Date();
-      for (let i = 0; i < 20; i++) {
+      for (let i = 0; i < 2; i++) {
           this.data.push({
               key: i,
               value1: (Math.random() * 20) % 2000 ,
               value2: (Math.random() * 20) % 2000 ,
               value3: (Math.random() * 20) % 2000,
+              value4: (Math.random() * 20) % 2000
           });
       }
   }
   refreshTimeout(): number {
-      return 10000;
+      return 30000;
   }
+
+  // asagi yilgrid
+
+
 }

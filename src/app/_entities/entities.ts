@@ -12,6 +12,8 @@ interface Iidname {
     recordStatus :boolean;
 }
 
+
+
 class justid {
     id: number;
     responceMesaj:ResponceInfo;

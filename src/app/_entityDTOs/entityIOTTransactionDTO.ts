@@ -1,25 +1,14 @@
+import { idname } from '../_entities/entities';
+import { Transaction } from '../_entities/IOT/entitiesforIOT';
 
 class SensorTransactionDTO
 {
     nemSensorInHairTransactions : Transaction[];
     tempSensorInHairTransactions :Transaction[];
     toprakIslakligiSensorTransactions :Transaction[];
+    isiginVurusGucuTransactions :Transaction[];
+    hirsizKontrolTransactions :Transaction[];
 }
 
 
-
-class Transaction
-{
-    id: number;
-    name: string;
-    createdDate: Date;
-    userId :number;
-    tarlaId :number;
-    sensorType :number;
-    sensorCode :string;
-    value1 :number;
-    value2 :number;
-    value3 :number;
-}
-
-export { Transaction, SensorTransactionDTO }
+export {  SensorTransactionDTO }

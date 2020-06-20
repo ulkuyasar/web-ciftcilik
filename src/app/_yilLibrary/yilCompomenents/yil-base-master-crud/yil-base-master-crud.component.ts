@@ -19,7 +19,7 @@ import { Guid } from "guid-typescript";
 export class YilBaseMasterCRUDComponent implements AfterViewInit //, OnInit
 {
   @Input() yilAutomaticfillValue: boolean; // initlitize esnasında mı  data ları getir (true), yoksa manuel cagirilacak mi (false)
-  @Input() entityVal : idname;// = new City();
+  @Input() entityVal : idname;
   @Input() modalWindowForm: jqxWindowComponent;
   @Input() gridColumns: any[] = [];
   @Input() abstractidnoService: YilIdNameInheritedService<idname>;
@@ -27,7 +27,7 @@ export class YilBaseMasterCRUDComponent implements AfterViewInit //, OnInit
   @Output() EventSetValueToModalWindowForm : EventEmitter<any> = new EventEmitter();
   @Output() EventClearValueToModalWindowForm : EventEmitter<any> = new EventEmitter();
   @Output() EventSetValueToEntityFromModalWindowForm : EventEmitter<any> = new EventEmitter();
-  @Output() EventGetIdValue : EventEmitter<any> = new EventEmitter();
+
   
   
   //region alt sınıflar yatafından kesinlikle tanımlanması gereken yapilar

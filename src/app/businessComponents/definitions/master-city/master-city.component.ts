@@ -78,14 +78,7 @@ export class MasterCityComponent  implements AfterViewInit ,OnInit
       entity.plakaNo= this.plakaNo.val();
   }
 
-  
-  EventGetIdValue(id : string)
-  {
-    if (this._id =='')
-      this._id =  Guid.create().toString();
-    
-    id =  this._id;
-  }
+
  
 }
 

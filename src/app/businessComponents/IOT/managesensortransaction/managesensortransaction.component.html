@@ -1,0 +1,85 @@
+<app-yil-base-master-crud-the-other-one #base
+[yilAutomaticfillValue]="_yilAutomaticfillValue"
+[modalWindowForm]="myWindow"
+[gridColumns]="gridColumns"
+[abstractidnoService]="_managesensortransactionService"
+[entityVal]="entityVal"
+(EventSetValueToModalWindowForm)="EventSetValueToModalWindowFormSubclass($event)"
+(EventClearValueToModalWindowForm)="EventClearValueToModalWindowFormSubclass()"
+(EventSetValueToEntityFromModalWindowForm)="EventSetValueToEntityFromModalWindowFormSubclass($event)">
+</app-yil-base-master-crud-the-other-one>
+
+
+<jqxWindow #myWindow [width]="450" [height]="430" [resizable]="false" [isModal]="false" [autoOpen]="false" [modalOpacity]="'0.01'">
+    <div>Edit</div>
+    <div style="overflow: hidden;">
+        <table>
+            <tr>
+                <td align="right">id:</td>
+                <td align="left">
+                    <jqxNumberInput #id
+                        [width]="150" [height]="23" [disabled]="true"
+                        [min]="0" [spinButtons]="true" [spinMode]="'simple'"></jqxNumberInput> 
+                </td>
+            </tr>
+            <tr>
+                <td align="right">Manage Adı:</td>
+                <td align="left">
+                    <jqxInput #name [width]="150" [height]="23"></jqxInput>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right">Sensor Tipi</td>
+                <td align="left">
+                    <app-yil-combobox-via-datasource #cmbSensorType></app-yil-combobox-via-datasource>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right">Kritik Seviye Asagi:</td>
+                <td align="left">
+                    <jqxNumberInput #kritikSeviyeAsagi [width]="150" [height]="23" [spinButtons]="false" [min]="0"></jqxNumberInput>
+                </td>
+            </tr>
+          
+            <tr>
+                <td align="right">Kritik Seviye Yukarı:</td>
+                <td align="left">
+                    <jqxNumberInput #kritikSeviyeYukari [width]="150" [height]="23" [spinButtons]="false" [min]="0"></jqxNumberInput>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right">Ardi Ardina Tekrarlanan Seviye Asagi:</td>
+                <td align="left">
+                    <jqxNumberInput #ardiArdinaTekrarlananSeviyeAsagi [width]="150" [height]="23" [spinButtons]="false" [min]="0"></jqxNumberInput>
+                </td>
+            </tr>
+
+            <tr>
+                <td align="right">Ardi Ardina Tekrarlanan Seviye Yukari:</td>
+                <td align="left">
+                    <jqxNumberInput #ardiArdinaTekrarlananSeviyeYukari [width]="150" [height]="23" [spinButtons]="false" [min]="0"></jqxNumberInput>
+                </td>
+            </tr>
+            
+
+
+            <tr>
+              <td align="right"></td>
+              <td style="padding-top: 10px;" align="right">
+                  <jqxButton style="margin-right: 5px;" (onClick)="base.saveBtn()">
+                      Kaydet
+                  </jqxButton>
+                  <jqxButton style="margin-right: 5px;" (onClick)="base.cancelBtn()">
+                      İptal
+                  </jqxButton>
+              </td>
+            </tr>
+        </table>
+    </div>
+</jqxWindow>
+
+
+

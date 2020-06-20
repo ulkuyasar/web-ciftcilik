@@ -81,10 +81,11 @@ class UserTarla extends idname
 	donum:number;
 	latitude:number;
 	longitude:number;
+	isSensorKontrol:boolean;
 //https://www.latlong.net/   den ogrenılebılır
 }
 
-export { idname,User ,UserRoleItem,
+export { User ,UserRoleItem,
      UserForRegisterDto,UserForLoginDto,UserDetail,CurrentUser,UserTel,UserAdres,UserTarla};
 
 

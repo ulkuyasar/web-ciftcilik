@@ -27,7 +27,6 @@ export class YilBaseMasterCrudTheOtherTwoComponent implements AfterViewInit //, 
   @Output() EventSetValueToModalWindowForm : EventEmitter<any> = new EventEmitter();
   @Output() EventClearValueToModalWindowForm : EventEmitter<any> = new EventEmitter();
   @Output() EventSetValueToEntityFromModalWindowForm : EventEmitter<any> = new EventEmitter();
-  @Output() EventGetIdValue : EventEmitter<any> = new EventEmitter();
   
   
   //region alt sınıflar yatafından kesinlikle tanımlanması gereken yapilar

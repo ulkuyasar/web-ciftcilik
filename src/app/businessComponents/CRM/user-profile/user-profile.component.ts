@@ -33,7 +33,13 @@ export class UserProfileComponent implements AfterViewInit {
   { 
     this.localStorageUser = authService.getUserInfo;
     
-    let id = this.actRoute.snapshot.paramMap.get('id');
+    var id = this.actRoute.snapshot.paramMap.get('id');
+    if (id == null || +id < 1)
+    {
+       id = authService.currentlyUserId.toString();
+    }
+
+
     this.authService.getUserProfile(id).subscribe(res => {
       this.currentUser = res.msg;
     })

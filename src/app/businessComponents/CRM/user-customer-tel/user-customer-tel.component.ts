@@ -79,12 +79,6 @@ export class UserCustomerTelComponent implements AfterViewInit //,OnInit,
       entity.userId = this.authenticationService.currentlyUserId();
   }
 
-  EventGetIdValueFormSubclass(id : any) 
-  {
-    if (this._id =="")
-      this._id =  Guid.create().toString();
-    
-    id =  this._id;
-  }
+
  
 }

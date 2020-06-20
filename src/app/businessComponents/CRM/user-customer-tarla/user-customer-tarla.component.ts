@@ -12,6 +12,7 @@
   import { AuthenticationService } from 'src/app/_helpers/authentication.service';
 import { YilBaseMasterCrudTheOtherTwoComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-base-master-crud-the-other-two/yil-base-master-crud-the-other-two.component';
 import { UserTarlaService } from 'src/app/services/CRM/user-tarla.service';
+import { CheckBoxComponent } from 'smart-webcomponents-angular/checkbox';
   
   
   
@@ -36,6 +37,7 @@ import { UserTarlaService } from 'src/app/services/CRM/user-tarla.service';
     @ViewChild('combyilIlce', { static: false }) combyilIlce: YilComboboxViaDatasourceComponent;
     @ViewChild('latitude', { static: false }) latitude: jqxNumberInputComponent;
     @ViewChild('longitude', { static: false }) longitude: jqxNumberInputComponent;
+    @ViewChild('chbIsSensorKontrol', { read: CheckBoxComponent, static: false }) chbIsSensorKontrol: CheckBoxComponent;
   
     gridColumns: any[] = [];
     _userTarlaService : UserTarlaService;
@@ -61,7 +63,8 @@ import { UserTarlaService } from 'src/app/services/CRM/user-tarla.service';
         { freeze: true, text: 'ID', datafield: 'id',width: 80,cellsalign:'right' }, 
         { freeze: false, text: 'Name', datafield: 'name', width: 150,cellsalign:'right' },
         { freeze: false, text: 'Dönüm', datafield: 'donum', width: 150,cellsalign:'right' },
-        { freeze: false, text: 'Adres', datafield: 'adres', width: 150,cellsalign:'right' }
+        { freeze: false, text: 'Adres', datafield: 'adres', width: 150,cellsalign:'right' },
+        { freeze: false, text: 'Sensorlu Mu', datafield: 'isSensorKontrol', width: 150,cellsalign:'right' }
       ];
      }
     ngAfterViewInit(): void {
@@ -83,6 +86,7 @@ import { UserTarlaService } from 'src/app/services/CRM/user-tarla.service';
         this.adres.val(dataRecord.adres);
         this.latitude.val(dataRecord.latitude);
         this.longitude.val(dataRecord.longitude);
+        this.chbIsSensorKontrol.checked = dataRecord.isSensorKontrol;
         if ( !isNaN(dataRecord.cityId) && (typeof dataRecord.cityId === 'number')){ 
           this.combyilSehir.setSelectedValues([dataRecord.cityId+""]);
           this.districtService.getlistbyotherobject(dataRecord.cityId).subscribe(data=>{
@@ -115,6 +119,7 @@ import { UserTarlaService } from 'src/app/services/CRM/user-tarla.service';
         this.combyilIlce.clearSelected();
         this.latitude.val(0);
         this.longitude.val(0);
+        this.chbIsSensorKontrol.checked = false;
     }
   
     EventSetValueToEntityFromModalWindowFormSubclass(entity : any) 
@@ -128,6 +133,7 @@ import { UserTarlaService } from 'src/app/services/CRM/user-tarla.service';
         entity.userId = this.authenticationService.currentlyUserId();
         entity.latitude = this.latitude.val();
         entity.longitude = this.longitude.val();
+        entity.isSensorKontrol = this.chbIsSensorKontrol.checked;
 
     }
    

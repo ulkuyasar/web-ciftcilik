@@ -8,6 +8,7 @@ import { UserProfileComponent } from './businessComponents/CRM/user-profile/user
 import { CurrencyRateComponent } from './businessComponents/Finance/currency-rate/currency-rate.component';
 import { WheatherShowComponent } from './businessComponents/definitions/wheather-show/wheather-show.component';
 import { IotsensortransactionshowComponent } from './businessComponents/IOT/iotsensortransactionshow/iotsensortransactionshow.component';
+import { ManagesensortransactionComponent } from './businessComponents/IOT/managesensortransaction/managesensortransaction.component';
 
 
 const routes: Routes = [
@@ -19,6 +20,9 @@ const routes: Routes = [
   {path:'MasterCityComponent',component:MasterCityComponent},
   {path:'WheatherShowComponent',component:WheatherShowComponent},
   {path:'IotsensortransactionshowComponent',component:IotsensortransactionshowComponent},
+  {path:'ManagesensortransactionComponent',component:ManagesensortransactionComponent},
+
+  
   {path:'CurrencyRateComponent',component:CurrencyRateComponent}
 
   

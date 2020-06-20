@@ -5,22 +5,20 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { DataListResult, DataResult } from 'src/app/_entities/entitiesForResults';
 import { SensorTransactionDTO } from 'src/app/_entityDTOs/entityIOTTransactionDTO';
+import { YilIdNameInheritedService } from 'src/app/_yilLibrary/yilServices/yil-id-name-inherited.service';
+import { Transaction } from 'src/app/_entities/IOT/entitiesforIOT';
 
 @Injectable({
   providedIn: 'root'
 })
 
-export class  IotsensortransactionService {
+export class  IotsensortransactionService extends YilIdNameInheritedService<Transaction>{
 
-  url = '';
-  environmentURLService: EnvironmentUrlService;
-  authenticationService: AuthenticationService;
-  http: HttpClient;
-  constructor(http_: HttpClient,  environmentURLService: EnvironmentUrlService,  authenticationService: AuthenticationService) {
-    this.http = http_;
-    this.environmentURLService = environmentURLService;
-    this.authenticationService = authenticationService;
-    this.url = this.environmentURLService.getURL() + this.apiControllerName();
+
+  constructor(http_: HttpClient,  environmentURLService_: EnvironmentUrlService,  authenticationService_: AuthenticationService) {   
+    super(http_,  environmentURLService_,  authenticationService_);
+    let tryingValue = this.apiControllerName();
+    this.url = this.environmentUrlService.getURL()+ this.apiControllerName();        
   }
 
   public apiControllerName(): string {

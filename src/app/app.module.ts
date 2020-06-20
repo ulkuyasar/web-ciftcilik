@@ -37,7 +37,8 @@ import { RadioButtonModule } from 'smart-webcomponents-angular/radiobutton';
 import { MaskedTextBoxModule } from 'smart-webcomponents-angular/maskedtextbox';
 import { PasswordTextBoxModule } from 'smart-webcomponents-angular/passwordtextbox';
 import { CardViewModule } from 'smart-webcomponents-angular/cardview';
-
+import { CheckBoxModule } from 'smart-webcomponents-angular/checkbox';
+import { ToastModule } from 'smart-webcomponents-angular/toast';
 
 
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -78,6 +79,7 @@ import { YilComboboxViaDatasourceComponent } from './_yilLibrary/yilCompomenents
 import { WheatherShowComponent } from './businessComponents/definitions/wheather-show/wheather-show.component';
 import { ListButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/list-button/list-button.component';
 import { IotsensortransactionshowComponent } from './businessComponents/IOT/iotsensortransactionshow/iotsensortransactionshow.component';
+import { ManagesensortransactionComponent } from './businessComponents/IOT/managesensortransaction/managesensortransaction.component';
 
 
 @NgModule({
@@ -105,7 +107,8 @@ import { IotsensortransactionshowComponent } from './businessComponents/IOT/iots
     YilComboboxViaDatasourceComponent,
     WheatherShowComponent,
     ListButtonComponent,
-    IotsensortransactionshowComponent
+    IotsensortransactionshowComponent,
+    ManagesensortransactionComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -135,7 +138,9 @@ import { IotsensortransactionshowComponent } from './businessComponents/IOT/iots
     RadioButtonModule,
     MaskedTextBoxModule,
     PasswordTextBoxModule,
-    CardViewModule
+    CardViewModule,
+    CheckBoxModule ,
+    ToastModule
 
 
   ],
