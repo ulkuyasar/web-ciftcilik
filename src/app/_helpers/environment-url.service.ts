@@ -14,8 +14,9 @@ export class EnvironmentUrlService {
    
     //  return "https://appservice34tombalaclub.azurewebsites.net/api/";    //prod ortami
     // }else{
-          //return "https://localhost:44383/api/";
-          return "http://localhost/WebApi/api/";      //UserTels/getall
+          
+        //  return "http://localhost/WebApi/api/"; //local     //UserTels/getall
+          return "http://51.116.179.82/api/";  // production
     //}
 
    }
