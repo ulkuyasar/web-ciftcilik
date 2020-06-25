@@ -4,7 +4,6 @@ import { jqxPasswordInputComponent } from 'jqwidgets-ng/jqxpasswordinput';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from 'src/app/_helpers/authentication.service';
 import { NotificationService } from 'src/app/_helpers/notification.service';
-import { first } from 'rxjs/operators';
 import { UserForLoginDto } from 'src/app/_entities/entitiesforCRM';
 
 
@@ -35,6 +34,7 @@ export class UserLoginPageComponent implements OnInit {
   }
 
   ngOnInit() {
+
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
   }
 
@@ -52,7 +52,8 @@ export class UserLoginPageComponent implements OnInit {
     this.router.navigate([this.returnUrl]);
   }
 
-  onSubmit() {     
+  onSubmit() {  
+    debugger;   
         this.submitted = true;
         // stop here if form is invalid
         if (this.email.val() == "" || this.password.val() == "")  {
