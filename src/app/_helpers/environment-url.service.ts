@@ -16,7 +16,7 @@ export class EnvironmentUrlService {
     // }else{
           
         //  return "https://localhost:5001/api/"; //local     //UserTels/getall
-          return "http://51.116.179.82/api/";  // production
+          return "https://yilciftcilikwebapi.herokuapp.com/api/";  // production
     //}
 
    }
