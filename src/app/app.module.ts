@@ -78,8 +78,8 @@ import { YilComboboxViaServiceComponent } from './_yilLibrary/yilCompomenents/yi
 import { YilComboboxViaDatasourceComponent } from './_yilLibrary/yilCompomenents/yil-combobox-via-datasource/yil-combobox-via-datasource.component';
 import { WheatherShowComponent } from './businessComponents/definitions/wheather-show/wheather-show.component';
 import { ListButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/list-button/list-button.component';
-import { IotsensortransactionshowComponent } from './businessComponents/IOT/iotsensortransactionshow/iotsensortransactionshow.component';
 import { ManagesensortransactionComponent } from './businessComponents/IOT/managesensortransaction/managesensortransaction.component';
+import { IotsensortransactionComponent } from './businessComponents/IOT/iotsensortransaction/iotsensortransaction.component';
 
 
 @NgModule({
@@ -107,8 +107,8 @@ import { ManagesensortransactionComponent } from './businessComponents/IOT/manag
     YilComboboxViaDatasourceComponent,
     WheatherShowComponent,
     ListButtonComponent,
-    IotsensortransactionshowComponent,
-    ManagesensortransactionComponent
+    ManagesensortransactionComponent,
+    IotsensortransactionComponent
   ],
   imports: [
     ReactiveFormsModule,

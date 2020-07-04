@@ -12,11 +12,11 @@ import { YilBaseJustListFromDsComponent } from 'src/app/_yilLibrary/yilCompomene
 import { ToastComponent } from 'smart-webcomponents-angular/toast';
 
 @Component({
-  selector: 'app-iotsensortransactionshow',
-  templateUrl: './iotsensortransactionshow.component.html',
-  styleUrls: ['./iotsensortransactionshow.component.css']
+  selector: 'app-iotsensortransaction',
+  templateUrl: './iotsensortransaction.component.html',
+  styleUrls: ['./iotsensortransaction.component.css']
 })
-export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
+export class IotsensortransactionComponent implements AfterViewInit,OnInit {
 
   iotSensorService:IotsensortransactionService;
   tarlaService:UserTarlaService;
@@ -114,7 +114,7 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
   
   refreshWithTarlaId(tarlaId:number){
     var tarlaId = +this.cmbTarlaList.getSelectedValues()[0];
-    this.setBarGauge(tarlaId);
+    this.setBarGauge(tarlaId,true);
     
  }
 
@@ -143,15 +143,16 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
 
 
     countReflesing = 0;
-    setBarGauge(tarlaId:number){
+    setBarGauge(tarlaId:number, withOutCounting){
 
-      
-      if (this.countReflesing < 4){
-          this.countReflesing++;
-          return;
+      if (withOutCounting!=true)
+      {
+            if (this.countReflesing < 4){
+                this.countReflesing++;
+                return;
+            }
+            this.countReflesing=0;
       }
-      this.countReflesing=0;
-
       this.iotSensorService.getByTarlaId(tarlaId).subscribe(
         data_ =>
         {
@@ -248,7 +249,7 @@ export class IotsensortransactionshowComponent implements AfterViewInit,OnInit {
         let values = [this.getRandomInt(1, 99)];
         setTimeout(() => {
           var tarlaId = +this.cmbTarlaList.getSelectedValues()[0];
-          this.setBarGauge(tarlaId);
+          this.setBarGauge(tarlaId,false);
         
         }, this.refreshTimeout());
     }
