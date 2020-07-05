@@ -53,7 +53,7 @@ export class UserLoginPageComponent implements OnInit {
   }
 
   onSubmit() {  
-    debugger;   
+
         this.submitted = true;
         // stop here if form is invalid
         if (this.email.val() == "" || this.password.val() == "")  {

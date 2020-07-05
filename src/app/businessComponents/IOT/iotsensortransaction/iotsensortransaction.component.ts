@@ -10,6 +10,7 @@ import { jqxChartComponent } from 'jqwidgets-ng/jqxchart';
 import { IotsensortransactionService } from 'src/app/services/IOT/iotsensortransaction.service';
 import { YilBaseJustListFromDsComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-base-just-list-from-ds/yil-base-just-list-from-ds.component';
 import { ToastComponent } from 'smart-webcomponents-angular/toast';
+import { EnumValues } from 'src/app/enums/enums';
 
 @Component({
   selector: 'app-iotsensortransaction',
@@ -42,30 +43,33 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
 
 
   @ViewChild('cmbTarlaList', { static: false }) cmbTarlaList: YilComboboxViaDatasourceComponent;
+  @ViewChild('cmbSelectionTransactionType', { static: false }) cmbSelectionTransactionType: YilComboboxViaDatasourceComponent;
+
   @ViewChild('myBarGaugeTemp', { static: false }) myBarGaugeTemp: jqxBarGaugeComponent;
   @ViewChild('myBarGaugeNem', { static: false }) myBarGaugeNem: jqxBarGaugeComponent;
   @ViewChild('myBarGaugeToprakIslakligi', { static: false }) myBarGaugeToprakIslakligi: jqxBarGaugeComponent;
   @ViewChild('myBarGaugeIsiginGucu', { static: false }) myBarGaugeIsiginGucu: jqxBarGaugeComponent;
 
-  // @ViewChild('myChart', { static: false }) myChart: jqxChartComponent;
   @ViewChild('base', { static: false }) baseListComponent: YilBaseJustListFromDsComponent;
   @ViewChild('toast', { read: ToastComponent, static: false }) toast: ToastComponent;
 
 
   sensorDTO : SensorTransactionDTO = null;
   setValues : string[];
+  setValuesToEnumType : string[];
   constructor(private _iotSensorService:IotsensortransactionService,
               private _tarlaService:UserTarlaService,
               private _authenticationService:AuthenticationService) 
   {
       this.setValues = [];
+      this.setValuesToEnumType = [];
       this.iotSensorService = _iotSensorService;
       this.tarlaService = _tarlaService;
       this.authenticationService = _authenticationService;
 
       this.yilcolumns=
       [
-          { text: 'Id', datafield: 'id', width: 120 },
+        //   { text: 'Id', datafield: 'id', width: 120 },
           { text: 'Adı', datafield: 'name', width: 120 },
           { text: 'Değeri', datafield: 'value1', width: 180 },
           { text: 'Zaman', datafield: 'createdDate', width: 250 }    
@@ -73,7 +77,7 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
   
       this.yildatafields=
       [
-          { name: 'id', type: 'number' },
+        //   { name: 'id', type: 'number' },
           { name: 'name', type: 'string' },
           { name: 'value1', type: 'number' },
           { name: 'createdDate', type: 'date' }
@@ -100,15 +104,34 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
               }              
           });
 
-          //this.generateChartData();
-          //this.timerFunction();
+          var classEnumValues : EnumValues = new EnumValues();
+          var list = classEnumValues.getSensorTypesClass();
+          this.cmbSelectionTransactionType.refreshViaListIdName(list);
+          this.setValuesToEnumType.push("-1");
+          this.cmbSelectionTransactionType.setSelectedValues(this.setValuesToEnumType);
   }	
 
-  cmbTarlaListChangeValue($event):void{
+ cmbTarlaListChangeValue($event):void{
       var selectedValue =  this.cmbTarlaList.getSelectedValues();
       this.refreshWithTarlaId(+selectedValue);
-  }
+ }
 
+ cmbChangeSelectionTransactionType($event):void{
+    this.getSensorValuesToGrid();
+ }
+
+getSensorValuesToGrid(){
+    var selectedValueTarlaID =  this.cmbTarlaList.getSelectedValues();
+    var selectedValueSensorType =  this.cmbSelectionTransactionType.getSelectedValues();
+        this.iotSensorService.getlistbyOtherobjectAndSensorType(+selectedValueTarlaID,+selectedValueSensorType[0]).subscribe(
+            data_ => 
+            {
+                this.yildata = data_.data;
+                this.baseListComponent.refresh(this.yildata);
+            }
+        );
+
+}
 
 
   
@@ -158,8 +181,7 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
         {
           if (data_.success)
           {
-              this.sensorDTO = data_.data;
-              
+              this.sensorDTO = data_.data;             
               if (this.sensorDTO.nemSensorInHairTransactions !=null && this.sensorDTO.nemSensorInHairTransactions.length >0)
               {
                   this.myBarGaugeNem.val([+this.sensorDTO.nemSensorInHairTransactions[0].value1]);
@@ -194,55 +216,9 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
           }
 
 
-          // // char grid icin start
-          // let data = this.myChart.source();
-          // data.splice(0, 1);
-
-          // if (data_.success)
-          // {
-          //     let NemValue :number =0;
-          //     let TempValue :number =0;
-          //     let ToprakIslakligiValue :number =0;
-          //     let IsiginGucuValue: number = 0;
-
-          //   if (this.sensorDTO.nemSensorInHairTransactions !=null && this.sensorDTO.nemSensorInHairTransactions.length >0)
-          //   {
-          //     NemValue = +this.sensorDTO.nemSensorInHairTransactions[0].value1;
-          //   }
-
-          //   if (this.sensorDTO.tempSensorInHairTransactions !=null && this.sensorDTO.tempSensorInHairTransactions.length >0)
-          //   {
-          //     TempValue = +this.sensorDTO.tempSensorInHairTransactions[0].value1;
-          //   }
-
-          //   if (this.sensorDTO.toprakIslakligiSensorTransactions !=null && this.sensorDTO.toprakIslakligiSensorTransactions.length >0)
-          //   {
-          //     ToprakIslakligiValue=+this.sensorDTO.toprakIslakligiSensorTransactions[0].value1;
-          //   }
-          //   if (this.sensorDTO.isiginVurusGucuTransactions !=null && this.sensorDTO.isiginVurusGucuTransactions.length >0)
-          //   {
-          //        IsiginGucuValue=20; // parseInt( +this.sensorDTO.isiginVurusGucuTransactions[0].value1/10);
-          //   }
-          //     data.push({
-          //               key: data[data.length - 1].key + 1,
-          //               value1: TempValue,  //(Math.random() * 200) % 200 + 200,
-          //               value2: NemValue ,//(Math.random() * 200) % 200 + 500,
-          //               value3: ToprakIslakligiValue, //(Math.random() * 200) % 200,
-          //               value4: IsiginGucuValue //(Math.random() * 200) % 200,
-
-          //     });
-          //   this.myChart.update();
-          // }
-          // char grid icin end
         });
 
-        this.iotSensorService.getlistbyotherobject(tarlaId).subscribe(
-            data_ => 
-            {
-                this.yildata = data_.data;
-                this.baseListComponent.refresh(this.yildata);
-            }
-        );
+        this.getSensorValuesToGrid();  // gridi doldurn akıs
     }
 
     onDrawEnd(): void {

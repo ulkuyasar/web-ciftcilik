@@ -21,6 +21,11 @@ class SensorTypeClass extends idname {
 class EnumValues{
     getSensorTypesClass():SensorTypeClass[]{
         var list:SensorTypeClass[] = [];
+        var type0 =  new SensorTypeClass();
+        type0.id = -1;
+        type0.name = "Tümü";
+
+
         var type1 =  new SensorTypeClass();
         type1.id = 1;
         type1.name = "Havadaki Sıcaklik";
@@ -42,6 +47,7 @@ class EnumValues{
         type5.id = 5;
         type5.name = "Hırsız Kontrol";
 
+        list.push(type0);
         list.push(type1);
         list.push(type2);
         list.push(type3);

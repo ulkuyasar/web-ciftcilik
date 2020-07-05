@@ -34,5 +34,10 @@ export class  IotsensortransactionService extends YilIdNameInheritedService<Tran
     return this.http.get<DataResult<SensorTransactionDTO>>
     (this.url + '/getByTarlaId?userID=' + this.authenticationService.currentlyUserId()+'&&tarlaId='+tarlaId);
   }
+
+  getlistbyOtherobjectAndSensorType(tarlaId: number,sensorType:number): Observable<DataListResult<Transaction>> {  
+    var result = this.http.get<DataListResult<Transaction>>(this.url+'/getlistbyOtherobjectAndSensorType?otherId='+tarlaId +'&&sensorType='+sensorType);
+    return result;
+  }
   
  }
