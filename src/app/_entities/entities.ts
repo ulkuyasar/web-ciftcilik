@@ -18,7 +18,9 @@ class justid {
     id: number;
     responceMesaj:ResponceInfo;
 
+
     createdDate: Date;
+    showCreatedTime:string;
     updatedDate : Date;
     createdUser :string;
     updatedUser :string;
@@ -77,6 +79,7 @@ abstract class idname {
     name: string;
    // responceMesaj:ResponceInfo; // bu degisecek
 
+    showCreatedTime:string;
     createdDate: Date;
     updatedDate : Date;
     createdUser : string;

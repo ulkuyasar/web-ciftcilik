@@ -72,7 +72,7 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
         //   { text: 'Id', datafield: 'id', width: 120 },
           { text: 'Adı', datafield: 'name', width: 120 },
           { text: 'Değeri', datafield: 'value1', width: 180 },
-          { text: 'Zaman', datafield: 'createdDate', width: 250 }    
+          { text: 'Zaman', datafield: 'showCreatedTime', width: 250 }    
       ];
   
       this.yildatafields=
@@ -80,7 +80,7 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
         //   { name: 'id', type: 'number' },
           { name: 'name', type: 'string' },
           { name: 'value1', type: 'number' },
-          { name: 'createdDate', type: 'date' }
+          { name: 'showCreatedTime', type: 'string' }
   
       ];
 
