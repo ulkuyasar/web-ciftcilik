@@ -9,6 +9,7 @@ import { CurrencyRateComponent } from './businessComponents/Finance/currency-rat
 import { WheatherShowComponent } from './businessComponents/definitions/wheather-show/wheather-show.component';
 import { ManagesensortransactionComponent } from './businessComponents/IOT/managesensortransaction/managesensortransaction.component';
 import { IotsensortransactionComponent } from './businessComponents/IOT/iotsensortransaction/iotsensortransaction.component';
+import { ManagesensorguidComponent } from './businessComponents/IOT/managesensorguid/managesensorguid.component';
 
 
 const routes: Routes = [
@@ -17,17 +18,17 @@ const routes: Routes = [
   { path: 'log-in', component: UserLoginPageComponent },
   { path: 'sign-up', component: UserSignupComponent },
   { path: 'user-profile/:id', component: UserProfileComponent, canActivate: [AuthGuard] },
-  {path:'MasterCityComponent',component:MasterCityComponent},
-  {path:'WheatherShowComponent',component:WheatherShowComponent},
-  {path:'IotsensortransactionComponent',component:IotsensortransactionComponent},
-
-
+  { path:'MasterCityComponent',component:MasterCityComponent},
+  { path:'WheatherShowComponent',component:WheatherShowComponent},
+  { path:'IotsensortransactionComponent',component:IotsensortransactionComponent},
+  
+  { path:'ManagesensortransactionComponent',component:ManagesensortransactionComponent},
+  { path:'ManagesensorguidComponent',component:ManagesensorguidComponent},
 
   
-  {path:'ManagesensortransactionComponent',component:ManagesensortransactionComponent},
 
   
-  {path:'CurrencyRateComponent',component:CurrencyRateComponent}
+  { path:'CurrencyRateComponent',component:CurrencyRateComponent}
 
   
  // {path:'UserLoginPageComponent',component:UserLoginPageComponent},

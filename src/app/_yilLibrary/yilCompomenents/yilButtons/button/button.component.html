@@ -1,5 +1,11 @@
-<!-- <div id="button"> -->
-    <button type="button" class="btn" (click)="onClickButton($event)">
+
+    <!-- <button type="button" class="btn" (click)="onClickButton($event)">
       {{ label }}
-    </button>
-  <!-- </div> -->
+    </button> -->
+
+   <smart-button type="button" class="{{className}}" (click)="onClickButton($event)">
+      {{ label }}
+    </smart-button>
+
+    <!-- <smart-button #button15 class="success">Normal</smart-button> -->
+

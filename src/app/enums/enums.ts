@@ -1,6 +1,14 @@
 import { idname } from "../_entities/entities";
 
 
+enum DeviceType {
+    RaspperryPi3 = 1,
+    RaspperryPi4 = 2,
+    ArduinoUno = 3,
+    ArduinoMega =4
+}
+
+
 enum Direction {
     Up = 1,
     Down,
@@ -15,10 +23,44 @@ enum SensorType {
 }
 
 class SensorTypeClass extends idname {
-
 }
 
+class DeviceTypeClass extends idname {
+}
+
+
+
 class EnumValues{
+
+    getDeviceTypesClass():DeviceTypeClass[]{
+        var list:DeviceTypeClass[] = [];
+   
+        var type1 =  new DeviceTypeClass();
+        type1.id = 1;
+        type1.name = "Raspperry-Pi 3";
+
+        var type2 =  new DeviceTypeClass();
+        type2.id = 2;
+        type2.name = "Raspperry-Pi 4";
+
+        var type3 =  new DeviceTypeClass();
+        type3.id = 3;
+        type3.name = "Arduino-Uno";
+
+
+        var type4 =  new DeviceTypeClass();
+        type4.id = 4;
+        type4.name = "Arduino-Mega";
+
+
+        list.push(type1);
+        list.push(type2);
+        list.push(type3);
+        list.push(type4);
+        return list;
+    }
+
+
     getSensorTypesClass():SensorTypeClass[]{
         var list:SensorTypeClass[] = [];
         var type0 =  new SensorTypeClass();
@@ -59,4 +101,4 @@ class EnumValues{
 }
 
 
-export { SensorType, SensorTypeClass,EnumValues};
+export { SensorType, SensorTypeClass,DeviceType, DeviceTypeClass, EnumValues};

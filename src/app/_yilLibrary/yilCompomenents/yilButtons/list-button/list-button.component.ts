@@ -10,8 +10,12 @@ export class ListButtonComponent {
 
   @Output() onClick = new EventEmitter<any>();
   label = 'Listele';
+  className:string = "raised success"
 
-  constructor() {}
+  constructor() {
+    this.className = "raised success";
+
+  }
 
   functioncall(event) {
     this.onClick.emit(event);

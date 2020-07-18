@@ -10,5 +10,22 @@ class SensorTransactionDTO
     hirsizKontrolTransactions :Transaction[];
 }
 
+class ManageSensorGuid extends idname
+{
+    apiKey :string;
+    userId :number;
+    userTarlaId :number;
+    deviceType:number;
+}
 
-export {  SensorTransactionDTO }
+
+class ManageSensorGuidDTO extends ManageSensorGuid
+{
+    userName :string;
+    userTarlaName :string;
+}
+
+
+
+
+export {  SensorTransactionDTO ,ManageSensorGuid,ManageSensorGuidDTO }

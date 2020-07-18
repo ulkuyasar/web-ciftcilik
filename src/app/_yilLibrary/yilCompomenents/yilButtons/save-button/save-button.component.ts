@@ -10,8 +10,12 @@ export class SaveButtonComponent  {
   @Output() onClick = new EventEmitter<any>();
 
   label: string = "Kaydet"
+  className:string = "raised primary"
 
-  constructor() {}
+  constructor() {
+    this.className = "raised primary";
+
+  }
 
   functioncall(event) {
     this.onClick.emit(event);

@@ -57,7 +57,6 @@ import { AuthInterceptor } from './_helpers/auth-interceptor.service';
 import { UserSignupComponent } from './businessComponents/CRM/user-signup/user-signup.component';
 import { UserProfileComponent } from './businessComponents/CRM/user-profile/user-profile.component';
 import { UserCustomerDetailComponent } from './businessComponents/CRM/user-customer-detail/user-customer-detail.component';
-import { ButtonComponentComponent } from './_yilLibrary/yilCompomenents/yilButtons/button-component/button-component.component';
 import { ButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/button/button.component';
 import { SaveButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/save-button/save-button.component';
 import { UserCustomerTelComponent } from './businessComponents/CRM/user-customer-tel/user-customer-tel.component';
@@ -80,6 +79,7 @@ import { WheatherShowComponent } from './businessComponents/definitions/wheather
 import { ListButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/list-button/list-button.component';
 import { ManagesensortransactionComponent } from './businessComponents/IOT/managesensortransaction/managesensortransaction.component';
 import { IotsensortransactionComponent } from './businessComponents/IOT/iotsensortransaction/iotsensortransaction.component';
+import { ManagesensorguidComponent } from './businessComponents/IOT/managesensorguid/managesensorguid.component';
 
 
 @NgModule({
@@ -92,7 +92,6 @@ import { IotsensortransactionComponent } from './businessComponents/IOT/iotsenso
     UserSignupComponent,
     UserProfileComponent,
     UserCustomerDetailComponent,
-    ButtonComponentComponent,
     ButtonComponent,
     SaveButtonComponent,
     UserCustomerTelComponent,
@@ -108,7 +107,8 @@ import { IotsensortransactionComponent } from './businessComponents/IOT/iotsenso
     WheatherShowComponent,
     ListButtonComponent,
     ManagesensortransactionComponent,
-    IotsensortransactionComponent
+    IotsensortransactionComponent,
+    ManagesensorguidComponent
   ],
   imports: [
     ReactiveFormsModule,

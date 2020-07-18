@@ -1,0 +1,30 @@
+
+    <div class="row">
+        <div class="col">
+            <app-yil-combobox-via-datasource #cmbUserList (EventChangeValue)="cmbUserListChangeValue($event)"></app-yil-combobox-via-datasource>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <app-yil-combobox-via-datasource #cmbTarlaList (EventChangeValue)="cmbTarlaListChangeValue($event)"></app-yil-combobox-via-datasource>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <app-yil-combobox-via-datasource #cmbDeviceType></app-yil-combobox-via-datasource>
+        </div>
+    </div>
+
+    
+    <div class="row">
+        <div class="col">
+            <app-save-button (onClick)="kaydetClicked()"></app-save-button>
+            <app-list-button (onClick)="listeleClicked()"></app-list-button>
+        </div>
+    </div>
+
+
+    <app-yil-base-just-list-from-ds #base [yilcolumns]="yilcolumns" [yildatafields]="yildatafields" [yildata]="yildata"></app-yil-base-just-list-from-ds>
+
+

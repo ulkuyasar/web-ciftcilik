@@ -21,7 +21,18 @@ export class YilMapperHelperService {
 	  return cbDataSource;	  
   }
 
-
+  mappingidNameToLabelValueWithExternalProperty(any,externalIDPropert:string, externalNameProperty:string) :LabelValueType[]
+  {
+	  const cbDataSource = [];
+	  any.forEach(element => {
+		var instance = new LabelValueType();
+		instance.value = element[externalIDPropert];
+		instance.label = element[externalNameProperty];
+		instance.group = "";
+		cbDataSource.push(instance);
+	  });
+	  return cbDataSource;	  
+  }
 
 
 }

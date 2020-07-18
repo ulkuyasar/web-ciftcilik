@@ -39,6 +39,10 @@ refreshViaListIdName(listOfLabelValues: idname[]){
     this.myComboBoxViaDataSource.dataSource = this.yilMapperHelperService.mappingidNameToLabelValue(listOfLabelValues) ;      
 }
 
+refreshViaListIdNameWithExternalProperty(listOfLabelValues: idname[],externalIDPropert:string, externalNameProperty:string){
+  this.myComboBoxViaDataSource.dataSource = this.yilMapperHelperService.mappingidNameToLabelValueWithExternalProperty(listOfLabelValues,externalIDPropert, externalNameProperty) ;      
+}
+
 clearSelected()
 {
   this.myComboBoxViaDataSource.selectedIndexes = [-1];
