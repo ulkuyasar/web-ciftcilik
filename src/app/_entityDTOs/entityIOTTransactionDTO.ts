@@ -23,6 +23,7 @@ class ManageSensorGuidDTO extends ManageSensorGuid
 {
     userName :string;
     userTarlaName :string;
+    deviceTypeName:string;
 }
 
 

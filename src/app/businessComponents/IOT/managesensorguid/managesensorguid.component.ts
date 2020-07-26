@@ -52,16 +52,23 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
    
     this.yilcolumns=
     [
-        { text: 'Id', datafield: 'id', width: 120 },
-        { text: 'Ad', datafield: 'name', width: 120 },
-        { text: 'Apikey', datafield: 'apiKey', width: 300 }     
+        { text: 'Id', datafield: 'id', width: 60 },
+        { text: 'Ad', datafield: 'name', width: 80 },
+        { text: 'Apikey', datafield: 'apiKey', width: 300 }   ,
+        { text: 'UserName', datafield: 'userName', width: 120 }   ,  
+        { text: 'UserTarlaName', datafield: 'userTarlaName', width: 120 }   ,  
+        { text: 'DeviceTypeName', datafield: 'deviceTypeName', width: 100 }     
     ];
 
     this.yildatafields=
     [
         { name: 'id', type: 'number' },
         { name: 'name', type: 'string' },
-        { name: 'apiKey', type: 'string' }
+        { name: 'apiKey', type: 'string' },
+        { name: 'userName', type: 'string' },
+        { name: 'userTarlaName', type: 'string' },
+        { name: 'deviceTypeName', type: 'string' }
+
        // tarla adı da gelecek sekılde listeleme yaptır
     ];
    }
@@ -92,7 +99,7 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
       });
 
 
-    this._managesensorguidService.getlistbyotherobject(+selectedUserValue).subscribe(
+    this._managesensorguidService.getlistbyUserId(+selectedUserValue).subscribe(
       data_ =>
       {     
         this.yildata = data_.data; 

@@ -28,5 +28,10 @@ import { Observable } from 'rxjs';
       var result = this.http.get<DataListResult<ManageSensorGuid>>(this.url+'/getlistbyUserIdAndTarlaId?userId='+userId+'&tarlaId='+tarlaId);
       return result;
     }
+
+    getlistbyUserId( userId : number): Observable<DataListResult<ManageSensorGuid>> {  
+      var result = this.http.get<DataListResult<ManageSensorGuid>>(this.url+'/getlistbyUserIdAndTarlaId?userId='+userId+'&tarlaId='+0);
+      return result;
+    }
 }
 
