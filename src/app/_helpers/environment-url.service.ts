@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { Injectable , isDevMode } from '@angular/core';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +10,13 @@ export class EnvironmentUrlService {
 
    getURL()
    {
+  debugger;
+    if(isDevMode()) {
+        return "https://localhost:5001/api/";
+    }
+    else{
+        return "https://yilciftcilikwebapi.herokuapp.com/api/";
+    }
     //if (environment.production) {
      
    
@@ -16,7 +24,7 @@ export class EnvironmentUrlService {
     // }else{
           
           //     return "https://localhost:5001/api/"; //local     //UserTels/getall
-     return "https://yilciftcilikwebapi.herokuapp.com/api/";  // production
+     //return "https://yilciftcilikwebapi.herokuapp.com/api/";  // production
     //}
 
    }
