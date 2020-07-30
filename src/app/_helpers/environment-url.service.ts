@@ -10,13 +10,12 @@ export class EnvironmentUrlService {
 
    getURL()
    {
-  debugger;
-    if(isDevMode()) {
-        return "https://localhost:5001/api/";
-    }
-    else{
+    // if(isDevMode()) {
+    //     return "https://localhost:5001/api/";
+    // }
+    // else{
         return "https://yilciftcilikwebapi.herokuapp.com/api/";
-    }
+   // }
     //if (environment.production) {
      
    

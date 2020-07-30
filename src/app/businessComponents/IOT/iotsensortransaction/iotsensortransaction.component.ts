@@ -24,6 +24,7 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
   authenticationService:AuthenticationService;
   sensorData : SensorTransactionDTO[];
   userTarlas : UserTarla[];
+  classEnumValues : EnumValues = new EnumValues();
 
 
   data: any[] = [];
@@ -104,8 +105,8 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
               }              
           });
 
-          var classEnumValues : EnumValues = new EnumValues();
-          var list = classEnumValues.getSensorTypesClass();
+          
+          var list = this.classEnumValues.getSensorTypesClass(false);
           this.cmbSelectionTransactionType.refreshViaListIdName(list);
           this.setValuesToEnumType.push("-1");
           this.cmbSelectionTransactionType.setSelectedValues(this.setValuesToEnumType);
@@ -114,6 +115,12 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
  cmbTarlaListChangeValue($event):void{
       var selectedValue =  this.cmbTarlaList.getSelectedValues();
       this.refreshWithTarlaId(+selectedValue);
+ }
+  
+ refreshWithTarlaId(tarlaId:number){
+    var tarlaId = +this.cmbTarlaList.getSelectedValues()[0];
+    this.setBarGauge(tarlaId,true);
+    
  }
 
  cmbChangeSelectionTransactionType($event):void{
@@ -133,13 +140,6 @@ getSensorValuesToGrid(){
 
 }
 
-
-  
-  refreshWithTarlaId(tarlaId:number){
-    var tarlaId = +this.cmbTarlaList.getSelectedValues()[0];
-    this.setBarGauge(tarlaId,true);
-    
- }
 
 
     formatFunction(value: number, index: number, color: string): string {

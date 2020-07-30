@@ -10,6 +10,7 @@ import { WheatherShowComponent } from './businessComponents/definitions/wheather
 import { ManagesensortransactionComponent } from './businessComponents/IOT/managesensortransaction/managesensortransaction.component';
 import { IotsensortransactionComponent } from './businessComponents/IOT/iotsensortransaction/iotsensortransaction.component';
 import { ManagesensorguidComponent } from './businessComponents/IOT/managesensorguid/managesensorguid.component';
+import { IotsensortransactionhistoryComponent } from './businessComponents/IOT/iotsensortransactionhistory/iotsensortransactionhistory.component';
 
 
 const routes: Routes = [
@@ -21,7 +22,8 @@ const routes: Routes = [
   { path:'MasterCityComponent',component:MasterCityComponent},
   { path:'WheatherShowComponent',component:WheatherShowComponent},
   { path:'IotsensortransactionComponent',component:IotsensortransactionComponent},
-  
+  { path:'IotsensortransactionhistoryComponent',component:IotsensortransactionhistoryComponent},
+
   { path:'ManagesensortransactionComponent',component:ManagesensortransactionComponent},
   { path:'ManagesensorguidComponent',component:ManagesensorguidComponent},
 

@@ -54,7 +54,7 @@ export class ManagesensortransactionComponent  implements AfterViewInit ,OnInit
   ngAfterViewInit(): void {
     this.base.onYilInitilize();
     var classEnumValues : EnumValues = new EnumValues();
-    var list = classEnumValues.getSensorTypesClass();
+    var list = classEnumValues.getSensorTypesClass(true);
     this.cmbSensorType.refreshViaListIdName(list);
   }
 

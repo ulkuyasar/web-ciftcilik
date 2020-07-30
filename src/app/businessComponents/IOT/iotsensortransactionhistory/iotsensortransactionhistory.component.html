@@ -1,0 +1,53 @@
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <app-yil-combobox-via-datasource #cmbTarlaList (EventChangeValue)="cmbTarlaListChangeValue($event)"></app-yil-combobox-via-datasource>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">
+            <app-yil-combobox-via-datasource #cmbSensorList (EventChangeValue)="cmbSensorListChangeValue($event)"></app-yil-combobox-via-datasource>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-6 col-lg-6">  
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">       
+            <app-yil-combobox-via-datasource #cmbYil (EventChangeValue)="cmbYilListChangeValue($event)"></app-yil-combobox-via-datasource>
+        </div>
+    
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">         
+            <app-yil-combobox-via-datasource #cmbAy (EventChangeValue)="cmbAyListChangeValue($event)"></app-yil-combobox-via-datasource>
+        </div>
+    
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">        
+            <app-yil-combobox-via-datasource #cmbGun></app-yil-combobox-via-datasource>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3">  
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-sm-6 col-md-1 col-lg-1">
+            <app-list-button (onClick)="listeleClicked()"></app-list-button>
+          
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-1 col-lg-1">
+             <app-clear-button (onClick)="clearClicked()"></app-clear-button>
+           
+        </div>
+        
+        <div class="col-xs-12 col-sm-6 col-md-11 col-lg-10">
+
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col">
+            <smart-chart #chart id="chart" [caption]="caption" [description]="description" [showLegend]="showLegend"
+                [enableCrosshairs]="enableCrosshairs" [crosshairsDashStyle]="crosshairsDashStyle"
+                [crosshairsLineWidth]="crosshairsLineWidth" [padding]="padding" [titlePadding]="titlePadding"
+                [dataSource]="dataSource" [colorScheme]="colorScheme" [showToolTipsOnAllSeries]="showToolTipsOnAllSeries"
+                [xAxis]="xAxis" [valueAxis]="valueAxis" [seriesGroups]="seriesGroups"></smart-chart>
+        </div>
+    </div>
+

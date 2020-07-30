@@ -39,6 +39,7 @@ import { PasswordTextBoxModule } from 'smart-webcomponents-angular/passwordtextb
 import { CardViewModule } from 'smart-webcomponents-angular/cardview';
 import { CheckBoxModule } from 'smart-webcomponents-angular/checkbox';
 import { ToastModule } from 'smart-webcomponents-angular/toast';
+import { ChartModule } from 'smart-webcomponents-angular/chart';
 
 
 import { HttpClientModule, HttpClient, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -80,6 +81,9 @@ import { ListButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/li
 import { ManagesensortransactionComponent } from './businessComponents/IOT/managesensortransaction/managesensortransaction.component';
 import { IotsensortransactionComponent } from './businessComponents/IOT/iotsensortransaction/iotsensortransaction.component';
 import { ManagesensorguidComponent } from './businessComponents/IOT/managesensorguid/managesensorguid.component';
+import { IotsensortransactionhistoryComponent } from './businessComponents/IOT/iotsensortransactionhistory/iotsensortransactionhistory.component';
+import { DeleteButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/delete-button/delete-button.component';
+import { ClearButtonComponent } from './_yilLibrary/yilCompomenents/yilButtons/clear-button/clear-button.component';
 
 
 @NgModule({
@@ -108,7 +112,10 @@ import { ManagesensorguidComponent } from './businessComponents/IOT/managesensor
     ListButtonComponent,
     ManagesensortransactionComponent,
     IotsensortransactionComponent,
-    ManagesensorguidComponent
+    ManagesensorguidComponent,
+    IotsensortransactionhistoryComponent,
+    DeleteButtonComponent,
+    ClearButtonComponent
   ],
   imports: [
     ReactiveFormsModule,
@@ -140,7 +147,8 @@ import { ManagesensorguidComponent } from './businessComponents/IOT/managesensor
     PasswordTextBoxModule,
     CardViewModule,
     CheckBoxModule ,
-    ToastModule
+    ToastModule,
+    ChartModule 
 
 
   ],
