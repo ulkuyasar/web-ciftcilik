@@ -9,6 +9,7 @@ import { Takvim, YearClass, MonthClass } from 'src/app/_yilLibrary/yilUtils/Takv
 import { EnumValues } from 'src/app/enums/enums';
 import { data } from 'jquery';
 import { NotificationService } from 'src/app/_helpers/notification.service';
+import { YilUtils } from 'src/app/_yilLibrary/yilUtils/YilUtils';
 
 @Component({
   selector: 'app-iotsensortransactionhistory',
@@ -70,6 +71,8 @@ export class IotsensortransactionhistoryComponent implements OnInit {
                 this.cmbYil.refreshViaListIdName(this.years);
                 this.cmbAy.refreshViaListIdName(this.mounts);
                 this.cmbYil.setSelectedIndexes([0]);
+                this.cmbAy.setSelectedIndexes([0]);
+
              
                 
                 var classEnumValues : EnumValues = new EnumValues();
@@ -123,25 +126,64 @@ export class IotsensortransactionhistoryComponent implements OnInit {
     }
 
 
-     typeFormat(): String{
-        var gunSelected = this.cmbGun.getSelectedValues();
-        if (+gunSelected == 0) // day secilmemiş, AylikGorunum var
-        {
+     typeFormat(): string{
+        // var gunSelected = this.cmbGun.getSelectedValues();
+        // if (+gunSelected == 0) // day secilmemiş, AylikGorunum var
+        // {
             return 'day';
-        } else if (+gunSelected > 0) // day secilmemiş, AylikGorunum var
-        {
-            return 'hour';
-        }
+        // } else if (+gunSelected > 0) // day secilmemiş, AylikGorunum var
+        // {
+        //     return 'hour';
+        // }
+     }
+
+     dateTypeValue(minValue : boolean):string{
+        var yearSelected = this.cmbYil.getSelectedValues();
+        var aySelected = this.cmbAy.getSelectedValues();
+       // var gunSelected = this.cmbGun.getSelectedValues();
+
+        
+        // if (+gunSelected==0){
+            if (minValue){
+                let ayGorunum = YilUtils.addCharacterToLeftSide((+aySelected).toString(),2,"0");
+                return ayGorunum+"-01-"+yearSelected;
+            }else{
+                if (+aySelected+1 !=13){
+                    let ayGorunum = YilUtils.addCharacterToLeftSide((+aySelected+1).toString(),2,"0");
+                    return ayGorunum+"-01-"+yearSelected;
+                }else
+                {
+                    return "01-01-"+(+yearSelected+1);
+                }
+            }
+        // }else{
+        //     if (minValue){
+        //         let ayGorunum = YilUtils.addCharacterToLeftSide((+aySelected).toString(),2,"0");
+        //         let gunGorunum = YilUtils.addCharacterToLeftSide((+gunSelected).toString(),2,"0");
+        //         return ayGorunum+"-"+gunGorunum+"-"+yearSelected;
+        //     }else{
+        //         let ayGorunum = YilUtils.addCharacterToLeftSide((+aySelected).toString(),2,"0");
+        //         let gunGorunum = YilUtils.addCharacterToLeftSide((+gunSelected).toString(),2,"0");
+        //         let gunGorunumNumber = +gunGorunum+1;
+        //         return ayGorunum+"-"+gunGorunumNumber+"-"+yearSelected;
+
+
+        //     }
+        // }
      }
 
     refreshData():void{
         var yearSelected = this.cmbYil.getSelectedValues();
         var aySelected = this.cmbAy.getSelectedValues();
-        var gunSelected = this.cmbGun.getSelectedValues();
+        //var gunSelected = this.cmbGun.getSelectedValues();
         var tarlaIDselected =  this.cmbTarlaList.getSelectedValues();
-        var sensorIDselected =  this.cmbSensorList.getSelectedValues();
+        var sensorIDselected =  this.cmbSensorList.getSelectedValues(); 
+        
+        let minValueDate : string = this.dateTypeValue(true);
+        let maxValueDate : string = this.dateTypeValue(false);
+
         debugger;
-        this.iotSensorService.getByTarlaIdAndSensorTypeAndDate(+tarlaIDselected,+sensorIDselected,+yearSelected,+aySelected,+gunSelected).subscribe(
+        this.iotSensorService.getByTarlaIdAndSensorTypeAndDate(+tarlaIDselected,+sensorIDselected,+yearSelected,+aySelected,0).subscribe(
             data_ =>
             {
                 if (data_.success){
@@ -152,11 +194,11 @@ export class IotsensortransactionhistoryComponent implements OnInit {
                         formatFunction: (value: Date) => {
                             return value.getDate() + '-' + this.monthFormatter.format(value) + '-' + value.getFullYear();
                         },
-                        type: 'date',
-                        baseUnit: 'day',
+                        type:  'date',
+                        baseUnit:  this.typeFormat(),
                         valuesOnTicks: true,
-                        minValue: '07-01-2020',
-                        maxValue: '08-01-2020',
+                        minValue: minValueDate,
+                        maxValue: maxValueDate,
                         tickMarks: {
                             visible: true,
                             unitInterval: 1,
