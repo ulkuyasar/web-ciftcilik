@@ -11,20 +11,12 @@ export class EnvironmentUrlService {
    getURL()
    {
     // if(isDevMode()) {
-    //     return "https://localhost:5001/api/";
+      //     return "https://localhost:5001/api/";
     // }
     // else{
-        return "https://yilciftcilikwebapi.herokuapp.com/api/";
+      return "https://yilciftcilikwebapi.herokuapp.com/api/";
    // }
-    //if (environment.production) {
-     
-   
-    //  return "https://appservice34tombalaclub.azurewebsites.net/api/";    //prod ortami
-    // }else{
-          
-          //     return "https://localhost:5001/api/"; //local     //UserTels/getall
-     //return "https://yilciftcilikwebapi.herokuapp.com/api/";  // production
-    //}
+
 
    }
 }
