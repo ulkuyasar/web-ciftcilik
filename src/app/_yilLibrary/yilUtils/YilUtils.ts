@@ -11,6 +11,15 @@ export class YilUtils {
         return mainString;
     }
 
+    public static  IsTekSayimi(num):boolean 
+    { 
+        if ( (num % 2) == 1){
+          return true;
+        }
+        else{
+          return false;
+        }
+    }
 
 }
 
