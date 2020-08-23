@@ -50,13 +50,18 @@ class EnumValues{
 
         var type4 =  new DeviceTypeClass();
         type4.id = 4;
-        type4.name = "Arduino-Mega";
+        type4.name = "Arduino-Wemos-D1";
+
+        var type5 =  new DeviceTypeClass();
+        type4.id = 5;
+        type4.name = "Arduino-Wemos-D1-LoraGateGay";
 
 
         list.push(type1);
         list.push(type2);
         list.push(type3);
         list.push(type4);
+        list.push(type5);
         return list;
     }
 
