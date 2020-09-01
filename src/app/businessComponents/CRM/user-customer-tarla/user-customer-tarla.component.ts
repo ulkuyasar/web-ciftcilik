@@ -3,7 +3,7 @@
   import { jqxNumberInputComponent } from 'jqwidgets-ng/jqxnumberinput';
   import { jqxWindowComponent } from 'jqwidgets-ng/jqxwindow';
   import { NotificationService } from 'src/app/_helpers/notification.service';
-  import { UserAdres, UserTarla } from 'src/app/_entities/entitiesforCRM';
+  import { UserAdres, UserTarla, CurrentUser } from 'src/app/_entities/entitiesforCRM';
   import { UserAdresService } from 'src/app/services/CRM/user-adres.service';
   import { YilComboboxViaServiceComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-combobox-via-service/yil-combobox-via-service.component';
   import { YilComboboxViaDatasourceComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-combobox-via-datasource/yil-combobox-via-datasource.component';
@@ -46,6 +46,7 @@ import { CheckBoxComponent } from 'smart-webcomponents-angular/checkbox';
     _yilAutomaticfillValue:boolean=false;
     cityService:CityService;
     districtService:DistrictService;
+    currentUser:CurrentUser;
   
   
       constructor(protected userTarlaService:UserTarlaService, 
@@ -56,8 +57,11 @@ import { CheckBoxComponent } from 'smart-webcomponents-angular/checkbox';
       this.cityService = _cityService;  
       this.districtService = _districtService;
       this.entityVal = new UserTarla();
+ 
       this._userTarlaService = userTarlaService;
       this.authenticationService = _authenticationService;
+      this.currentUser = new CurrentUser();
+      this.currentUser = _authenticationService.getCurrentUserInfo;
       this.gridColumns =
       [
         { freeze: true, text: 'ID', datafield: 'id',width: 80,cellsalign:'right' }, 

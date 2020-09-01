@@ -16,6 +16,9 @@ class ManageSensorGuid extends idname
     userId :number;
     userTarlaId :number;
     deviceType:number;
+    isParent:boolean;
+    parentManageSensorGuidId:number;
+
 }
 
 
@@ -24,9 +27,11 @@ class ManageSensorGuidDTO extends ManageSensorGuid
     userName :string;
     userTarlaName :string;
     deviceTypeName:string;
+
+    parentManageSensorGuidApiKey :string;
+    parentManageSensorGuidUserName :string;
+    parentManageSensorGuidUserTarlaName:string;
 }
-
-
 
 
 export {  SensorTransactionDTO ,ManageSensorGuid,ManageSensorGuidDTO }

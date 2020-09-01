@@ -46,6 +46,7 @@ class UserDetail extends idname
 	vkn  : string;
 	birthday :Date;
 	gender :number;
+	fullName:string;
 }
 
 

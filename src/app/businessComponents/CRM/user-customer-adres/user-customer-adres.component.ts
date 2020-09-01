@@ -3,7 +3,7 @@ import { jqxInputComponent } from 'jqwidgets-ng/jqxinput';
 import { jqxNumberInputComponent } from 'jqwidgets-ng/jqxnumberinput';
 import { jqxWindowComponent } from 'jqwidgets-ng/jqxwindow';
 import { NotificationService } from 'src/app/_helpers/notification.service';
-import { UserAdres } from 'src/app/_entities/entitiesforCRM';
+import { UserAdres, CurrentUser } from 'src/app/_entities/entitiesforCRM';
 import { UserAdresService } from 'src/app/services/CRM/user-adres.service';
 import { YilBaseMasterCRUDTheOtherOneComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-base-master-crud-the-other-one/yil-base-master-crud-the-other-one.component';
 import { ComboBoxComponent } from 'smart-webcomponents-angular/combobox';
@@ -36,6 +36,7 @@ export class UserCustomerAdresComponent implements AfterViewInit //,OnInit,
   _userAdresService : UserAdresService;
   authenticationService:AuthenticationService;
   entityVal : UserAdres;
+  currentUser:CurrentUser;
   _yilAutomaticfillValue:boolean=false;
   cityService:CityService;
   districtService:DistrictService;
@@ -51,6 +52,8 @@ export class UserCustomerAdresComponent implements AfterViewInit //,OnInit,
     this.entityVal = new UserAdres();
     this._userAdresService = userAdresService;
     this.authenticationService = _authenticationService;
+    this.currentUser = _authenticationService.getCurrentUserInfo;
+     
     this.gridColumns =
     [
       { freeze: true, text: 'ID', datafield: 'id',width: 80,cellsalign:'right' }, 

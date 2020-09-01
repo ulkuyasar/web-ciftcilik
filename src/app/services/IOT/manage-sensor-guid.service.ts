@@ -33,5 +33,10 @@ import { Observable } from 'rxjs';
       var result = this.http.get<DataListResult<ManageSensorGuid>>(this.url+'/getlistbyUserIdAndTarlaId?userId='+userId+'&tarlaId='+0);
       return result;
     }
+
+    getLoraGatewayList(): Observable<DataListResult<ManageSensorGuid>> {  
+      var result = this.http.get<DataListResult<ManageSensorGuid>>(this.url+'/getLoraGatewayList');
+      return result;
+    }
 }
 

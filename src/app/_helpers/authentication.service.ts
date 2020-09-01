@@ -6,7 +6,7 @@ import { HttpClient, HttpHeaders, HttpErrorResponse } from '@angular/common/http
 import { Router } from '@angular/router';
 import { EnvironmentUrlService } from './environment-url.service';
 import * as jwt_decode from 'jwt-decode';
-import { User, UserForRegisterDto, UserForLoginDto } from '../_entities/entitiesforCRM';
+import { User, UserForRegisterDto, UserForLoginDto, CurrentUser } from '../_entities/entitiesforCRM';
 
 @Injectable({
   providedIn: 'root'
@@ -44,7 +44,21 @@ export class AuthenticationService {
       return null;
   }
 
+  get getCurrentUserInfo(): CurrentUser {
+    let jsonUser = this.getUserInfo;
+    if (jsonUser==null)
+      return null;
 
+    let currentUser = new CurrentUser();
+
+    currentUser.isAdmin = jsonUser.isAdmin;
+    currentUser.userName = jsonUser.userName;
+    currentUser.email = jsonUser.email;
+    currentUser.fullName = jsonUser.fullName;
+    currentUser.id =  +jsonUser.id;
+    return currentUser;
+
+  }
 
 
   // Sign-up

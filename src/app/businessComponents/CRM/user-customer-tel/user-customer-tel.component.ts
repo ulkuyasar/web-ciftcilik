@@ -5,7 +5,7 @@ import { jqxWindowComponent } from 'jqwidgets-ng/jqxwindow';
 import { NotificationService } from 'src/app/_helpers/notification.service';
 import { YilBaseMasterCRUDComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-base-master-crud/yil-base-master-crud.component';
 import { UserTelService } from 'src/app/services/CRM/user-tel.service';
-import { UserTel } from 'src/app/_entities/entitiesforCRM';
+import { UserTel, CurrentUser } from 'src/app/_entities/entitiesforCRM';
 import { Guid } from "guid-typescript";
 import { AuthenticationService } from 'src/app/_helpers/authentication.service';
 
@@ -31,6 +31,7 @@ export class UserCustomerTelComponent implements AfterViewInit //,OnInit,
   _yilAutomaticfillValue:boolean=false;
   _id :string = "";
   authenticationService:AuthenticationService;
+  currentUser:CurrentUser;
 
     constructor(protected userTelService:UserTelService, 
                 protected notificationService:NotificationService,
@@ -38,6 +39,8 @@ export class UserCustomerTelComponent implements AfterViewInit //,OnInit,
     this.entityVal = new UserTel();
     this._userTelService = userTelService;
     this.authenticationService = _authenticationService;
+    this.currentUser = _authenticationService.getCurrentUserInfo;
+     
     this.gridColumns =
     [
       { freeze: true, text: 'ID', datafield: 'id',width: 50,cellsalign:'right' }, 

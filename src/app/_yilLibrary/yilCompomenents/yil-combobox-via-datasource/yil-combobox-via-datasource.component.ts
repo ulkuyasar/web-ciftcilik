@@ -12,6 +12,7 @@ import { LabelValueType } from 'src/app/_entities/entitiesForComponents';
 
 export class YilComboboxViaDatasourceComponent implements AfterViewInit {
 
+  @Input() label: string;
   @Output() EventChangeValue : EventEmitter<any> = new EventEmitter();
   yilMapperHelperService : YilMapperHelperService
 

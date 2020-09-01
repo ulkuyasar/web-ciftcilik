@@ -10,6 +10,7 @@ import { DataField } from 'src/app/_entities/entitiesForComponents';
 import { YilIdNameInheritedService } from '../../yilServices/yil-id-name-inherited.service';
 
 import { Guid } from "guid-typescript";
+import { CurrentUser } from 'src/app/_entities/entitiesforCRM';
 
 @Component({
   selector: 'app-yil-base-master-crud',
@@ -23,6 +24,7 @@ export class YilBaseMasterCRUDComponent implements AfterViewInit //, OnInit
   @Input() modalWindowForm: jqxWindowComponent;
   @Input() gridColumns: any[] = [];
   @Input() abstractidnoService: YilIdNameInheritedService<idname>;
+  @Input() currentUser: CurrentUser;
 
   @Output() EventSetValueToModalWindowForm : EventEmitter<any> = new EventEmitter();
   @Output() EventClearValueToModalWindowForm : EventEmitter<any> = new EventEmitter();
@@ -102,16 +104,31 @@ public onYilInitilize() : void{
   refresh= (): any =>
   {
     if (this.abstractidnoService!=undefined){
-        this.abstractidnoService.getall().subscribe(
-          data_ =>
-          {        
-              this.data = data_.data,
-              this.source.localdata =  this.data,
-              this.dataAdapter = new jqx.dataAdapter(this.source);  
-              if (this.myGrid != undefined){
-                  this.myGrid.render();         
-              }         
-          });
+      if (this.currentUser==null){ 
+            this.abstractidnoService.getall().subscribe(
+              data_ =>
+              {        
+                  this.data = data_.data,
+                  this.source.localdata =  this.data,
+                  this.dataAdapter = new jqx.dataAdapter(this.source);  
+                  if (this.myGrid != undefined){
+                      this.myGrid.render();         
+                  }         
+              });
+
+        } else
+        {  
+            this.abstractidnoService.getlistbyotherobject(this.currentUser.id).subscribe(
+              data_ =>
+              {        
+                  this.data = data_.data,
+                  this.source.localdata =  this.data,
+                  this.dataAdapter = new jqx.dataAdapter(this.source);  
+                  if (this.myGrid != undefined){
+                      this.myGrid.render();         
+                  }         
+              });
+        }
       }
    }
 

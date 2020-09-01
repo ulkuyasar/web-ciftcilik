@@ -11,7 +11,7 @@ export class EnvironmentUrlService {
    getURL()
    {
     // if(isDevMode()) {
-       //   return "https://localhost:5001/api/";
+     //    return "https://localhost:5001/api/";
     // }
     // else{
        return "https://yilciftcilikwebapi.herokuapp.com/api/";

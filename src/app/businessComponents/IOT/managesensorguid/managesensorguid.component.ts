@@ -14,6 +14,7 @@ import { UserdetailService } from 'src/app/services/CRM/userdetail.service';
 import { UserTarlaService } from 'src/app/services/CRM/user-tarla.service';
 import { YilBaseJustListFromDsComponent } from 'src/app/_yilLibrary/yilCompomenents/yil-base-just-list-from-ds/yil-base-just-list-from-ds.component';
 import { data } from 'jquery';
+import { CheckBoxComponent } from 'smart-webcomponents-angular/checkbox';
 
 
 @Component({
@@ -30,8 +31,10 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
   @ViewChild('cmbUserList', { static: false }) cmbUserList: YilComboboxViaDatasourceComponent;
   @ViewChild('base', { static: false }) baseListComponent: YilBaseJustListFromDsComponent;
   @ViewChild('cmbDeviceType', { static: false }) cmbDeviceType: YilComboboxViaDatasourceComponent;
+  @ViewChild('chbIsParent', { read: CheckBoxComponent, static: false }) chbIsParent: CheckBoxComponent;
+  @ViewChild('cmbParentListesi', { static: false }) cmbParentListesi: YilComboboxViaDatasourceComponent;
   
-
+ 
   gridColumns: any[] = [];
   public _managesensorguidService : ManageSensorGuidService;
   entityVal : ManageSensorGuid;
@@ -41,6 +44,8 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
   userService:UserdetailService;
   tarlaService:UserTarlaService;
 
+  lblUserList: String;  lblTarlaList: String; lblDeviceType: String;lblParentDevice: String;
+
     constructor(protected managesensorguidService:ManageSensorGuidService, 
                 protected notificationService:NotificationService,
                 private _tarlaService:UserTarlaService,
@@ -49,25 +54,32 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
     this._managesensorguidService = managesensorguidService;
     this.userService =_userService;
     this.tarlaService = _tarlaService;
+
+    this.lblUserList = "Kullnıcılar:";
+    this.lblTarlaList= "Tarlalar:";
+    this.lblDeviceType= "Board Tipi:";
+    this.lblParentDevice= "Bağlı olduğu Lora Gateway Board:";
    
     this.yilcolumns=
     [
         { text: 'Id', datafield: 'id', width: 60 },
-        { text: 'Ad', datafield: 'name', width: 80 },
+       // { text: 'Ad', datafield: 'name', width: 80 },
         { text: 'Apikey', datafield: 'apiKey', width: 300 }   ,
-        { text: 'UserName', datafield: 'userName', width: 120 }   ,  
+       // { text: 'UserName', datafield: 'userName', width: 120 }   ,  
         { text: 'UserTarlaName', datafield: 'userTarlaName', width: 120 }   ,  
-        { text: 'DeviceTypeName', datafield: 'deviceTypeName', width: 100 }     
+        { text: 'DeviceTypeName', datafield: 'deviceTypeName', width: 200 }  ,
+        { text: 'ParentMi', datafield: 'isParent', width: 80 }    
     ];
 
     this.yildatafields=
     [
         { name: 'id', type: 'number' },
-        { name: 'name', type: 'string' },
+       // { name: 'name', type: 'string' },
         { name: 'apiKey', type: 'string' },
-        { name: 'userName', type: 'string' },
+       // { name: 'userName', type: 'string' },
         { name: 'userTarlaName', type: 'string' },
-        { name: 'deviceTypeName', type: 'string' }
+        { name: 'deviceTypeName', type: 'string' },
+        { name: 'isParent', type: 'bool' }
 
        // tarla adı da gelecek sekılde listeleme yaptır
     ];
@@ -77,16 +89,28 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
     var classEnumValues : EnumValues = new EnumValues();
     var list = classEnumValues.getDeviceTypesClass();
     this.cmbDeviceType.refreshViaListIdName(list);
+
+    
+
     
   }
 
   ngOnInit() { 
     this.userService.getall().subscribe(
       data_ => {
-        this.cmbUserList.refreshViaListIdNameWithExternalProperty(data_.data,"userId","name");
+        this.cmbUserList.refreshViaListIdNameWithExternalProperty(data_.data,"userId","fullName");
       }
     );
+
+    this._managesensorguidService.getLoraGatewayList().subscribe(
+      data_ => {
+        this.cmbParentListesi.refreshViaListIdNameWithExternalProperty(data_.data,"id","name");
+      }
+    );
+
   }
+
+
 
   cmbUserListChangeValue($event):void{
     var selectedUserValue =  this.cmbUserList.getSelectedValues();
@@ -123,6 +147,9 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
     var selectedUserValue =  this.cmbUserList.getSelectedValues();
     var selectedTarlaValue =  this.cmbTarlaList.getSelectedValues();
     var selectedDeviceTypeValue =  this.cmbDeviceType.getSelectedValues();
+    var selectedParentValue =  this.cmbParentListesi.getSelectedValues();
+
+    
 
     if (+selectedTarlaValue==0 || +selectedUserValue==0 || +selectedDeviceTypeValue==0){
        this.notificationService.MesajVerWarning("Kaydetmek için User ,Tarla yada Device Tipinden hepsi seçilmelidir...");
@@ -135,9 +162,22 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
     this.entityVal.userTarlaId = +selectedTarlaValue;
     this.entityVal.deviceType = +selectedDeviceTypeValue;
 
+    this.entityVal.isParent =  this.chbIsParent.checked;
+    this.entityVal.parentManageSensorGuidId = +selectedParentValue;
+
+    //backende validasyon ekle 
+    //
+
+
     this._managesensorguidService.add(this.entityVal).subscribe(
       data =>{
-        this.listeleClicked();
+        if (data.success){
+          this.notificationService.MesajVerSuccess("Basarıyla Eklendi");
+          this.listeleClicked();
+        }else{
+          this.notificationService.MesajVerError(data.message);
+        }
+       
     });
 
 
@@ -157,6 +197,13 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
     else
         this.cmbTarlaListChangeValue(null);
   };
+
+
+  
+  onChangeIsParent($event){
+    this.cmbParentListesi.clearSelected();
+  }
+
 
 
 }

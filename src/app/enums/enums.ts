@@ -5,7 +5,8 @@ enum DeviceType {
     RaspperryPi3 = 1,
     RaspperryPi4 = 2,
     ArduinoUno = 3,
-    ArduinoMega =4
+    ArduinoWemosD1 =4,
+    ArduinoWemosD1LoraGateGay =5
 }
 
 
@@ -53,8 +54,8 @@ class EnumValues{
         type4.name = "Arduino-Wemos-D1";
 
         var type5 =  new DeviceTypeClass();
-        type4.id = 5;
-        type4.name = "Arduino-Wemos-D1-LoraGateGay";
+        type5.id = 5;
+        type5.name = "Arduino-Wemos-D1-LoraGateGay";
 
 
         list.push(type1);
