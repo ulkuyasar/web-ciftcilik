@@ -96,7 +96,19 @@ class EnumValues{
 
         var type5 =  new SensorTypeClass();
         type5.id = 5;
-        type5.name = "Hırsız Kontrol";
+        type5.name = "Hırsız Kontrol Kapi Acilmasi";
+
+        var type6 =  new SensorTypeClass();
+        type6.id = 6;
+        type6.name = "Topragin Sicakligi";
+
+        var type7 =  new SensorTypeClass();
+        type7.id = 7;
+        type7.name = "Hirsiz Kontrol Mesafe Kontrol";
+
+        var type8 =  new SensorTypeClass();
+        type8.id = 8;
+        type8.name = "Hirsiz Kontrol Hareket Kontrol";
 
    
         list.push(type1);
@@ -104,6 +116,9 @@ class EnumValues{
         list.push(type3);
         list.push(type4);
         list.push(type5);
+        list.push(type6);
+        list.push(type7);
+        list.push(type8);
         return list;
     }
 

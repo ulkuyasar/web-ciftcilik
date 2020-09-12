@@ -68,7 +68,11 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
        // { text: 'UserName', datafield: 'userName', width: 120 }   ,  
         { text: 'UserTarlaName', datafield: 'userTarlaName', width: 120 }   ,  
         { text: 'DeviceTypeName', datafield: 'deviceTypeName', width: 200 }  ,
-        { text: 'ParentMi', datafield: 'isParent', width: 80 }    
+        { text: 'ParentMi', datafield: 'isParent', width: 80 }   ,
+        { text: 'parentManageSensorGuidId', datafield: 'parentManageSensorGuidId', width: 80 }  ,
+        { text: 'parentManageSensorGuidApiKey', datafield: 'parentManageSensorGuidApiKey', width: 200 }   
+         
+        
     ];
 
     this.yildatafields=
@@ -79,7 +83,9 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
        // { name: 'userName', type: 'string' },
         { name: 'userTarlaName', type: 'string' },
         { name: 'deviceTypeName', type: 'string' },
-        { name: 'isParent', type: 'bool' }
+        { name: 'isParent', type: 'bool' },
+        { name: 'parentManageSensorGuidId', type: 'number' },
+        { name: 'parentManageSensorGuidApiKey', type: 'string' }
 
        // tarla adı da gelecek sekılde listeleme yaptır
     ];
