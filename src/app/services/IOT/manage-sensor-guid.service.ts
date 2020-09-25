@@ -21,7 +21,7 @@ import { Observable } from 'rxjs';
         this.url = this.environmentUrlService.getURL()+ this.apiControllerName();
     }
     public apiControllerName(): string {
-      return "ManageSensorGuids";
+      return "Boards";
     }
 
     getlistbyUserIdAndTarlaId( userId : number,  tarlaId :number): Observable<DataListResult<ManageSensorGuid>> {  

@@ -18,6 +18,7 @@ class ManageSensorGuid extends idname
     deviceType:number;
     isParent:boolean;
     parentManageSensorGuidId:number;
+    microBoardType:number;
 
 }
 

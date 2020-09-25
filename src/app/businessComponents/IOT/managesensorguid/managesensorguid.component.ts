@@ -33,6 +33,9 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
   @ViewChild('cmbDeviceType', { static: false }) cmbDeviceType: YilComboboxViaDatasourceComponent;
   @ViewChild('chbIsParent', { read: CheckBoxComponent, static: false }) chbIsParent: CheckBoxComponent;
   @ViewChild('cmbParentListesi', { static: false }) cmbParentListesi: YilComboboxViaDatasourceComponent;
+  @ViewChild('cmbBoardTypeListesi', { static: false }) cmbBoardTypeListesi: YilComboboxViaDatasourceComponent;
+
+  
   
  
   gridColumns: any[] = [];
@@ -44,7 +47,7 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
   userService:UserdetailService;
   tarlaService:UserTarlaService;
 
-  lblUserList: String;  lblTarlaList: String; lblDeviceType: String;lblParentDevice: String;
+  lblUserList: String;  lblTarlaList: String; lblDeviceType: String;lblParentDevice: String;lblBoardType:String;
 
     constructor(protected managesensorguidService:ManageSensorGuidService, 
                 protected notificationService:NotificationService,
@@ -59,7 +62,12 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
     this.lblTarlaList= "Tarlalar:";
     this.lblDeviceType= "Board Tipi:";
     this.lblParentDevice= "Bağlı olduğu Lora Gateway Board:";
-   
+    this.lblBoardType= "Micro Board Type:";
+
+
+
+
+
     this.yilcolumns=
     [
         { text: 'Id', datafield: 'id', width: 60 },
@@ -96,8 +104,10 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
     var list = classEnumValues.getDeviceTypesClass();
     this.cmbDeviceType.refreshViaListIdName(list);
 
-    
+    var listBoardType = classEnumValues.getMicroBoardTypeClass();
+    this.cmbBoardTypeListesi.refreshViaListIdName(listBoardType);
 
+    
     
   }
 
@@ -154,6 +164,7 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
     var selectedTarlaValue =  this.cmbTarlaList.getSelectedValues();
     var selectedDeviceTypeValue =  this.cmbDeviceType.getSelectedValues();
     var selectedParentValue =  this.cmbParentListesi.getSelectedValues();
+    var selectedMicroBoardType = this.cmbBoardTypeListesi.getSelectedValues();
 
     
 
@@ -170,6 +181,7 @@ export class ManagesensorguidComponent  implements AfterViewInit ,OnInit
 
     this.entityVal.isParent =  this.chbIsParent.checked;
     this.entityVal.parentManageSensorGuidId = +selectedParentValue;
+    this.entityVal.microBoardType = +selectedMicroBoardType;
 
     //backende validasyon ekle 
     //
