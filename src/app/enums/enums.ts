@@ -85,9 +85,9 @@ class EnumValues{
         type6.name = "Server_WemosD1_Security";
 
         
-        var type7 =  new BoardTypeClass();
-        type7.id = 7;
-        type7.name = "Lora_WemosD1_LoraGateGay";
+        // var type7 =  new BoardTypeClass();
+        // type7.id = 7;
+        // type7.name = "Lora_WemosD1_LoraGateGay";
 
 
         list.push(type1);
@@ -96,7 +96,7 @@ class EnumValues{
         list.push(type4);
         list.push(type5);
         list.push(type6);
-        list.push(type7);
+       // list.push(type7);
         return list;
     }
 
