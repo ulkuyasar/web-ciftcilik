@@ -130,7 +130,13 @@ export class IotsensortransactionComponent implements AfterViewInit,OnInit {
 getSensorValuesToGrid(){
     var selectedValueTarlaID =  this.cmbTarlaList.getSelectedValues();
     var selectedValueSensorType =  this.cmbSelectionTransactionType.getSelectedValues();
-        this.iotSensorService.getlistbyOtherobjectAndSensorType(+selectedValueTarlaID,+selectedValueSensorType[0]).subscribe(
+    var sensorType = -1;
+    if (selectedValueSensorType.length>0)
+    {
+        sensorType = +selectedValueSensorType[0];
+    }
+  
+        this.iotSensorService.getlistbyOtherobjectAndSensorType(+selectedValueTarlaID,sensorType).subscribe(
             data_ => 
             {
                 this.yildata = data_.data;
